@@ -2825,8 +2825,8 @@ h6 {
 .floating-call {
   position: fixed;
   bottom: 152px;
-  right: 28px;
-  left: auto;
+  left: 28px;
+  right: auto;
   width: 54px;
   height: 54px;
   border-radius: 50%;
@@ -2849,8 +2849,10 @@ h6 {
 
 .call-tooltip {
   position: absolute;
-  right: 68px;
-  left: auto;
+  left: 68px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
   background-color: #ffffff;
   color: #1e252b;
   font-size: 0.8rem;
@@ -2873,8 +2875,8 @@ h6 {
 .floating-whatsapp {
   position: fixed;
   bottom: 88px;
-  right: 28px;
-  left: auto;
+  left: 28px;
+  right: auto;
   width: 54px;
   height: 54px;
   border-radius: 50%;
@@ -2896,8 +2898,10 @@ h6 {
 
 .whatsapp-tooltip {
   position: absolute;
-  right: 68px;
-  left: auto;
+  left: 68px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
   background-color: #ffffff;
   color: #1e252b;
   font-size: 0.8rem;
