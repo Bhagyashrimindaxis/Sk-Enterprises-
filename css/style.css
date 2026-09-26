@@ -2962,7 +2962,7 @@ h6 {
   transform: translateY(-4px);
 }
 
-/* Mobile Sticky Bottom CTA Bar */
+/* Mobile Sticky Bottom CTA Bar — hidden (floating buttons handle CTA) */
 .mobile-sticky-cta {
   display: none;
   position: fixed;
@@ -3347,41 +3347,45 @@ h6 {
     gap: 32px;
   }
 
-  /* Bottom Sticky Bar handles Call, WhatsApp & Quote on mobile */
+  /* On mobile: hide horizontal sticky bar, use floating buttons instead */
   .mobile-sticky-cta {
-    display: block !important;
+    display: none !important;
   }
 
   body {
-    padding-bottom: 60px;
+    padding-bottom: 0;
   }
 
-  /* Floating group stays visible on mobile — smaller size, left side */
+  /* On mobile: floating buttons move to BOTTOM RIGHT, vertical stack */
   .floating-buttons-group {
-    left: 10px;
+    left: auto;
+    right: 14px;
+    top: auto;
+    bottom: 90px;
+    transform: none;
     gap: 10px;
   }
 
   .floating-call,
   .floating-whatsapp {
-    width: 44px !important;
-    height: 44px !important;
-    font-size: 1.2rem !important;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25) !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.25rem !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.28) !important;
   }
 
   .floating-whatsapp {
-    font-size: 1.4rem !important;
+    font-size: 1.45rem !important;
   }
 
-  /* Hide tooltips on mobile (no hover on touch) */
+  /* Hide tooltips on mobile (touch devices) */
   .call-tooltip,
   .whatsapp-tooltip {
     display: none !important;
   }
 
   .back-to-top {
-    bottom: 70px !important;
+    bottom: 20px !important;
     right: 14px !important;
     width: 38px !important;
     height: 38px !important;
