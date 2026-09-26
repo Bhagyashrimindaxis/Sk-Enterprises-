@@ -2823,12 +2823,11 @@ h6 {
    17. FLOATING UTILITIES (Call, WhatsApp, Back To Top, Mobile Bar)
    ========================================================================== */
 
-/* Floating Buttons Group — Left Side, Vertical Stack (All Devices) */
+/* Floating Buttons Group — Bottom RIGHT, Vertical Stack (All Devices) */
 .floating-buttons-group {
   position: fixed;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 20px;
+  bottom: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2860,8 +2859,8 @@ h6 {
 
 .call-tooltip {
   position: absolute;
-  left: 68px;
-  right: auto;
+  right: 68px;
+  left: auto;
   top: 50%;
   transform: translateY(-50%);
   background-color: #ffffff;
@@ -2906,8 +2905,8 @@ h6 {
 
 .whatsapp-tooltip {
   position: absolute;
-  left: 68px;
-  right: auto;
+  right: 68px;
+  left: auto;
   top: 50%;
   transform: translateY(-50%);
   background-color: #ffffff;
@@ -3356,13 +3355,10 @@ h6 {
     padding-bottom: 0;
   }
 
-  /* On mobile: floating buttons move to BOTTOM RIGHT, vertical stack */
+  /* On mobile: floating buttons stay bottom-right, smaller size */
   .floating-buttons-group {
-    left: auto;
     right: 14px;
-    top: auto;
     bottom: 90px;
-    transform: none;
     gap: 10px;
   }
 
