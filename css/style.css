@@ -2819,14 +2819,21 @@ h6 {
   color: #ffffff !important;
 }
 
-/* ==========================================================================
-   17. FLOATING UTILITIES (Call, WhatsApp, Back To Top, Mobile Bar)
-   ========================================================================== */
-.floating-call {
+/* Floating Buttons Group — Left Side, Vertical Stack */
+.floating-buttons-group {
   position: fixed;
-  bottom: 152px;
-  left: 28px;
-  right: auto;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 995;
+}
+
+.floating-call {
+  position: relative;
   width: 54px;
   height: 54px;
   border-radius: 50%;
@@ -2837,8 +2844,8 @@ h6 {
   justify-content: center;
   font-size: 1.5rem;
   box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45);
-  z-index: 995;
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .floating-call:hover {
@@ -2873,10 +2880,7 @@ h6 {
 }
 
 .floating-whatsapp {
-  position: fixed;
-  bottom: 88px;
-  left: 28px;
-  right: auto;
+  position: relative;
   width: 54px;
   height: 54px;
   border-radius: 50%;
@@ -2887,8 +2891,8 @@ h6 {
   justify-content: center;
   font-size: 1.85rem;
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
-  z-index: 995;
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .floating-whatsapp:hover {
@@ -3348,9 +3352,8 @@ h6 {
     padding-bottom: 60px;
   }
 
-  /* Hide duplicate circular floating buttons on mobile so they NEVER overlap hero buttons! */
-  .floating-call,
-  .floating-whatsapp {
+  /* Hide floating group on mobile — bottom sticky bar handles CTA */
+  .floating-buttons-group {
     display: none !important;
   }
 
