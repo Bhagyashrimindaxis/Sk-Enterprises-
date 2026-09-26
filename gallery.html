@@ -23,8 +23,101 @@
 </head>
 <body data-page="gallery">
 
-  <!-- Dynamic Header (Loaded from header.html) -->
-  <div id="site-header-container"></div>
+  <!-- Static / Instant Header (No delay, no layout shift) -->
+  <div id="site-header-container">
+    <div class="top-bar">
+      <div class="container">
+        <div class="top-bar-inner">
+          <div class="top-bar-left">
+            <span class="top-badge"><i class="fa-solid fa-award"></i> ISO 9001:2015 Certified</span>
+            <span class="top-bar-location"><i class="fa-solid fa-location-dot"></i> Showroom &amp; Factory: Pune, Maharashtra</span>
+          </div>
+          <div class="top-bar-right">
+            <ul class="top-contact-list">
+              <li>
+                <a href="tel:+919423053232" class="top-contact-item">
+                  <i class="fa-solid fa-phone"></i>
+                  <span>+91 94230 53232</span>
+                </a>
+              </li>
+              <li>
+                <a href="tel:+917972779903" class="top-contact-item">
+                  <i class="fa-solid fa-phone"></i>
+                  <span>+91 79727 79903</span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:skenterprises3232@gmail.com" class="top-contact-item">
+                  <i class="fa-solid fa-envelope"></i>
+                  <span>skenterprises3232@gmail.com</span>
+                </a>
+              </li>
+            </ul>
+            <div class="top-social-links">
+              <a href="https://www.instagram.com/sk.interiors.1981?stkn=MXNreG9wdmg0azk0OQ==" target="_blank" rel="noopener" class="top-social-btn social-instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener" class="top-social-btn social-facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener" class="top-social-btn social-youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="https://wa.me/919423053232" target="_blank" rel="noopener" class="top-social-btn social-whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header class="site-header" id="siteHeader">
+      <div class="container navbar-container">
+        <a href="index.html" class="brand-logo-link">
+          <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="brand-logo-img">
+          <div class="brand-text-block">
+            <span class="brand-title">S K ENTERPRISES</span>
+          </div>
+        </a>
+        <nav class="nav-menu">
+          <div class="nav-item">
+            <a href="index.html" class="nav-link" data-nav="home">Home</a>
+          </div>
+          <div class="nav-item">
+            <a href="about.html" class="nav-link" data-nav="about">About Us</a>
+          </div>
+          <div class="nav-item has-dropdown">
+            <a href="products.html" class="nav-link" data-nav="products">
+              Products <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+            </a>
+            <div class="nav-dropdown">
+              <a href="products.html#collections" class="dropdown-link"><span>Living Room Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html#collections" class="dropdown-link"><span>Luxury Sofa Sets</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html#collections" class="dropdown-link"><span>Dining Tables &amp; Chairs</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html#collections" class="dropdown-link"><span>Master Bedroom Suites</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html#collections" class="dropdown-link"><span>Modular Walk-in Wardrobes</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html#collections" class="dropdown-link"><span>Executive Office Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html#all-products" class="dropdown-link"><span>All Signature Products</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="nav-item has-dropdown">
+            <a href="gallery.html" class="nav-link active" data-nav="gallery">
+              Gallery <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+            </a>
+            <div class="nav-dropdown">
+              <a href="gallery.html" class="dropdown-link"><span>Photo Gallery</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="videos.html" class="dropdown-link"><span>Video Walkthroughs</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="contact.html" class="nav-link" data-nav="contact">Contact</a>
+          </div>
+        </nav>
+        <div class="header-actions">
+          <button type="button" class="quick-enquiry-drawer open-enquiry-drawer quick-enquiry-btn" title="Quick Inquiry">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Quick Inquiry</span>
+          </button>
+          <a href="contact.html#quote-calculator" class="btn btn-primary btn-sm header-quote-btn">Get a Quote</a>
+          <button type="button" class="mobile-toggle open-enquiry-drawer" aria-label="Toggle navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+  </div>
 
   <!-- ==========================================================================
        PAGE BANNER / BREADCRUMB

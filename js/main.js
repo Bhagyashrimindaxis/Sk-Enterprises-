@@ -27,7 +27,7 @@ async function loadDynamicComponents() {
 
   const tasks = [];
 
-  if (headerContainer) {
+  if (headerContainer && headerContainer.children.length === 0) {
     tasks.push(
       fetch('header.html')
         .then(res => {
@@ -49,7 +49,7 @@ async function loadDynamicComponents() {
     initNavbar();
   }
 
-  if (footerContainer) {
+  if (footerContainer && footerContainer.children.length === 0) {
     tasks.push(
       fetch('footer.html')
         .then(res => {
