@@ -714,14 +714,14 @@ h6 {
    ========================================================================== */
 .hero-video-section {
   position: relative;
-  min-height: 75vh;
-  height: clamp(560px, 80vh, 760px);
+  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
   background-color: #d5e3eb !important;
   /* rgb(213, 227, 235) */
-  padding: 48px 0;
+  padding: 0;
   border-bottom: 1px solid rgba(53, 100, 126, 0.16);
 }
 
@@ -744,10 +744,8 @@ h6 {
   height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  object-position: center 72%;
-  /* Moved video up to reveal bottom area */
+  object-position: center center;
   opacity: 1 !important;
-  /* No opacity effect on video */
   display: block;
 }
 
@@ -782,6 +780,32 @@ h6 {
   margin-bottom: 26px;
   max-width: 600px;
   font-weight: 500;
+}
+
+.hero-video-section .hero-slide:not(:first-child) .hero-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.hero-video-section .hero-slide:not(:first-child) .hero-description {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.hero-video-section .hero-slide:not(:first-child) .hero-eyebrow {
+  background-color: rgba(200, 168, 126, 0.25) !important;
+  border: 1px solid rgba(200, 168, 126, 0.5) !important;
+  color: var(--color-accent) !important;
+}
+
+.hero-video-section .hero-slide:not(:first-child) .btn-ghost-white {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  color: #ffffff !important;
+}
+
+.hero-video-section .hero-slide:not(:first-child) .btn-ghost-white:hover {
+  background-color: #ffffff !important;
+  color: var(--color-primary-dark) !important;
 }
 
 /* 2-Column Grid: Copy Left + Full Uncropped Video Right */
@@ -956,6 +980,7 @@ h6 {
     height: auto !important;
     padding: 40px 0 35px;
   }
+
   .hero-container-grid {
     gap: 30px;
   }
@@ -965,14 +990,17 @@ h6 {
   .hero-video-section {
     padding: 28px 0 28px;
   }
+
   .hero-video-frame-wrapper {
     width: 260px;
     max-width: 86vw;
   }
+
   .hero-video-section .hero-title {
     font-size: clamp(1.75rem, 6.5vw, 2.4rem) !important;
     line-height: 1.22 !important;
   }
+
   .hero-video-section .hero-description {
     font-size: 0.92rem !important;
     line-height: 1.6 !important;
@@ -3367,7 +3395,7 @@ h6 {
     width: 48px !important;
     height: 48px !important;
     font-size: 1.25rem !important;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.28) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28) !important;
   }
 
   .floating-whatsapp {
@@ -3881,8 +3909,8 @@ h6 {
   transform: translate3d(-36px, 14px, 0) scale(0.98);
   filter: blur(3px);
   transition: opacity 1.35s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 1.35s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 1.2s ease-out;
+    transform 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.2s ease-out;
   will-change: opacity, transform, filter;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -3893,8 +3921,8 @@ h6 {
   transform: translate3d(36px, 14px, 0) scale(0.98);
   filter: blur(3px);
   transition: opacity 1.35s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 1.35s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 1.2s ease-out;
+    transform 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.2s ease-out;
   will-change: opacity, transform, filter;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -3907,6 +3935,7 @@ h6 {
 }
 
 @media (max-width: 768px) {
+
   .card-animate-left,
   .card-animate-right {
     transform: translate3d(0, 16px, 0) scale(0.98);
@@ -3914,6 +3943,7 @@ h6 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .card-animate-left,
   .card-animate-right {
     opacity: 1 !important;

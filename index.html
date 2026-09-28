@@ -186,39 +186,91 @@
   </div>
 
   <section class="hero-section hero-video-section" id="home">
-    <!-- Clean Background Video (Direct, No Overlay) -->
-    <div class="hero-video-bg-container">
-      <video class="hero-bg-video-clean" autoplay muted loop playsinline preload="auto"
-        poster="assets/images/SK-Img/sk-bedroom-suite-wide.jpg">
-        <source src="assets/images/SK-Img/sk-dining-walkthrough.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="container hero-container-grid" style="position: relative; z-index: 2;">
-      <!-- Left Column: Copy & CTAs -->
-      <div class="hero-content">
-        <span class="hero-eyebrow"><i class="fa-solid fa-house-chimney"></i> Turnkey Residence Tour</span>
-        <h1 class="hero-title">Complete Turnkey Residence Interior Walkthrough</h1>
-        <p class="hero-description">Transforming fine residences, luxury apartments, and duplexes across Pune with
-          precision-engineered modular furniture, architectural panelling, bespoke cabinetry, and master turnkey
-          interior execution.</p>
-        <div class="hero-buttons">
-          <a href="products.html" class="btn btn-primary btn-lg">Explore Collection</a>
-          <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact Us</a>
+    <div class="hero-slider">
+      <!-- Slide 1: Turnkey Residence Walkthrough (Video) -->
+      <div class="hero-slide active">
+        <!-- Clean Background Video (Direct, No Overlay) -->
+        <div class="hero-video-bg-container">
+          <video class="hero-bg-video-clean" autoplay muted playsinline preload="auto">
+            <source src="sk-dining-walkthrough_dbHtLmdO.mp4" type="video/mp4">
+            <source src="sk-interior-17-feb-copy_e5885GXN.mp4" type="video/mp4">
+          </video>
         </div>
-      </div>
-
-      <!-- Right Column: Full Uncropped 9:16 Turnkey Tour Video Card -->
-      <div class="hero-video-showcase-col">
-        <div class="hero-video-frame-wrapper">
-          <div class="hero-video-frame">
-            <video class="hero-showcase-video" autoplay muted loop playsinline preload="auto"
-              poster="assets/images/SK-Img/sk-bedroom-suite-wide.jpg">
-              <source src="assets/images/SK-Img/sk-interior-walkthrough.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+        <div class="container hero-container-grid" style="position: relative; z-index: 2;">
+          <!-- Left Column: Copy & CTAs -->
+          <div class="hero-content">
+            <span class="hero-eyebrow"><i class="fa-solid fa-house-chimney"></i> Turnkey Residence Tour</span>
+            <h1 class="hero-title">Complete Turnkey Residence Interior Walkthrough</h1>
+            <p class="hero-description">Transforming fine residences, luxury apartments, and duplexes across Pune with
+              precision-engineered modular furniture, architectural panelling, bespoke cabinetry, and master turnkey
+              interior execution.</p>
+            <div class="hero-buttons">
+              <a href="products.html" class="btn btn-primary btn-lg">Explore Collection</a>
+              <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact Us</a>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Slide 2: Master Bedroom Suites & Panelling (About Hero Bg) -->
+      <div class="hero-slide" style="background-image: url('assets/images/SK-Img/about-hero-bg.png');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container-grid" style="position: relative; z-index: 2;">
+          <div class="hero-content">
+            <span class="hero-eyebrow"><i class="fa-solid fa-bed"></i> Master Bedroom Suites</span>
+            <h1 class="hero-title">Bespoke Bedroom Elegance &amp; Acoustic Wall Panelling</h1>
+            <p class="hero-description">Precision-crafted bedroom suites, custom king beds, and integrated LED cove headboards tailored to elevate your personal sanctuary.</p>
+            <div class="hero-buttons">
+              <a href="products.html" class="btn btn-primary btn-lg">Explore Collection</a>
+              <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Handcrafted Modular Living Spaces (Gallery Hero Bg) -->
+      <div class="hero-slide" style="background-image: url('assets/images/SK-Img/gallery-hero-bg.png');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container-grid" style="position: relative; z-index: 2;">
+          <div class="hero-content">
+            <span class="hero-eyebrow"><i class="fa-solid fa-couch"></i> Luxury Living Spaces</span>
+            <h1 class="hero-title">Handcrafted Modular Sofas &amp; Signature Living Decor</h1>
+            <p class="hero-description">Experience extraordinary comfort and timeless aesthetic appeal with factory-finished premium modular furniture built with Marine grade plywood.</p>
+            <div class="hero-buttons">
+              <a href="products.html" class="btn btn-primary btn-lg">Explore Collection</a>
+              <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Modular Kitchens & Custom Cabinetry (Contact Hero Bg) -->
+      <div class="hero-slide" style="background-image: url('assets/images/SK-Img/contact-hero-bg.png');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container-grid" style="position: relative; z-index: 2;">
+          <div class="hero-content">
+            <span class="hero-eyebrow"><i class="fa-solid fa-kitchen-set"></i> Modular Kitchen &amp; Storage</span>
+            <h1 class="hero-title">Custom Modular Kitchens &amp; Ergonomic Cabinetry</h1>
+            <p class="hero-description">German-grade soft-close hardware, anti-scratch acrylic finishes, and smart storage systems designed for seamless everyday living.</p>
+            <div class="hero-buttons">
+              <a href="products.html" class="btn btn-primary btn-lg">Explore Collection</a>
+              <a href="contact.html" class="btn btn-ghost-white btn-lg">Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Controls -->
+    <div class="hero-controls">
+      <button class="hero-control-btn hero-prev" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="hero-dots">
+        <span class="hero-dot active" data-slide="0"></span>
+        <span class="hero-dot" data-slide="1"></span>
+        <span class="hero-dot" data-slide="2"></span>
+        <span class="hero-dot" data-slide="3"></span>
+      </div>
+      <button class="hero-control-btn hero-next" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
   </section>
 
