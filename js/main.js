@@ -124,27 +124,19 @@ function initNavbar() {
 }
 
 /* ==========================================================================
-   2. HERO SLIDER
+   2. HERO SLIDER (Moderno Interactive Showcase - Infinite Video Loop)
    ========================================================================== */
 function initHeroSlider() {
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.hero-dot');
-    const prevBtn = document.querySelector('.hero-prev');
-    const nextBtn = document.querySelector('.hero-next');
-    const bgVideo = document.querySelector('.hero-bg-video-clean');
+    const slides = document.querySelectorAll('.moderno-slide, .hero-slide');
+    const dots = document.querySelectorAll('.moderno-dot, .hero-dot');
+    const prevBtn = document.querySelector('.moderno-prev, .hero-prev');
+    const nextBtn = document.querySelector('.moderno-next, .hero-next');
+    const soundToggles = document.querySelectorAll('.video-sound-toggle');
 
     if (!slides.length) return;
 
     let currentSlide = 0;
     let slideTimeout = null;
-    const imageSlideDuration = 5500; // 5.5 seconds for image slides
-
-    // Playlist configuration for hero video slide
-    const videoPlaylist = [
-        { src: 'sk-dining-walkthrough_dbHtLmdO.mp4', pos: 'center center' },
-        { src: 'sk-interior-17-feb-copy_e5885GXN.mp4', pos: 'center center' }
-    ];
-    let currentVideoIdx = 0;
 
     function clearTimer() {
         if (slideTimeout) {
@@ -156,29 +148,68 @@ function initHeroSlider() {
     function showSlide(index) {
         clearTimer();
 
-        slides.forEach((slide, i) => {
+        // Pause all other videos and clean up listeners
+        slides.forEach(slide => {
+            const v = slide.querySelector('video');
+            if (v) {
+                v.onended = null;
+                try { v.pause(); } catch(e) {}
+            }
             slide.classList.remove('active');
-            if (dots[i]) dots[i].classList.remove('active');
         });
 
+        dots.forEach(d => d.classList.remove('active'));
+
+        // Calculate next slide index (Infinite Loop)
         currentSlide = (index + slides.length) % slides.length;
         slides[currentSlide].classList.add('active');
         if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+
+        // Synchronize dynamic text slides
+        const textSlides = document.querySelectorAll('.hero-text-slide');
+        if (textSlides.length) {
+            textSlides.forEach((ts, idx) => {
+                if (idx === currentSlide) {
+                    ts.classList.add('active');
+                } else {
+                    ts.classList.remove('active');
+                }
+            });
+        }
 
         const activeSlide = slides[currentSlide];
         const activeVideo = activeSlide.querySelector('video');
 
         if (activeVideo) {
-            // On video slide: play from start and wait until it ends to change slide
-            activeVideo.muted = true;
             activeVideo.currentTime = 0;
             const playPromise = activeVideo.play();
             if (playPromise !== undefined) {
-                playPromise.catch(() => { });
+                playPromise.catch(() => {});
+            }
+
+            // Continuous Infinite Loop: Advance to next slide when current video finishes
+            activeVideo.onended = () => {
+                nextSlide();
+            };
+
+            // Fallback: If video duration is available, schedule advance with safety buffer, else 8s fallback
+            const scheduleAdvance = () => {
+                const dur = (activeVideo.duration && isFinite(activeVideo.duration) && activeVideo.duration > 1)
+                    ? (activeVideo.duration * 1000) + 200
+                    : 8000;
+                clearTimer();
+                slideTimeout = setTimeout(nextSlide, dur);
+            };
+
+            if (activeVideo.readyState >= 1) {
+                scheduleAdvance();
+            } else {
+                activeVideo.onloadedmetadata = scheduleAdvance;
+                slideTimeout = setTimeout(nextSlide, 8000);
             }
         } else {
-            // On photo slide: automatically change after specified duration
-            slideTimeout = setTimeout(nextSlide, imageSlideDuration);
+            // Photo slides: 6 seconds auto-transition
+            slideTimeout = setTimeout(nextSlide, 6000);
         }
     }
 
@@ -190,35 +221,45 @@ function initHeroSlider() {
         showSlide(currentSlide - 1);
     }
 
-    // When the video ends, queue the next video in playlist and advance to the next slide automatically
-    if (bgVideo) {
-        bgVideo.style.objectPosition = videoPlaylist[0].pos;
-
-        bgVideo.addEventListener('ended', () => {
-            currentVideoIdx = (currentVideoIdx + 1) % videoPlaylist.length;
-            bgVideo.src = videoPlaylist[currentVideoIdx].src;
-            bgVideo.style.objectPosition = videoPlaylist[currentVideoIdx].pos;
-            bgVideo.load();
-            // Automatically change slide when video ends
-            nextSlide();
-        });
-    }
-
     if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             nextSlide();
         });
     }
 
     if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             prevSlide();
         });
     }
 
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
+        dot.addEventListener('click', (e) => {
+            e.preventDefault();
             showSlide(index);
+        });
+    });
+
+    // Sound toggle buttons for videos
+    soundToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const parentSlide = toggle.closest('.moderno-slide');
+            if (!parentSlide) return;
+            const video = parentSlide.querySelector('video');
+            if (!video) return;
+
+            video.muted = !video.muted;
+            const icon = toggle.querySelector('i');
+            if (icon) {
+                if (video.muted) {
+                    icon.className = 'fa-solid fa-volume-xmark';
+                } else {
+                    icon.className = 'fa-solid fa-volume-high';
+                }
+            }
         });
     });
 
@@ -227,7 +268,7 @@ function initHeroSlider() {
 }
 
 function initHeroVideos() {
-    const videos = document.querySelectorAll('.hero-video-section video');
+    const videos = document.querySelectorAll('.hero-moderno-section video, .hero-video-section video');
     videos.forEach(v => {
         v.muted = true;
         const playPromise = v.play();
