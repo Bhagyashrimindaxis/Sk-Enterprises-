@@ -3547,9 +3547,9 @@ h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
+  margin: 0 auto 22px auto;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
-  align-self: flex-start;
+  align-self: center;
   width: 105px;
   height: 105px;
   box-sizing: border-box;
@@ -3570,36 +3570,6 @@ h6 {
   color: rgba(255, 255, 255, 0.82);
   margin-bottom: 18px;
   text-align: left;
-}
-
-.footer-review-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: #ffffff !important;
-  padding: 11px 22px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
-  transition: all 0.25s ease;
-  align-self: flex-start;
-}
-
-.footer-review-btn i {
-  color: #fbbf24;
-  font-size: 1.05rem;
-}
-
-.footer-review-btn:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
-  color: #ffffff !important;
 }
 
 .footer-follow-us {
