@@ -1420,14 +1420,11 @@ h6 {
   }
 
   .about-badge-card {
-    position: absolute;
-    bottom: -18px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     width: auto;
     max-width: 90%;
     justify-content: center;
-    margin-top: 0;
+    margin-top: 14px;
   }
 }
 
@@ -1444,7 +1441,9 @@ h6 {
 .about-visual {
   position: relative;
   width: 100%;
-  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .about-image-wrapper {
@@ -1487,19 +1486,17 @@ h6 {
   }
 }
 
-/* --- Redesigned Luxury Glassmorphic Badge Card (Positioned Bottom Center of Image) --- */
+/* --- Redesigned Luxury Glassmorphic Badge Card (Positioned Cleanly Below Image) --- */
 .about-badge-card {
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin-top: 18px;
   background: linear-gradient(135deg, rgba(18, 38, 48, 0.95) 0%, rgba(32, 65, 82, 0.97) 55%, rgba(53, 100, 126, 0.94) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   color: #ffffff;
   border-radius: 12px;
   padding: 10px 22px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), inset 0 0 20px rgba(200, 168, 126, 0.1), 0 16px 36px rgba(12, 26, 33, 0.45);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), inset 0 0 20px rgba(200, 168, 126, 0.1), 0 14px 30px rgba(12, 26, 33, 0.28);
   border: 1.5px solid rgba(200, 168, 126, 0.55);
   display: inline-flex;
   align-items: center;
@@ -1511,8 +1508,8 @@ h6 {
 }
 
 .about-badge-card:hover {
-  transform: translateX(-50%) translateY(-4px) scale(1.03);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 0 24px rgba(200, 168, 126, 0.2), 0 22px 48px rgba(12, 26, 33, 0.55);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 0 24px rgba(200, 168, 126, 0.2), 0 20px 42px rgba(12, 26, 33, 0.38);
   border-color: rgba(200, 168, 126, 0.85);
 }
 
@@ -1536,10 +1533,10 @@ h6 {
 
 @keyframes badgeLuxuryFloat {
   0% {
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
   100% {
-    transform: translateX(-50%) translateY(-5px);
+    transform: translateY(-5px);
   }
 }
 
@@ -4442,8 +4439,8 @@ h6 {
   }
 
   .about-badge-card {
-    right: 16px;
-    bottom: 16px;
+    position: relative;
+    margin-top: 16px;
   }
 
   .collections-grid {
