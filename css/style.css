@@ -3763,9 +3763,9 @@ h6 {
 .footer-bottom-inner {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 6px;
 }
 
@@ -3774,7 +3774,7 @@ h6 {
   font-size: 0.88rem;
   font-weight: 400;
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .footer-copyright strong {
@@ -3787,7 +3787,7 @@ h6 {
   color: rgba(255, 255, 255, 0.65);
   font-weight: 400;
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .footer-developer a {
