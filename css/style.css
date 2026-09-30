@@ -2557,8 +2557,36 @@ h6 {
 }
 
 /* ==========================================================================
-   12. OUR 4-STEP PROCESS - LUXURY MODERN CARDS
+   12. OUR 4-STEP PROCESS - ARCHITECTURAL SQUARE GRID BACKGROUND & CARDS
    ========================================================================== */
+#process {
+  position: relative;
+  background-color: #ffffff;
+  background-image: 
+    linear-gradient(to right, rgba(53, 100, 126, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(53, 100, 126, 0.09) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center center;
+  overflow: hidden;
+}
+
+#process::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.8) 80%, #ffffff 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#process .container {
+  position: relative;
+  z-index: 1;
+}
+
 .process-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
