@@ -1131,30 +1131,107 @@ h6 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
-/* Responsive Styles */
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE STYLES FOR HERO SECTION & NAVBAR
+   ========================================================================== */
 @media (max-width: 992px) {
+  /* Navbar & Header */
+  .nav-menu {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: flex !important;
+  }
+
+  .header-quote-btn {
+    display: none;
+  }
+
+  .quick-enquiry-btn span {
+    display: none;
+  }
+
+  .quick-enquiry-btn {
+    padding: 8px 12px;
+  }
+
+  .top-bar-left span {
+    font-size: 0.78rem;
+  }
+
+  .top-divider {
+    display: none;
+  }
+
+  /* Hero Section Mobile / Tablet: Clear Video on Top + Text Below */
   .hero-moderno-section {
-    min-height: 82vh;
+    min-height: auto;
     height: auto;
-    padding: 60px 0 70px;
+    padding: 24px 0 45px 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #FAF6F0;
   }
 
   .hero-moderno-media-bg {
+    position: relative;
+    top: auto;
+    right: auto;
     width: 100%;
-    opacity: 0.55;
+    height: 380px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+    margin-bottom: 24px;
+    opacity: 1 !important; /* Video is 100% crisp and bright */
+    z-index: 2;
+    background-color: #111;
+  }
+
+  .moderno-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .moderno-slide.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2;
+  }
+
+  .moderno-hero-video,
+  .moderno-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
   }
 
   .hero-moderno-fade-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(250, 246, 240, 0.95) 0%,
-      rgba(250, 246, 240, 0.88) 60%,
-      rgba(250, 246, 240, 0.7) 100%
-    );
+    display: none !important; /* Completely remove washing out overlay */
   }
 
-  .hero-blur-divider {
+  .hero-animated-decor {
     display: none;
+  }
+
+  .hero-moderno-container {
+    position: relative;
+    width: 100%;
+    padding: 0 16px;
+    z-index: 3;
+  }
+
+  .hero-text-slider {
+    max-width: 100%;
+    min-height: auto;
   }
 
   .hero-moderno-content {
@@ -1164,41 +1241,135 @@ h6 {
     margin: 0 auto;
   }
 
+  .hero-moderno-eyebrow {
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .hero-moderno-title {
+    font-size: clamp(1.75rem, 4.2vw, 2.3rem);
+    text-align: center;
+    margin-bottom: 14px;
+    max-width: 100%;
+  }
+
+  .hero-moderno-description {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    text-align: center;
+    max-width: 600px;
+  }
+
   .hero-moderno-actions {
     justify-content: center;
+    width: 100%;
+  }
+
+  .hero-moderno-dots-container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 20px;
+  }
+
+  .moderno-dot {
+    background-color: rgba(53, 100, 126, 0.35);
+  }
+
+  .moderno-dot.active {
+    background-color: var(--color-primary, #35647e);
+  }
+
+  /* About Section Tablet */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about-content {
+    padding-left: 0;
   }
 }
 
 @media (max-width: 576px) {
+  /* Top Bar & Header on small mobile */
+  .top-bar {
+    display: none;
+  }
+
+  .navbar-container {
+    padding: 10px 16px;
+  }
+
+  .brand-logo-img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand-title {
+    font-size: 1.12rem;
+  }
+
+  .quick-enquiry-btn {
+    display: none;
+  }
+
+  /* Hero Section Smartphone */
   .hero-moderno-section {
-    padding: 40px 0 60px;
+    padding: 14px 0 34px 0;
+  }
+
+  .hero-moderno-media-bg {
+    height: 230px; /* Crisp high-definition 16:9 banner proportion */
+    border-radius: 12px;
+    margin-bottom: 16px;
   }
 
   .hero-moderno-eyebrow {
-    justify-content: center;
-    text-align: center;
+    font-size: 0.74rem;
+    gap: 5px;
+    margin-bottom: 8px;
   }
 
   .hero-moderno-title {
-    font-size: clamp(1.65rem, 5.8vw, 2.15rem);
-    white-space: normal;
-    line-height: 1.22;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
   }
 
   .hero-moderno-description {
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin-bottom: 24px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 18px;
   }
 
   .hero-moderno-actions {
-    width: 100%;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
   }
 
   .btn-moderno-primary,
   .btn-moderno-ghost {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.82rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* About Features Smartphone */
+  .about-features-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .about-badge-card {
+    position: static;
+    margin-top: 14px;
     width: 100%;
     justify-content: center;
   }
@@ -1815,6 +1986,61 @@ h6 {
 
 .product-action-link:hover {
   color: var(--color-accent-hover);
+}
+
+/* Responsive Styles for Collections & Products Showcase */
+@media (max-width: 1024px) {
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .collections-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .collection-media {
+    height: 220px;
+  }
+
+  .product-filter-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 12px;
+    margin-top: 20px;
+    margin-bottom: 28px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .product-filter-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    white-space: nowrap;
+    padding: 8px 16px;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .product-media {
+    height: 220px;
+  }
 }
 
 /* ==========================================================================
@@ -2434,6 +2660,63 @@ h6 {
   z-index: 2;
   border: 1px solid rgba(200, 168, 126, 0.35);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Styles for Custom CTA & Gallery */
+@media (max-width: 992px) {
+  .custom-cta-section {
+    padding: 60px 0;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-cta-section {
+    padding: 45px 0;
+  }
+
+  .custom-cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .custom-cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gallery-filter-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 12px;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .gallery-filter-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .gallery-item.span-2 {
+    grid-column: span 1;
+  }
+
+  .gallery-item {
+    height: 240px;
+  }
 }
 
 /* ==========================================================================
