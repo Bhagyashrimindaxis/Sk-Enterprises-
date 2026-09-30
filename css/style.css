@@ -3542,21 +3542,25 @@ h6 {
 
 .footer-logo-badge {
   background: #ffffff;
-  padding: 10px 24px;
-  border-radius: 12px;
+  padding: 6px;
+  border-radius: 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   align-self: flex-start;
+  width: 78px;
+  height: 78px;
+  box-sizing: border-box;
 }
 
 .footer-logo-badge-img {
-  height: 52px;
-  width: auto;
-  max-width: 150px;
-  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 9px;
+  display: block;
 }
 
 .footer-about-text {
@@ -3804,6 +3808,9 @@ h6 {
   .footer-logo-badge {
     align-self: flex-start;
     margin-bottom: 16px;
+    width: 74px;
+    height: 74px;
+    padding: 6px;
   }
 
   .footer-about-text {
