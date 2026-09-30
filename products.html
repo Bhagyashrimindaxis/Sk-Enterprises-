@@ -565,9 +565,9 @@
 
     /* Responsive */
     html, body {
-      overflow-x: hidden !important;
-      width: 100% !important;
-      max-width: 100% !important;
+      overflow-x: clip;
+      width: 100%;
+      max-width: 100%;
       position: relative;
     }
 
@@ -655,20 +655,16 @@
     <div class="top-bar">
       <div class="container">
         <div class="top-bar-inner">
-          <div class="top-bar-right">
+          <!-- Left side: Contact Info -->
+          <div class="top-bar-left">
             <ul class="top-contact-list">
               <li>
                 <a href="tel:+919423053232" class="top-contact-item">
                   <i class="fa-solid fa-phone"></i>
-                  <span>+91 94230 53232</span>
+                  <span>+91 9423053232 / +91 7972779903</span>
                 </a>
               </li>
-              <li>
-                <a href="tel:+917972779903" class="top-contact-item">
-                  <i class="fa-solid fa-phone"></i>
-                  <span>+91 79727 79903</span>
-                </a>
-              </li>
+              <li class="top-divider">|</li>
               <li>
                 <a href="mailto:skenterprises3232@gmail.com" class="top-contact-item">
                   <i class="fa-solid fa-envelope"></i>
@@ -676,9 +672,17 @@
                 </a>
               </li>
             </ul>
+          </div>
+
+          <!-- Right side: Follow Us & Social Icons -->
+          <div class="top-bar-right">
+            <span class="follow-us-label">Follow Us:</span>
             <div class="top-social-links">
-              <a href="https://www.instagram.com/sk.interiors.1981?stkn=MXNreG9wdmg0azk0OQ==" target="_blank" rel="noopener" class="top-social-btn social-instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-              <a href="https://wa.me/919423053232" target="_blank" rel="noopener" class="top-social-btn social-whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+              <a href="https://www.instagram.com/sk.interiors.1981?stkn=MXNreG9wdmg0azk0OQ==" target="_blank"
+                rel="noopener" class="top-social-btn social-instagram" title="Instagram"><i
+                  class="fa-brands fa-instagram"></i></a>
+              <a href="https://wa.me/919423053232" target="_blank" rel="noopener" class="top-social-btn social-whatsapp"
+                title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
           </div>
         </div>
@@ -1382,20 +1386,5 @@
       }
     })();
   </script>
-    <!-- Floating Utilities (Call, WhatsApp, Back To Top) -->
-    <div class="floating-buttons-group">
-      <a href="tel:+919423053232" class="floating-call" aria-label="Call +91 94230 53232" title="Call Us Directly">
-        <i class="fa-solid fa-phone"></i>
-        <span class="call-tooltip">Call +91 94230 53232</span>
-      </a>
-      <a href="https://wa.me/919423053232?text=Hello%20SK%20Modular%20Furniture,%20I%20would%20like%20to%20consult%20about%20furniture." class="floating-whatsapp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat on WhatsApp</span>
-      </a>
-    </div>
-
-    <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Back to top">
-      <i class="fa-solid fa-arrow-up"></i>
-    </button>
 </body>
 </html>

@@ -111,16 +111,19 @@ function highlightCurrentPageNav() {
    ========================================================================== */
 function initNavbar() {
     const header = document.querySelector('.site-header');
-    if (!header) return;
+    const headerContainer = document.getElementById('site-header-container');
+    if (!header && !headerContainer) return;
 
     // Sticky navbar with threshold
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            header.classList.add('scrolled');
+        if (window.scrollY > 20) {
+            if (header) header.classList.add('scrolled');
+            if (headerContainer) headerContainer.classList.add('scrolled');
         } else {
-            header.classList.remove('scrolled');
+            if (header) header.classList.remove('scrolled');
+            if (headerContainer) headerContainer.classList.remove('scrolled');
         }
-    });
+    }, { passive: true });
 }
 
 /* ==========================================================================
@@ -951,6 +954,10 @@ function initCardScrollAnimations() {
         '.products-grid',
         '.features-grid',
         '.about-grid',
+        '.why-architectural-grid',
+        '.why-arch-list',
+        '.why-split-container',
+        '.why-pro-features',
         '.stats-grid',
         '.gallery-grid',
         '.videos-grid',
@@ -970,6 +977,13 @@ function initCardScrollAnimations() {
         '.sn-project-card',
         '.about-visual',
         '.about-content',
+        '.why-editorial-card',
+        '.why-arch-content',
+        '.why-architectural-visual',
+        '.why-arch-item',
+        '.why-visual-showcase',
+        '.why-content-side',
+        '.why-pro-item',
         '.stat-box',
         '.feature-card',
         '.process-card',
@@ -987,6 +1001,13 @@ function initCardScrollAnimations() {
 
     const animatedElements = [];
 
+    // 0. Automatically include all elements that already have explicit animation classes
+    document.querySelectorAll('.card-animate-left, .card-animate-right').forEach(item => {
+        if (!animatedElements.includes(item)) {
+            animatedElements.push(item);
+        }
+    });
+
     // 1. Process structured grid containers to alternate left and right with stagger
     containerSelectors.forEach(containerSel => {
         document.querySelectorAll(containerSel).forEach(container => {
@@ -995,9 +1016,15 @@ function initCardScrollAnimations() {
                 if (!animatedElements.includes(item)) {
                     animatedElements.push(item);
                     // Left-column panels vs Right-column panels
-                    if (item.classList.contains('about-visual') || item.classList.contains('contact-info-panel')) {
+                    if (container.classList.contains('about-grid') || container.classList.contains('contact-section-grid') || container.classList.contains('why-split-container')) {
+                        if (idx % 2 === 0) {
+                            item.classList.add('card-animate-left');
+                        } else {
+                            item.classList.add('card-animate-right');
+                        }
+                    } else if (item.classList.contains('about-visual') || item.classList.contains('contact-info-panel') || item.classList.contains('why-visual-showcase')) {
                         item.classList.add('card-animate-left');
-                    } else if (item.classList.contains('about-content') || item.classList.contains('contact-form-panel')) {
+                    } else if (item.classList.contains('about-content') || item.classList.contains('contact-form-panel') || item.classList.contains('why-content-side')) {
                         item.classList.add('card-animate-right');
                     } else {
                         // Alternate left and right
