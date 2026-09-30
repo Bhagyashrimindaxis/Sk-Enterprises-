@@ -1148,7 +1148,7 @@ function initCollectionsCarousel() {
     const nextBtn = document.getElementById('colNext');
     const dotsContainer = document.getElementById('collectionsDots');
 
-    // Build seamless circular clone buffers
+    // Build seamless circular clone buffers (prepended and appended copies)
     const prependHtml = originalSlides.map(s => s.outerHTML).join('');
     const appendHtml = originalSlides.map(s => s.outerHTML).join('');
     track.innerHTML = prependHtml + track.innerHTML + appendHtml;
@@ -1161,7 +1161,8 @@ function initCollectionsCarousel() {
     let touchEndX = 0;
 
     function getGap() {
-        return 24;
+        const computedGap = parseFloat(window.getComputedStyle(track).gap);
+        return !isNaN(computedGap) ? computedGap : 20;
     }
 
     function createDots() {
@@ -1200,14 +1201,20 @@ function initCollectionsCarousel() {
         const offset = currentIndex * (slideWidth + gap);
 
         if (animate) {
-            track.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
+            track.style.transition = 'transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)';
             isTransitioning = true;
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 700);
         } else {
             track.style.transition = 'none';
             isTransitioning = false;
         }
 
         track.style.transform = `translateX(-${offset}px)`;
+        if (!animate) {
+            void track.offsetHeight; // Force reflow so jump is applied instantly
+        }
         updateDots();
     }
 
@@ -1248,7 +1255,7 @@ function initCollectionsCarousel() {
         stopAutoPlay();
         autoPlayTimer = setInterval(() => {
             nextSlide();
-        }, 4000);
+        }, 2400);
     }
 
     function stopAutoPlay() {
@@ -1279,17 +1286,9 @@ function initCollectionsCarousel() {
         });
     }
 
-    // Pause on hover
-    const container = track.closest('.collections-carousel-container');
-    if (container) {
-        container.addEventListener('mouseenter', stopAutoPlay);
-        container.addEventListener('mouseleave', startAutoPlay);
-    }
-
     // Touch Swipe Support
     track.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
-        stopAutoPlay();
     }, { passive: true });
 
     track.addEventListener('touchend', (e) => {
@@ -1301,8 +1300,8 @@ function initCollectionsCarousel() {
             } else {
                 prevSlide();
             }
+            resetAutoPlay();
         }
-        startAutoPlay();
     }, { passive: true });
 
     // Handle Window Resize
