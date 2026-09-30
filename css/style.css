@@ -3655,25 +3655,13 @@ h6 {
   font-weight: 400;
   text-decoration: none;
   transition: color 0.25s ease, transform 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: inline-block;
   text-align: left;
-}
-
-.footer-links-clean a i {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.95rem;
-  transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .footer-links-clean a:hover {
   color: var(--color-accent, #c8a87e);
   transform: translateX(4px);
-}
-
-.footer-links-clean a:hover i {
-  color: var(--color-accent, #c8a87e);
 }
 
 .footer-contact-list {
@@ -3867,9 +3855,7 @@ h6 {
 
   .footer-links-clean a {
     text-align: left;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-block;
   }
 
   .footer-links-clean a:hover {
