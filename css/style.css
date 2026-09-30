@@ -1640,19 +1640,19 @@ h6 {
 }
 
 /* ==========================================================================
-   5. FEATURED FURNITURE / COLLECTIONS - INFINITE LOOP SLIDER
+   5. FEATURED FURNITURE / COLLECTIONS - 2-CARD INFINITE CIRCULAR SLIDER
    ========================================================================== */
 .collections-carousel-container {
-  max-width: 1220px;
-  margin: 32px auto 0;
+  max-width: 1080px;
+  margin: 24px auto 0;
   position: relative;
-  padding: 0 12px;
+  padding: 0 16px;
 }
 
 .collections-track-wrapper {
   overflow: hidden;
   position: relative;
-  padding: 6px 0 16px 0;
+  padding: 6px 0 14px 0;
 }
 
 .collections-track {
@@ -1663,19 +1663,12 @@ h6 {
 }
 
 .collection-slide {
-  flex: 0 0 calc((100% - 48px) / 3);
-  min-width: calc((100% - 48px) / 3);
+  flex: 0 0 calc((100% - 24px) / 2);
+  min-width: calc((100% - 24px) / 2);
   box-sizing: border-box;
 }
 
-@media (max-width: 992px) {
-  .collection-slide {
-    flex: 0 0 calc((100% - 24px) / 2);
-    min-width: calc((100% - 24px) / 2);
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 680px) {
   .collection-slide {
     flex: 0 0 100%;
     min-width: 100%;
@@ -1687,7 +1680,7 @@ h6 {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .collections-nav-btn {
@@ -1737,20 +1730,13 @@ h6 {
   background: var(--color-accent, #c8a87e);
 }
 
-.collections-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-top: 32px;
-}
-
 .collection-card {
   height: 100%;
   position: relative;
-  border-radius: var(--radius-md);
+  border-radius: 16px;
   overflow: hidden;
   background-color: var(--color-surface);
-  box-shadow: 0 4px 16px rgba(22, 43, 54, 0.06);
+  box-shadow: 0 8px 24px rgba(22, 43, 54, 0.08);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   border: 1px solid var(--color-card-border);
   display: flex;
@@ -1759,23 +1745,29 @@ h6 {
 
 .collection-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 36px rgba(53, 100, 126, 0.16);
+  box-shadow: 0 18px 40px rgba(53, 100, 126, 0.16);
   border-color: var(--color-accent);
 }
 
 .collection-media {
   position: relative;
-  height: 275px;
+  height: 360px;
   overflow: hidden;
   background-color: #f0f4f7;
   flex-shrink: 0;
+}
+
+@media (max-width: 680px) {
+  .collection-media {
+    height: 250px;
+  }
 }
 
 .collection-media::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 65%, rgba(22, 43, 54, 0.4) 100%);
+  background: linear-gradient(180deg, transparent 65%, rgba(22, 43, 54, 0.35) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -1790,42 +1782,33 @@ h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center center;
   display: block;
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.collection-card:nth-child(2) .collection-img {
-  object-position: center 15%;
-}
-
-.collection-card:nth-child(3) .collection-img,
-.collection-card:nth-child(4) .collection-img {
-  object-position: center top;
-}
-
 .collection-card:hover .collection-img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 /* Badge overlaid on image */
 .collection-overlay-tag {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 14px;
+  left: 14px;
   background: rgba(22, 43, 54, 0.88);
   color: var(--color-accent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.70rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   z-index: 2;
   transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid rgba(200, 168, 126, 0.3);
+  border: 1px solid rgba(200, 168, 126, 0.35);
 }
 
 .collection-card:hover .collection-overlay-tag {
@@ -1836,16 +1819,17 @@ h6 {
 
 /* Compact text body */
 .collection-body {
-  padding: 14px 16px 16px;
+  padding: 18px 22px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   background-color: var(--color-surface);
   flex: 1;
 }
 
 .collection-title {
-  font-size: 1.02rem;
+  font-size: 1.15rem;
+  font-family: var(--font-serif);
   font-weight: 700;
   margin: 0;
   color: var(--color-text-main);
