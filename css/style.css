@@ -3634,6 +3634,27 @@ h6 {
   color: #ffffff !important;
 }
 
+.footer-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff !important;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.footer-wa-btn:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.55);
+  color: #ffffff !important;
+}
+
 .footer-widget-title {
   font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
   font-size: 1.15rem;
