@@ -3613,18 +3613,25 @@ h6 {
   text-align: left;
 }
 
-.footer-follow-us a {
-  color: #ffffff;
-  font-size: 1.35rem;
+.footer-insta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.25s ease, transform 0.25s ease;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff !important;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 12px rgba(220, 39, 67, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
-.footer-follow-us a:hover {
-  color: var(--color-accent, #c8a87e);
-  transform: scale(1.15);
+.footer-insta-btn:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 6px 16px rgba(220, 39, 67, 0.55);
+  color: #ffffff !important;
 }
 
 .footer-widget-title {
