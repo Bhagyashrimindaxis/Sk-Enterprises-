@@ -2443,6 +2443,52 @@ h6 {
   position: relative;
   background-color: var(--color-bg);
   overflow: hidden;
+  padding: 80px 0;
+}
+
+.testimonial-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #eaf3f8;
+  border: 1.5px solid rgba(53, 100, 126, 0.28);
+  border-radius: 50px;
+  padding: 8px 22px;
+  color: #1d4d6a;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(53, 100, 126, 0.08);
+  margin-bottom: 14px;
+  transition: all 0.3s ease;
+}
+
+.testimonial-pill-badge i {
+  color: #f5a623;
+  font-size: 0.95rem;
+}
+
+.testimonial-pill-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(53, 100, 126, 0.16);
+  border-color: var(--color-primary, #35647e);
+}
+
+.testimonials-section .section-title {
+  font-size: clamp(2.1rem, 3.8vw, 2.85rem);
+  font-weight: 800;
+  color: #162b36;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.testimonials-section .section-desc {
+  max-width: 680px;
+  margin: 0 auto;
+  color: #64748b;
+  font-size: 0.98rem;
+  line-height: 1.65;
 }
 
 .testimonial-container {
