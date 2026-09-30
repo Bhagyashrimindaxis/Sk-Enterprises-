@@ -2557,27 +2557,52 @@ h6 {
 }
 
 /* ==========================================================================
-   12. OUR PROCESS - CHEVRON INTERLOCKING FLOW CARDS (IMAGE 1 DESIGN)
+   12. OUR PROCESS - LUXURY CHEVRON INTERLOCKING FLOW CARDS (ATTRACTIVE & ANIMATED)
    ========================================================================== */
 .process-chevron-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 18px;
   margin-top: 50px;
   position: relative;
+  perspective: 1000px;
 }
 
 .process-chevron-card {
   position: relative;
-  min-height: 310px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
   cursor: default;
+  overflow: visible;
 }
 
 .process-chevron-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) scale(1.02);
+  z-index: 5;
+}
+
+.process-watermark-num {
+  position: absolute;
+  right: 28px;
+  bottom: 8px;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: 5.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-primary, #35647e);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+}
+
+.process-chevron-card:hover .process-watermark-num {
+  opacity: 0.12;
+  transform: translateY(-6px);
+  color: var(--color-accent, #c8a87e);
 }
 
 .process-chevron-svg {
@@ -2588,64 +2613,68 @@ h6 {
   height: 100%;
   z-index: 1;
   pointer-events: none;
-  filter: drop-shadow(0 6px 18px rgba(43, 88, 112, 0.08));
-  transition: filter 0.4s ease;
+  filter: drop-shadow(0 8px 24px rgba(43, 88, 112, 0.1));
+  transition: filter 0.45s ease;
 }
 
 .process-chevron-card:hover .process-chevron-svg {
-  filter: drop-shadow(0 14px 28px rgba(43, 88, 112, 0.18));
+  filter: drop-shadow(0 20px 40px rgba(53, 100, 126, 0.22)) drop-shadow(0 0 10px rgba(200, 168, 126, 0.25));
 }
 
 .process-chevron-svg .chevron-body {
-  fill: #ffffff;
-  stroke: var(--color-primary, #35647e);
-  stroke-width: 2.5;
-  stroke-linejoin: round;
-  transition: stroke 0.35s ease, fill 0.35s ease;
+  transition: stroke 0.4s ease, fill 0.4s ease;
 }
 
-.process-chevron-svg .chevron-line,
-.process-chevron-svg .chevron-stem {
-  stroke: var(--color-primary, #35647e);
-  stroke-width: 2.5;
-  transition: stroke 0.35s ease;
-}
-
-.process-chevron-svg .chevron-arrowhead {
-  fill: var(--color-primary, #35647e);
-  transition: fill 0.35s ease;
-}
-
-.process-chevron-svg .chevron-node {
-  fill: #ffffff;
-  stroke: var(--color-primary, #35647e);
-  stroke-width: 2.5;
-  transition: stroke 0.35s ease, fill 0.35s ease;
-}
-
-/* Hover State */
 .process-chevron-card:hover .chevron-body {
   stroke: var(--color-accent, #c8a87e);
 }
 
-.process-chevron-card:hover .chevron-line,
-.process-chevron-card:hover .chevron-stem {
-  stroke: var(--color-accent, #c8a87e);
+/* Animated flow on top connecting line */
+.chevron-animated-line {
+  stroke-dasharray: 8 6;
+  animation: flowArrow 3s linear infinite;
+}
+
+@keyframes flowArrow {
+  0% {
+    stroke-dashoffset: 28;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Glowing pulsing node circle */
+.chevron-pulsing-node {
+  animation: nodePulse 2.8s ease-in-out infinite;
+}
+
+@keyframes nodePulse {
+  0%, 100% {
+    r: 7;
+    fill: #ffffff;
+    stroke: var(--color-primary, #35647e);
+  }
+  50% {
+    r: 9;
+    fill: var(--color-accent, #c8a87e);
+    stroke: var(--color-accent, #c8a87e);
+  }
 }
 
 .process-chevron-card:hover .chevron-arrowhead {
   fill: var(--color-accent, #c8a87e);
 }
 
-.process-chevron-card:hover .chevron-node {
+.process-chevron-card:hover .chevron-stem {
   stroke: var(--color-accent, #c8a87e);
-  fill: var(--color-accent, #c8a87e);
 }
 
+/* Content Area */
 .process-chevron-content {
   position: relative;
   z-index: 2;
-  padding: 46px 24px 26px 36px;
+  padding: 44px 24px 28px 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2654,43 +2683,101 @@ h6 {
 }
 
 .process-icon-wrapper {
-  width: 56px;
-  height: 56px;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.process-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(53, 100, 126, 0.08) 0%, rgba(200, 168, 126, 0.16) 100%);
+  border: 1.5px solid rgba(53, 100, 126, 0.16);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  box-shadow: 0 6px 16px rgba(53, 100, 126, 0.08);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: iconFloat 4s ease-in-out infinite;
 }
 
-.process-icon-wrapper i {
-  font-size: 2.2rem;
+.process-chevron-card:nth-child(2) .process-icon-circle {
+  animation-delay: 0.7s;
+}
+.process-chevron-card:nth-child(3) .process-icon-circle {
+  animation-delay: 1.4s;
+}
+.process-chevron-card:nth-child(4) .process-icon-circle {
+  animation-delay: 2.1s;
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.process-icon-circle i {
+  font-size: 1.75rem;
   color: var(--color-primary, #35647e);
-  transition: color 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.45s ease;
 }
 
-.process-chevron-card:hover .process-icon-wrapper i {
-  color: var(--color-accent, #c8a87e);
-  transform: scale(1.15);
+.process-chevron-card:hover .process-icon-circle {
+  background: linear-gradient(135deg, #c8a87e 0%, #35647e 100%);
+  border-color: #c8a87e;
+  transform: scale(1.12) rotate(6deg);
+  box-shadow: 0 10px 24px rgba(200, 168, 126, 0.35);
+}
+
+.process-chevron-card:hover .process-icon-circle i {
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.process-step-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c8a87e;
+  background: rgba(200, 168, 126, 0.12);
+  border: 1px solid rgba(200, 168, 126, 0.35);
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  transition: all 0.35s ease;
+}
+
+.process-chevron-card:hover .process-step-pill {
+  background: #c8a87e;
+  color: #1a2730;
+  box-shadow: 0 4px 12px rgba(200, 168, 126, 0.3);
 }
 
 .process-step-title {
-  font-size: 1.02rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  color: var(--color-primary, #35647e);
-  margin-bottom: 12px;
-  text-transform: uppercase;
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #1a3342;
+  margin-bottom: 10px;
+  line-height: 1.35;
   transition: color 0.35s ease;
 }
 
 .process-chevron-card:hover .process-step-title {
-  color: #1a3342;
+  color: var(--color-primary, #35647e);
 }
 
 .process-step-desc {
   font-size: 0.88rem;
   color: var(--color-text-muted, #556471);
-  line-height: 1.6;
+  line-height: 1.62;
   margin: 0;
   font-weight: 400;
 }
@@ -2705,11 +2792,11 @@ h6 {
 @media (max-width: 640px) {
   .process-chevron-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 24px;
   }
   
   .process-chevron-content {
-    padding: 42px 18px 24px 28px;
+    padding: 40px 18px 24px 28px;
   }
 }
 
