@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initGalleryFilterAndLightbox();
     initVideoPageLightbox();
     initCounterAnimation();
+    initCollectionsCarousel();
     initTestimonialCarousel();
     initQuoteCalculator();
     initLocationsAccordion();
@@ -1093,6 +1094,193 @@ function initTestimonialCarousel() {
 
     // Pause on hover
     const container = track.closest('.testimonial-container');
+    if (container) {
+        container.addEventListener('mouseenter', stopAutoPlay);
+        container.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Touch Swipe Support
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        startAutoPlay();
+    }, { passive: true });
+
+    // Handle Window Resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            setPosition(false);
+        }, 120);
+    });
+
+    // Initialize
+    createDots();
+    setPosition(false);
+    startAutoPlay();
+}
+
+/* ==========================================================================
+   FURNITURE COLLECTIONS SEAMLESS CIRCULAR INFINITE LOOP CAROUSEL
+   ========================================================================== */
+function initCollectionsCarousel() {
+    const track = document.getElementById('collectionsTrack');
+    if (!track) return;
+
+    const originalSlides = Array.from(track.querySelectorAll('.collection-slide'));
+    const totalOriginal = originalSlides.length;
+    if (totalOriginal === 0) return;
+
+    const prevBtn = document.getElementById('colPrev');
+    const nextBtn = document.getElementById('colNext');
+    const dotsContainer = document.getElementById('collectionsDots');
+
+    // Build seamless circular clone buffers
+    const prependHtml = originalSlides.map(s => s.outerHTML).join('');
+    const appendHtml = originalSlides.map(s => s.outerHTML).join('');
+    track.innerHTML = prependHtml + track.innerHTML + appendHtml;
+
+    const allSlides = Array.from(track.querySelectorAll('.collection-slide'));
+    let currentIndex = totalOriginal; // Start at first original slide
+    let isTransitioning = false;
+    let autoPlayTimer = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function getGap() {
+        return 24;
+    }
+
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalOriginal; i++) {
+            const dot = document.createElement('button');
+            dot.className = `collections-dot ${i === 0 ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Go to collection slide ${i + 1}`);
+            dot.addEventListener('click', () => {
+                if (isTransitioning) return;
+                goToOriginalIndex(i);
+                resetAutoPlay();
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const activeOriginal = (currentIndex - totalOriginal + totalOriginal * 10) % totalOriginal;
+        const dots = dotsContainer.querySelectorAll('.collections-dot');
+        dots.forEach((dot, idx) => {
+            if (idx === activeOriginal) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function setPosition(animate = true) {
+        if (!allSlides[0]) return;
+        const slideWidth = allSlides[0].getBoundingClientRect().width;
+        const gap = getGap();
+        const offset = currentIndex * (slideWidth + gap);
+
+        if (animate) {
+            track.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
+            isTransitioning = true;
+        } else {
+            track.style.transition = 'none';
+            isTransitioning = false;
+        }
+
+        track.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+    }
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        // Seamless teleport forward when hitting appended clones
+        if (currentIndex >= totalOriginal * 2) {
+            currentIndex = currentIndex - totalOriginal;
+            setPosition(false);
+        }
+        // Seamless teleport backward when hitting prepended clones
+        else if (currentIndex < totalOriginal) {
+            currentIndex = currentIndex + totalOriginal;
+            setPosition(false);
+        }
+    });
+
+    function nextSlide() {
+        if (isTransitioning) return;
+        currentIndex++;
+        setPosition(true);
+    }
+
+    function prevSlide() {
+        if (isTransitioning) return;
+        currentIndex--;
+        setPosition(true);
+    }
+
+    function goToOriginalIndex(targetOriginal) {
+        const currentOriginal = (currentIndex - totalOriginal + totalOriginal * 10) % totalOriginal;
+        const diff = targetOriginal - currentOriginal;
+        currentIndex += diff;
+        setPosition(true);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayTimer = setInterval(() => {
+            nextSlide();
+        }, 4000);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayTimer) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+    }
+
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            nextSlide();
+            resetAutoPlay();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            prevSlide();
+            resetAutoPlay();
+        });
+    }
+
+    // Pause on hover
+    const container = track.closest('.collections-carousel-container');
     if (container) {
         container.addEventListener('mouseenter', stopAutoPlay);
         container.addEventListener('mouseleave', startAutoPlay);
