@@ -946,6 +946,171 @@ function showToastNotification(message) {
 }
 
 /* ==========================================================================
+   CLIENT TESTIMONIALS INFINITE LOOP CAROUSEL
+   ========================================================================== */
+function initTestimonialCarousel() {
+    const track = document.getElementById('testimonialTrack');
+    if (!track) return;
+
+    const slides = Array.from(track.querySelectorAll('.testimonial-slide'));
+    if (!slides.length) return;
+
+    const prevBtn = document.getElementById('testPrev');
+    const nextBtn = document.getElementById('testNext');
+    const dotsContainer = document.getElementById('testimonialDots');
+
+    let currentIndex = 0;
+    let autoPlayTimer = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function getVisibleCards() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 992) return 2;
+        return 3;
+    }
+
+    function getMaxIndex() {
+        const visible = getVisibleCards();
+        return Math.max(0, slides.length - visible);
+    }
+
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.className = `testimonial-dot ${idx === currentIndex ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Go to testimonial slide ${idx + 1}`);
+            dot.addEventListener('click', () => {
+                goToSlide(idx);
+                resetAutoPlay();
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = dotsContainer.querySelectorAll('.testimonial-dot');
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function updateTrackPosition() {
+        if (!slides[0]) return;
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        const gap = 24; // matches CSS gap
+        const offset = currentIndex * (slideWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+    }
+
+    function goToSlide(index) {
+        const maxIndex = getMaxIndex();
+        if (index > maxIndex) {
+            currentIndex = 0; // Infinite wrap around to start
+        } else if (index < 0) {
+            currentIndex = maxIndex; // Infinite wrap around to end
+        } else {
+            currentIndex = index;
+        }
+        updateTrackPosition();
+    }
+
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayTimer = setInterval(() => {
+            nextSlide();
+        }, 4000);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayTimer) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+        }
+    }
+
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+
+    // Event Listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            nextSlide();
+            resetAutoPlay();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            prevSlide();
+            resetAutoPlay();
+        });
+    }
+
+    // Pause on hover
+    const container = track.closest('.testimonial-container');
+    if (container) {
+        container.addEventListener('mouseenter', stopAutoPlay);
+        container.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Touch Swipe Support
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        startAutoPlay();
+    }, { passive: true });
+
+    // Handle Resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const max = getMaxIndex();
+            if (currentIndex > max) currentIndex = max;
+            updateTrackPosition();
+        }, 150);
+    });
+
+    // Initialize
+    createDots();
+    updateTrackPosition();
+    startAutoPlay();
+}
+
+/* ==========================================================================
    SCROLL CARD ENTRANCE ANIMATIONS (Left & Right Glides Across All Pages)
    ========================================================================== */
 function initCardScrollAnimations() {
