@@ -946,55 +946,58 @@ function showToastNotification(message) {
 }
 
 /* ==========================================================================
-   CLIENT TESTIMONIALS INFINITE LOOP CAROUSEL
+   CLIENT TESTIMONIALS SEAMLESS CIRCULAR INFINITE LOOP CAROUSEL (2 Cards View)
    ========================================================================== */
 function initTestimonialCarousel() {
     const track = document.getElementById('testimonialTrack');
     if (!track) return;
 
-    const slides = Array.from(track.querySelectorAll('.testimonial-slide'));
-    if (!slides.length) return;
+    const originalSlides = Array.from(track.querySelectorAll('.testimonial-slide'));
+    const totalOriginal = originalSlides.length;
+    if (totalOriginal === 0) return;
 
     const prevBtn = document.getElementById('testPrev');
     const nextBtn = document.getElementById('testNext');
     const dotsContainer = document.getElementById('testimonialDots');
 
-    let currentIndex = 0;
+    // Build seamless circular clone buffers
+    const prependHtml = originalSlides.map(s => s.outerHTML).join('');
+    const appendHtml = originalSlides.map(s => s.outerHTML).join('');
+    track.innerHTML = prependHtml + track.innerHTML + appendHtml;
+
+    const allSlides = Array.from(track.querySelectorAll('.testimonial-slide'));
+    let currentIndex = totalOriginal; // Start at first original slide (index 4)
+    let isTransitioning = false;
     let autoPlayTimer = null;
     let touchStartX = 0;
     let touchEndX = 0;
 
-    function getVisibleCards() {
-        if (window.innerWidth <= 600) return 1;
-        if (window.innerWidth <= 992) return 2;
-        return 3;
-    }
-
-    function getMaxIndex() {
-        const visible = getVisibleCards();
-        return Math.max(0, slides.length - visible);
+    function getGap() {
+        return 24;
     }
 
     function createDots() {
         if (!dotsContainer) return;
         dotsContainer.innerHTML = '';
-        slides.forEach((_, idx) => {
+        for (let i = 0; i < totalOriginal; i++) {
             const dot = document.createElement('button');
-            dot.className = `testimonial-dot ${idx === currentIndex ? 'active' : ''}`;
-            dot.setAttribute('aria-label', `Go to testimonial slide ${idx + 1}`);
+            dot.className = `testimonial-dot ${i === 0 ? 'active' : ''}`;
+            dot.setAttribute('aria-label', `Go to testimonial slide ${i + 1}`);
             dot.addEventListener('click', () => {
-                goToSlide(idx);
+                if (isTransitioning) return;
+                goToOriginalIndex(i);
                 resetAutoPlay();
             });
             dotsContainer.appendChild(dot);
-        });
+        }
     }
 
     function updateDots() {
         if (!dotsContainer) return;
+        const activeOriginal = (currentIndex - totalOriginal + totalOriginal * 10) % totalOriginal;
         const dots = dotsContainer.querySelectorAll('.testimonial-dot');
         dots.forEach((dot, idx) => {
-            if (idx === currentIndex) {
+            if (idx === activeOriginal) {
                 dot.classList.add('active');
             } else {
                 dot.classList.remove('active');
@@ -1002,40 +1005,62 @@ function initTestimonialCarousel() {
         });
     }
 
-    function updateTrackPosition() {
-        if (!slides[0]) return;
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        const gap = 24; // matches CSS gap
+    function setPosition(animate = true) {
+        if (!allSlides[0]) return;
+        const slideWidth = allSlides[0].getBoundingClientRect().width;
+        const gap = getGap();
         const offset = currentIndex * (slideWidth + gap);
+
+        if (animate) {
+            track.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
+            isTransitioning = true;
+        } else {
+            track.style.transition = 'none';
+            isTransitioning = false;
+        }
+
         track.style.transform = `translateX(-${offset}px)`;
         updateDots();
     }
 
-    function goToSlide(index) {
-        const maxIndex = getMaxIndex();
-        if (index > maxIndex) {
-            currentIndex = 0; // Infinite wrap around to start
-        } else if (index < 0) {
-            currentIndex = maxIndex; // Infinite wrap around to end
-        } else {
-            currentIndex = index;
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        // Seamless teleport forward when hitting the appended clones
+        if (currentIndex >= totalOriginal * 2) {
+            currentIndex = currentIndex - totalOriginal;
+            setPosition(false);
         }
-        updateTrackPosition();
-    }
+        // Seamless teleport backward when hitting the prepended clones
+        else if (currentIndex < totalOriginal) {
+            currentIndex = currentIndex + totalOriginal;
+            setPosition(false);
+        }
+    });
 
     function nextSlide() {
-        goToSlide(currentIndex + 1);
+        if (isTransitioning) return;
+        currentIndex++;
+        setPosition(true);
     }
 
     function prevSlide() {
-        goToSlide(currentIndex - 1);
+        if (isTransitioning) return;
+        currentIndex--;
+        setPosition(true);
+    }
+
+    function goToOriginalIndex(targetOriginal) {
+        const currentOriginal = (currentIndex - totalOriginal + totalOriginal * 10) % totalOriginal;
+        const diff = targetOriginal - currentOriginal;
+        currentIndex += diff;
+        setPosition(true);
     }
 
     function startAutoPlay() {
         stopAutoPlay();
         autoPlayTimer = setInterval(() => {
             nextSlide();
-        }, 4000);
+        }, 3600);
     }
 
     function stopAutoPlay() {
@@ -1050,7 +1075,6 @@ function initTestimonialCarousel() {
         startAutoPlay();
     }
 
-    // Event Listeners
     if (nextBtn) {
         nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1093,20 +1117,18 @@ function initTestimonialCarousel() {
         startAutoPlay();
     }, { passive: true });
 
-    // Handle Resize
+    // Handle Window Resize
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            const max = getMaxIndex();
-            if (currentIndex > max) currentIndex = max;
-            updateTrackPosition();
-        }, 150);
+            setPosition(false);
+        }, 120);
     });
 
     // Initialize
     createDots();
-    updateTrackPosition();
+    setPosition(false);
     startAutoPlay();
 }
 

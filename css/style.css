@@ -2767,39 +2767,32 @@ h6 {
 }
 
 .testimonial-container {
-  max-width: 1220px;
+  max-width: 1060px;
   margin: 20px auto 0 auto;
   position: relative;
-  padding: 0 12px;
+  padding: 0 16px;
 }
 
 .testimonial-track-wrapper {
   overflow: hidden;
   position: relative;
-  padding: 4px 0 12px 0;
+  padding: 6px 0 14px 0;
 }
 
 .testimonial-track {
   display: flex;
-  gap: 20px;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 24px;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
 .testimonial-slide {
-  flex: 0 0 calc((100% - 40px) / 3);
-  min-width: calc((100% - 40px) / 3);
+  flex: 0 0 calc((100% - 24px) / 2);
+  min-width: calc((100% - 24px) / 2);
   box-sizing: border-box;
 }
 
-@media (max-width: 992px) {
-  .testimonial-slide {
-    flex: 0 0 calc((100% - 20px) / 2);
-    min-width: calc((100% - 20px) / 2);
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 680px) {
   .testimonial-slide {
     flex: 0 0 100%;
     min-width: 100%;
