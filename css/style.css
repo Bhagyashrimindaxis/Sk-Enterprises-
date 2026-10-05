@@ -1053,6 +1053,65 @@ h6 {
 }
 
 /* ==========================================================================
+   Slide 2 (Dark Video Background): Professional High-Contrast Typography
+   ========================================================================== */
+.hero-text-slide[data-slide-index="1"] .welcome-label {
+  color: var(--color-accent, #c8a87e) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
+}
+
+.hero-text-slide[data-slide-index="1"] .welcome-brand {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+}
+
+.hero-text-slide[data-slide-index="1"] .welcome-brand::before {
+  color: var(--color-accent, #c8a87e) !important;
+}
+
+.hero-text-slide[data-slide-index="1"] .hero-moderno-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85), 0 4px 28px rgba(0, 0, 0, 0.6);
+}
+
+.hero-text-slide[data-slide-index="1"] .hero-moderno-description {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.hero-text-slide[data-slide-index="1"] .hero-moderno-description strong {
+  color: #ffffff !important;
+}
+
+.hero-text-slide[data-slide-index="1"] .btn-moderno-primary {
+  background-color: #ffffff !important;
+  color: #0d1e28 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+}
+
+.hero-text-slide[data-slide-index="1"] .btn-moderno-primary:hover {
+  background-color: var(--color-accent, #c8a87e) !important;
+  border-color: var(--color-accent, #c8a87e) !important;
+  color: #ffffff !important;
+}
+
+.hero-text-slide[data-slide-index="1"] .btn-moderno-ghost {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.85) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.hero-text-slide[data-slide-index="1"] .btn-moderno-ghost:hover {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #0d1e28 !important;
+}
+
+/* ==========================================================================
    MOBILE & TABLET RESPONSIVE STYLES FOR HERO SECTION & NAVBAR
    ========================================================================== */
 @media (max-width: 992px) {
