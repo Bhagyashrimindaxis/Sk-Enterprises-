@@ -717,8 +717,10 @@ h6 {
    ========================================================================== */
 .hero-moderno-section {
   position: relative;
-  min-height: 92vh;
-  height: 92vh;
+  height: calc(100vh - 118px);
+  height: calc(100dvh - 118px);
+  min-height: calc(100vh - 118px);
+  min-height: calc(100dvh - 118px);
   display: flex;
   align-items: center;
   background-color: #FAF6F0;
@@ -1146,9 +1148,11 @@ h6 {
 
   /* Hero Section Mobile / Tablet: Video as Full Background Behind Text */
   .hero-moderno-section {
-    min-height: 85vh;
-    height: auto;
-    padding: 70px 0 55px 0;
+    height: calc(100vh - 75px);
+    height: calc(100dvh - 75px);
+    min-height: calc(100vh - 75px);
+    min-height: calc(100dvh - 75px);
+    padding: 35px 0 30px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1347,8 +1351,11 @@ h6 {
 
   /* Hero Section Smartphone */
   .hero-moderno-section {
-    min-height: 82vh;
-    padding: 55px 0 45px 0;
+    height: calc(100vh - 65px);
+    height: calc(100dvh - 65px);
+    min-height: calc(100vh - 65px);
+    min-height: calc(100dvh - 65px);
+    padding: 25px 0 20px 0;
   }
 
   .hero-moderno-media-bg {
