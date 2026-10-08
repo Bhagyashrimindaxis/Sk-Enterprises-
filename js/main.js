@@ -272,7 +272,7 @@ function initHeroSlider() {
 }
 
 function initHeroVideos() {
-    const videos = document.querySelectorAll('.hero-moderno-section video, .hero-video-section video');
+    const videos = document.querySelectorAll('.hero-split-video, .hero-moderno-section video, .hero-video-section video');
     videos.forEach(v => {
         v.muted = true;
         const playPromise = v.play();
@@ -280,6 +280,36 @@ function initHeroVideos() {
             playPromise.catch(() => { });
         }
     });
+
+    // Sound toggle control for the hero split video
+    const soundBtn = document.getElementById('heroSoundToggle');
+    const heroVideo = document.getElementById('heroDiningVideo');
+    if (soundBtn && heroVideo) {
+        soundBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            heroVideo.muted = !heroVideo.muted;
+            const icon = soundBtn.querySelector('i');
+            const label = soundBtn.querySelector('.sound-status-text');
+            if (heroVideo.muted) {
+                if (icon) icon.className = 'fa-solid fa-volume-xmark';
+                if (label) label.textContent = 'Muted';
+                soundBtn.title = 'Sound Muted - Click to Unmute';
+            } else {
+                if (icon) icon.className = 'fa-solid fa-volume-high';
+                if (label) label.textContent = 'Unmuted';
+                soundBtn.title = 'Audio Playing - Click to Mute';
+            }
+        });
+
+        // Ensure playback starts on first touch/click if strict autoplay policy requires interaction
+        const ensurePlaying = () => {
+            if (heroVideo.paused) {
+                heroVideo.play().catch(() => {});
+            }
+        };
+        window.addEventListener('click', ensurePlaying, { once: true });
+        window.addEventListener('touchstart', ensurePlaying, { once: true });
+    }
 }
 
 /* ==========================================================================
@@ -1134,7 +1164,7 @@ function initTestimonialCarousel() {
 }
 
 /* ==========================================================================
-   FURNITURE COLLECTIONS SEAMLESS CIRCULAR INFINITE LOOP CAROUSEL
+   FURNITURE COLLECTIONS CONTINUOUS SEAMLESS CYCLING INFINITE LOOP MARQUEE
    ========================================================================== */
 function initCollectionsCarousel() {
     const track = document.getElementById('collectionsTrack');
@@ -1146,177 +1176,144 @@ function initCollectionsCarousel() {
 
     const prevBtn = document.getElementById('colPrev');
     const nextBtn = document.getElementById('colNext');
-    const dotsContainer = document.getElementById('collectionsDots');
 
-    // Build seamless circular clone buffers (prepended and appended copies)
-    const prependHtml = originalSlides.map(s => s.outerHTML).join('');
-    const appendHtml = originalSlides.map(s => s.outerHTML).join('');
-    track.innerHTML = prependHtml + track.innerHTML + appendHtml;
+    // Duplicate slides to create seamless infinite continuous loop (3 sets)
+    const cloneHtml1 = originalSlides.map(s => s.outerHTML).join('');
+    const cloneHtml2 = originalSlides.map(s => s.outerHTML).join('');
+    track.innerHTML = track.innerHTML + cloneHtml1 + cloneHtml2;
 
     const allSlides = Array.from(track.querySelectorAll('.collection-slide'));
-    let currentIndex = totalOriginal; // Start at first original slide
-    let isTransitioning = false;
-    let autoPlayTimer = null;
-    let touchStartX = 0;
-    let touchEndX = 0;
 
-    function getGap() {
-        const computedGap = parseFloat(window.getComputedStyle(track).gap);
-        return !isNaN(computedGap) ? computedGap : 20;
-    }
+    let currentX = 0;
+    let isPaused = false;
+    let isDragging = false;
+    let startDragX = 0;
+    let dragStartXPos = 0;
+    let lastTime = performance.now();
 
-    function createDots() {
-        if (!dotsContainer) return;
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalOriginal; i++) {
-            const dot = document.createElement('button');
-            dot.className = `collections-dot ${i === 0 ? 'active' : ''}`;
-            dot.setAttribute('aria-label', `Go to collection slide ${i + 1}`);
-            dot.addEventListener('click', () => {
-                if (isTransitioning) return;
-                goToOriginalIndex(i);
-                resetAutoPlay();
-            });
-            dotsContainer.appendChild(dot);
+    // Constant smooth fluid speed in pixels per second (85px/s)
+    const speed = 85;
+
+    function getSingleSetWidth() {
+        if (allSlides.length > totalOriginal) {
+            const firstLeft = allSlides[0].getBoundingClientRect().left;
+            const nextSetLeft = allSlides[totalOriginal].getBoundingClientRect().left;
+            const dist = nextSetLeft - firstLeft;
+            if (dist > 50) return dist;
         }
+        const slide = allSlides[0];
+        const gap = parseFloat(window.getComputedStyle(track).gap) || 20;
+        return totalOriginal * (slide.getBoundingClientRect().width + gap);
     }
 
-    function updateDots() {
-        if (!dotsContainer) return;
-        const activeOriginal = (currentIndex - totalOriginal + totalOriginal * 10) % totalOriginal;
-        const dots = dotsContainer.querySelectorAll('.collections-dot');
-        dots.forEach((dot, idx) => {
-            if (idx === activeOriginal) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
+    let singleSetWidth = getSingleSetWidth();
+
+    window.addEventListener('resize', () => {
+        singleSetWidth = getSingleSetWidth();
+    });
+
+    track.style.transition = 'none';
+
+    function tick(now) {
+        const dt = (now - lastTime) / 1000;
+        lastTime = now;
+
+        if (!isPaused && !isDragging && dt > 0 && dt < 0.1) {
+            currentX += speed * dt;
+            if (currentX >= singleSetWidth) {
+                currentX -= singleSetWidth;
             }
-        });
+            track.style.transform = `translate3d(-${currentX.toFixed(2)}px, 0, 0)`;
+        }
+
+        requestAnimationFrame(tick);
     }
 
-    function setPosition(animate = true) {
-        if (!allSlides[0]) return;
-        const slideWidth = allSlides[0].getBoundingClientRect().width;
-        const gap = getGap();
-        const offset = currentIndex * (slideWidth + gap);
+    requestAnimationFrame(tick);
 
-        if (animate) {
-            track.style.transition = 'transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)';
-            isTransitioning = true;
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 700);
-        } else {
-            track.style.transition = 'none';
-            isTransitioning = false;
-        }
-
-        track.style.transform = `translateX(-${offset}px)`;
-        if (!animate) {
-            void track.offsetHeight; // Force reflow so jump is applied instantly
-        }
-        updateDots();
-    }
-
-    track.addEventListener('transitionend', () => {
-        isTransitioning = false;
-        // Seamless teleport forward when hitting appended clones
-        if (currentIndex >= totalOriginal * 2) {
-            currentIndex = currentIndex - totalOriginal;
-            setPosition(false);
-        }
-        // Seamless teleport backward when hitting prepended clones
-        else if (currentIndex < totalOriginal) {
-            currentIndex = currentIndex + totalOriginal;
-            setPosition(false);
+    // Pause on hover so users can browse/click cards comfortably
+    const trackWrapper = track.closest('.collections-track-wrapper') || track;
+    trackWrapper.addEventListener('mouseenter', () => {
+        isPaused = true;
+    });
+    trackWrapper.addEventListener('mouseleave', () => {
+        if (!isDragging) {
+            isPaused = false;
+            lastTime = performance.now();
         }
     });
 
-    function nextSlide() {
-        if (isTransitioning) return;
-        currentIndex++;
-        setPosition(true);
+    function getNudgeAmount() {
+        const slide = track.querySelector('.collection-slide');
+        if (!slide) return 280;
+        const gap = parseFloat(window.getComputedStyle(track).gap) || 20;
+        return slide.getBoundingClientRect().width + gap;
     }
 
-    function prevSlide() {
-        if (isTransitioning) return;
-        currentIndex--;
-        setPosition(true);
-    }
+    function smoothNudge(direction) {
+        isPaused = true;
+        const nudgeDist = getNudgeAmount() * direction;
+        currentX += nudgeDist;
+        while (currentX >= singleSetWidth) currentX -= singleSetWidth;
+        while (currentX < 0) currentX += singleSetWidth;
 
-    function goToOriginalIndex(targetOriginal) {
-        const currentOriginal = (currentIndex - totalOriginal + totalOriginal * 10) % totalOriginal;
-        const diff = targetOriginal - currentOriginal;
-        currentIndex += diff;
-        setPosition(true);
-    }
+        track.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        track.style.transform = `translate3d(-${currentX.toFixed(2)}px, 0, 0)`;
 
-    function startAutoPlay() {
-        stopAutoPlay();
-        autoPlayTimer = setInterval(() => {
-            nextSlide();
-        }, 2400);
-    }
-
-    function stopAutoPlay() {
-        if (autoPlayTimer) {
-            clearInterval(autoPlayTimer);
-            autoPlayTimer = null;
-        }
-    }
-
-    function resetAutoPlay() {
-        stopAutoPlay();
-        startAutoPlay();
+        setTimeout(() => {
+            track.style.transition = 'none';
+            lastTime = performance.now();
+            isPaused = false;
+        }, 450);
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            nextSlide();
-            resetAutoPlay();
+            smoothNudge(1);
         });
     }
 
     if (prevBtn) {
         prevBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            prevSlide();
-            resetAutoPlay();
+            smoothNudge(-1);
         });
     }
 
-    // Touch Swipe Support
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    // Touch Swipe & Drag Support for Mobile & Desktop
+    function handleDragStart(e) {
+        isDragging = true;
+        isPaused = true;
+        track.style.transition = 'none';
+        startDragX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        dragStartXPos = currentX;
+    }
 
-    track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 40) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-            resetAutoPlay();
-        }
-    }, { passive: true });
+    function handleDragMove(e) {
+        if (!isDragging) return;
+        const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        const delta = startDragX - clientX;
+        currentX = dragStartXPos + delta;
+        while (currentX >= singleSetWidth) currentX -= singleSetWidth;
+        while (currentX < 0) currentX += singleSetWidth;
+        track.style.transform = `translate3d(-${currentX.toFixed(2)}px, 0, 0)`;
+    }
 
-    // Handle Window Resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            setPosition(false);
-        }, 120);
-    });
+    function handleDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        isPaused = false;
+        lastTime = performance.now();
+    }
 
-    // Initialize
-    createDots();
-    setPosition(false);
-    startAutoPlay();
+    track.addEventListener('touchstart', handleDragStart, { passive: true });
+    window.addEventListener('touchmove', handleDragMove, { passive: true });
+    window.addEventListener('touchend', handleDragEnd, { passive: true });
+
+    track.addEventListener('mousedown', handleDragStart);
+    window.addEventListener('mousemove', handleDragMove);
+    window.addEventListener('mouseup', handleDragEnd);
 }
 
 /* ==========================================================================

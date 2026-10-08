@@ -76,7 +76,8 @@
   <!-- Static / Instant Header (No delay, no layout shift) -->
   <div id="site-header-container">
     <div class="top-bar">
-      <div class="container">
+      <!-- Desktop Top Bar Container -->
+      <div class="container top-bar-desktop-container">
         <div class="top-bar-inner">
           <!-- Left side: Contact Info -->
           <div class="top-bar-left">
@@ -107,6 +108,73 @@
               <a href="https://wa.me/919423053232" target="_blank" rel="noopener" class="top-social-btn social-whatsapp"
                 title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Infinite Cycling Motion Marquee -->
+      <div class="top-bar-marquee-wrapper" aria-label="Contact Information Cycling Bar">
+        <div class="top-bar-marquee-track">
+          <!-- Set 1 -->
+          <div class="top-bar-marquee-group">
+            <a href="tel:+919423053232" class="top-marquee-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 9423053232 / +91 7972779903</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <a href="mailto:skenterprises3232@gmail.com" class="top-marquee-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>skenterprises3232@gmail.com</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <a href="https://wa.me/919423053232" target="_blank" rel="noopener"
+              class="top-marquee-item top-marquee-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp Us</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <a href="https://www.instagram.com/sk.interiors.1981?stkn=MXNreG9wdmg0azk0OQ==" target="_blank"
+              rel="noopener" class="top-marquee-item top-marquee-instagram">
+              <i class="fa-brands fa-instagram"></i>
+              <span>@sk.interiors.1981</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <span class="top-marquee-item top-marquee-tag">
+              <i class="fa-solid fa-crown"></i>
+              <span>Luxury Furniture &amp; Interior Designer Pune</span>
+            </span>
+            <span class="top-marquee-dot">•</span>
+          </div>
+
+          <!-- Set 2 (Identical duplicate for seamless infinite loop) -->
+          <div class="top-bar-marquee-group" aria-hidden="true">
+            <a href="tel:+919423053232" class="top-marquee-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 9423053232 / +91 7972779903</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <a href="mailto:skenterprises3232@gmail.com" class="top-marquee-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>skenterprises3232@gmail.com</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <a href="https://wa.me/919423053232" target="_blank" rel="noopener"
+              class="top-marquee-item top-marquee-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp Us</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <a href="https://www.instagram.com/sk.interiors.1981?stkn=MXNreG9wdmg0azk0OQ==" target="_blank"
+              rel="noopener" class="top-marquee-item top-marquee-instagram">
+              <i class="fa-brands fa-instagram"></i>
+              <span>@sk.interiors.1981</span>
+            </a>
+            <span class="top-marquee-dot">•</span>
+            <span class="top-marquee-item top-marquee-tag">
+              <i class="fa-solid fa-crown"></i>
+              <span>Luxury Furniture &amp; Interior Designer Pune</span>
+            </span>
+            <span class="top-marquee-dot">•</span>
           </div>
         </div>
       </div>
@@ -173,120 +241,138 @@
   </div>
 
   <!-- ==========================================================================
-       3. HERO SECTION (Full-Bleed Moderno Theme with Crisp Clear Video)
+       3. HERO SECTION (Editorial Split Design: Typography on Left, Video on Right)
        ========================================================================== -->
-  <section class="hero-moderno-section" id="home">
+  <section class="hero-split-section hero-moderno-section" id="home">
+    <div class="hero-split-layout">
 
-    <!-- Full-Bleed Media Background Slider (Crisp Clear Videos & Images) -->
-    <div class="hero-moderno-media-bg">
-      <div class="hero-showcase-slider">
-        <!-- Slide 1: Dining & Living Walkthrough Video -->
-        <div class="moderno-slide active" data-type="video" data-index="0">
-          <div class="slide-media-wrapper">
-            <video class="moderno-hero-video" autoplay muted playsinline webkit-playsinline="true" loop preload="auto">
-              <source src="assets/images/videos/hhpage.mp4" type="video/mp4">
-              <source src="hhpage.mp4" type="video/mp4">
-            </video>
+      <!-- Left Column: Editorial Typography & Call-to-Actions (Matching Project Theme) -->
+      <div class="hero-split-text-col">
+        <div class="hero-split-content">
+          <!-- Welcome to SK Enterprises Eyebrow in Project Theme -->
+          <div class="hero-split-eyebrow">
+            <span class="welcome-text"><i class="fa-solid fa-sparkles"></i> Welcome to</span>
+            <span class="brand-text">SK Enterprises</span>
           </div>
-        </div>
 
-        <!-- Slide 2: Interior Walkthrough Video -->
-        <div class="moderno-slide" data-type="video" data-index="1">
-          <div class="slide-media-wrapper">
-            <video class="moderno-hero-video" muted playsinline webkit-playsinline="true" loop preload="auto">
-              <source src="assets/images/videos/sk-interior-cut.mp4" type="video/mp4">
-              <source src="assets/images/videos/sk-interior-walkthrough (online-video-cutter.com).mp4" type="video/mp4">
-              <source src="sk-interior-cut.mp4" type="video/mp4">
-            </video>
+          <h1 class="hero-split-title">
+            Turnkey Interior Solutions<br>
+            for Elegant Residences.
+          </h1>
+
+          <p class="hero-split-description">
+            Transforming homes across Pune with handcrafted luxury furniture, bespoke cabinetry, architectural
+            panelling,
+            and complete turnkey interior solutions—crafted with precision, quality, and timeless style.
+          </p>
+
+          <div class="hero-split-actions">
+            <a href="#collections" class="btn-split-primary">
+              <span>EXPLORE COLLECTIONS</span>
+            </a>
+            <button type="button" class="btn-split-outline open-enquiry-drawer">
+              <span>GET A QUOTE</span>
+            </button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Soft Left Fade Overlay (Confined strictly to behind text area, video stays 100% crisp) -->
-    <div class="hero-moderno-fade-overlay"></div>
+      <!-- Right Column: Lifestyle Showcase Video (sk-dining-cut.mp4 with Smooth Feather Blend) -->
+      <div class="hero-split-media-col">
+        <div class="hero-split-media-wrapper">
+          <!-- Soft Gradient Feather Edge seamlessly blending video into left off-white canvas -->
+          <div class="hero-split-feather-edge" aria-hidden="true"></div>
 
-    <!-- Animated Theme Corner Half-Balloons (Left Side Background Only) -->
-    <div class="hero-animated-decor" aria-hidden="true">
-      <div class="hero-corner-balloon corner-balloon-top-left"></div>
-      <div class="hero-corner-balloon corner-balloon-bottom-left"></div>
-    </div>
-
-    <!-- Left Foreground Content (Dynamic Text Slides Synchronized with Videos) -->
-    <div class="container hero-moderno-container">
-      <div class="hero-text-slider">
-
-        <!-- Text Slide 1: Turnkey Residence Interior Walkthrough -->
-        <div class="hero-text-slide active" data-slide-index="0">
-          <div class="hero-moderno-content">
-            <h1 class="hero-moderno-eyebrow">
-              <span class="welcome-label"><i class="fa-solid fa-sparkles"></i> Welcome to</span>
-              <span class="welcome-brand">SK Enterprises</span>
-            </h1>
-
-            <h2 class="hero-moderno-title">
-              Turnkey Interior Solutions for Elegant Residences
-            </h2>
-
-            <p class="hero-moderno-description">
-              Transforming homes across Pune with premium modular furniture, bespoke cabinetry, architectural panelling,
-              and complete turnkey interior solutions—crafted with precision, quality, and timeless style.
-            </p>
-
-            <div class="hero-moderno-actions">
-              <a href="#collections" class="btn-moderno-primary">
-                <span>SHOP NOW</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
-              <button type="button" class="btn-moderno-ghost open-enquiry-drawer">
-                <i class="fa-solid fa-calculator"></i>
-                <span>Get Free Quote</span>
-              </button>
-            </div>
-          </div>
+          <video id="heroDiningVideo" class="hero-split-video" autoplay muted loop playsinline preload="auto">
+            <source src="assets/images/videos/sk-dining-cut.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
+      </div>
 
-        <!-- Text Slide 2: Bespoke Modular Living & Modern Architecture -->
-        <div class="hero-text-slide" data-slide-index="1">
-          <div class="hero-moderno-content">
-            <h1 class="hero-moderno-eyebrow">
-              <span class="welcome-label">Welcome to</span>
-              <span class="welcome-brand">SK Enterprises</span>
-            </h1>
+    </div>
+  </section>
 
-            <h2 class="hero-moderno-title">
-              Bespoke Architecture &amp; Luxury Modular Mastery
-            </h2>
-
-            <p class="hero-moderno-description">
-              Experience factory-finished precision engineered with 100% Marine-grade plywood, acoustic wall panelling,
-              and German-grade soft-close hardware—tailored for fine living across Pune.
-            </p>
-
-            <div class="hero-moderno-actions">
-              <a href="#collections" class="btn-moderno-primary">
-                <span>VIEW COLLECTIONS</span>
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
-              <a href="#home" class="btn-moderno-ghost">
-                <i class="fa-solid fa-circle-play"></i>
-                <span>Watch Tours</span>
-              </a>
-            </div>
-          </div>
+  <!-- ==========================================================================
+       3B. SHOP BY CATEGORY (Find Furniture for Every Room)
+       ========================================================================== -->
+  <section class="section-padding shop-category-section" id="categories">
+    <div class="container">
+      <div class="category-header-row">
+        <div class="category-header-left">
+          <span class="category-eyebrow">SHOP BY CATEGORY</span>
+          <h2 class="category-main-title">Find Furniture for<br>Every Room</h2>
         </div>
+        <div class="category-header-right">
+          <a href="#collections" class="category-view-all">
+            <span>VIEW ALL CATEGORIES</span>
+            <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
 
+      <div class="category-cards-grid">
+        <!-- 1. Living Room -->
+        <a href="#collections" class="category-room-card" aria-label="Explore Living Room Collection">
+          <div class="category-card-media">
+            <img src="assets/images/SK-Img/living room.jpg" alt="Living Room Furniture &amp; Interior Design by SK Enterprises" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3 class="category-card-title">Living Room</h3>
+            <span class="category-card-count">32 ITEMS</span>
+          </div>
+        </a>
+
+        <!-- 2. Dining Room -->
+        <a href="#collections" class="category-room-card" aria-label="Explore Dining Room Collection">
+          <div class="category-card-media">
+            <img src="assets/images/SK-Img/dining room.jpg" alt="Dining Room Tables &amp; Seating by SK Enterprises" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3 class="category-card-title">Dining Room</h3>
+            <span class="category-card-count">18 ITEMS</span>
+          </div>
+        </a>
+
+        <!-- 3. Kitchen -->
+        <a href="#collections" class="category-room-card" aria-label="Explore Modular Kitchen Collection">
+          <div class="category-card-media">
+            <img src="assets/images/SK-Img/kitchen.jpg" alt="Modern Modular Kitchens &amp; Cabinetry by SK Enterprises" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3 class="category-card-title">Kitchen</h3>
+            <span class="category-card-count">24 ITEMS</span>
+          </div>
+        </a>
+
+        <!-- 4. Home Office -->
+        <a href="#collections" class="category-room-card" aria-label="Explore Home Office Collection">
+          <div class="category-card-media">
+            <img src="assets/images/SK-Img/home office.jpg" alt="Ergonomic Home Office Desks &amp; Storage by SK Enterprises" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3 class="category-card-title">Home Office</h3>
+            <span class="category-card-count">15 ITEMS</span>
+          </div>
+        </a>
+
+        <!-- 5. Outdoor -->
+        <a href="#collections" class="category-room-card" aria-label="Explore Outdoor Collection">
+          <div class="category-card-media">
+            <img src="assets/images/SK-Img/outdoor design.jpg" alt="Outdoor Patio &amp; Balcony Furniture by SK Enterprises" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3 class="category-card-title">Outdoor</h3>
+            <span class="category-card-count">22 ITEMS</span>
+          </div>
+        </a>
       </div>
     </div>
-
-    <!-- Minimalist Pagination Dots at Bottom Center -->
-    <div class="hero-moderno-dots-container">
-      <div class="moderno-dots">
-        <button type="button" class="moderno-dot active" data-slide="0" aria-label="Slide 1"></button>
-        <button type="button" class="moderno-dot" data-slide="1" aria-label="Slide 2"></button>
-      </div>
-    </div>
-
   </section>
 
   <!-- ==========================================================================
@@ -469,14 +555,14 @@
 
           <!-- Secondary Offset Background Image (Top-Right) -->
           <div class="why-frame-secondary">
-            <img src="assets/images/SK-Img/sk-bedside-styling.jpg" alt="Architectural Bedside Styling & Wall Panelling"
+            <img src="assets/images/SK-Img/living room.jpg" alt="Bespoke Luxury Living Room Furniture &amp; Interior Solutions by SK Enterprises"
               loading="lazy">
           </div>
 
           <!-- Primary Focal Foreground Image (Bottom-Left) -->
           <div class="why-frame-primary">
-            <img src="assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg"
-              alt="Custom Master Bedroom & Modular Wardrobes by SK Enterprises" loading="lazy">
+            <img src="assets/images/SK-Img/luxury-bed.jpg"
+              alt="Custom Master Bedroom Suites &amp; Architectural Panelling by SK Enterprises" loading="lazy">
           </div>
         </div>
 
@@ -507,8 +593,8 @@
             <div class="collection-slide">
               <a href="#collections" class="collection-card">
                 <div class="collection-img-wrap">
-                  <img src="assets/images/SK-Img/sk-bedroom-suite-wide.jpg" alt="Living Room Furniture"
-                    class="collection-img">
+                  <img src="assets/images/SK-Img/hall.jpg" alt="Living Room Furniture &amp; Interior Design by SK Enterprises"
+                    class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Living Room</h3>
@@ -521,8 +607,8 @@
             <div class="collection-slide">
               <a href="#collections" class="collection-card">
                 <div class="collection-img-wrap">
-                  <img src="assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg" alt="Dining Room Furniture"
-                    class="collection-img">
+                  <img src="assets/images/SK-Img/dining table 1.jpg" alt="Dining Room Tables &amp; Seating by SK Enterprises"
+                    class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Dining Room</h3>
@@ -535,7 +621,8 @@
             <div class="collection-slide">
               <a href="#collections" class="collection-card">
                 <div class="collection-img-wrap">
-                  <img src="assets/images/SK-Img/sk-bedside-styling.jpg" alt="Bedroom Furniture" class="collection-img">
+                  <img src="assets/images/SK-Img/bedroom.jpg" alt="Luxury Bedroom Furniture by SK Enterprises"
+                    class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Bedroom</h3>
@@ -544,16 +631,16 @@
               </a>
             </div>
 
-            <!-- Slide 4: Home Office -->
+            <!-- Slide 4: Modular Kitchen -->
             <div class="collection-slide">
               <a href="#collections" class="collection-card">
                 <div class="collection-img-wrap">
-                  <img src="assets/images/SK-Img/sk-modular-nightstand.jpg" alt="Home Office & Consoles"
-                    class="collection-img">
+                  <img src="assets/images/SK-Img/kitchen1.jpg" alt="Modular Kitchen Designs &amp; Cabinetry by SK Enterprises"
+                    class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-overlay">
-                  <h3 class="collection-title">Home Office</h3>
-                  <span class="collection-count">15 ITEMS</span>
+                  <h3 class="collection-title">Modular Kitchen</h3>
+                  <span class="collection-count">26 ITEMS</span>
                 </div>
               </a>
             </div>
@@ -562,12 +649,40 @@
             <div class="collection-slide">
               <a href="#collections" class="collection-card">
                 <div class="collection-img-wrap">
-                  <img src="assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg" alt="Modular Wardrobes & Closets"
-                    class="collection-img">
+                  <img src="assets/images/SK-Img/wardrobe.jpg" alt="Modular Wardrobes &amp; Closets by SK Enterprises"
+                    class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Modular Wardrobes</h3>
                   <span class="collection-count">28 ITEMS</span>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 6: Home Office -->
+            <div class="collection-slide">
+              <a href="#collections" class="collection-card">
+                <div class="collection-img-wrap">
+                  <img src="assets/images/SK-Img/homeoffice1.jpg" alt="Home Office Desks &amp; Workstations by SK Enterprises"
+                    class="collection-img" loading="lazy">
+                </div>
+                <div class="collection-overlay">
+                  <h3 class="collection-title">Home Office</h3>
+                  <span class="collection-count">15 ITEMS</span>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 7: Outdoor Living -->
+            <div class="collection-slide">
+              <a href="#collections" class="collection-card">
+                <div class="collection-img-wrap">
+                  <img src="assets/images/SK-Img/outdoor design.jpg" alt="Outdoor Patio &amp; Balcony Furniture by SK Enterprises"
+                    class="collection-img" loading="lazy">
+                </div>
+                <div class="collection-overlay">
+                  <h3 class="collection-title">Outdoor Living</h3>
+                  <span class="collection-count">22 ITEMS</span>
                 </div>
               </a>
             </div>
