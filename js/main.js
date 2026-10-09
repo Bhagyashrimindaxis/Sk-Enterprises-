@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initLocationsAccordion();
     initHeroVideos();
     initCardScrollAnimations();
+    initCategoryCardAnimations();
 });
 
 /* ==========================================================================
@@ -1164,156 +1165,153 @@ function initTestimonialCarousel() {
 }
 
 /* ==========================================================================
-   FURNITURE COLLECTIONS CONTINUOUS SEAMLESS CYCLING INFINITE LOOP MARQUEE
+   FURNITURE COLLECTIONS 3D COVERFLOW FOCUS CAROUSEL (Center Image Clear & Prominent)
    ========================================================================== */
 function initCollectionsCarousel() {
     const track = document.getElementById('collectionsTrack');
     if (!track) return;
 
-    const originalSlides = Array.from(track.querySelectorAll('.collection-slide'));
-    const totalOriginal = originalSlides.length;
-    if (totalOriginal === 0) return;
+    const slides = Array.from(track.querySelectorAll('.collection-slide'));
+    const total = slides.length;
+    if (total === 0) return;
 
     const prevBtn = document.getElementById('colPrev');
     const nextBtn = document.getElementById('colNext');
-
-    // Duplicate slides to create seamless infinite continuous loop (3 sets)
-    const cloneHtml1 = originalSlides.map(s => s.outerHTML).join('');
-    const cloneHtml2 = originalSlides.map(s => s.outerHTML).join('');
-    track.innerHTML = track.innerHTML + cloneHtml1 + cloneHtml2;
-
-    const allSlides = Array.from(track.querySelectorAll('.collection-slide'));
-
-    let currentX = 0;
-    let isPaused = false;
-    let isDragging = false;
-    let startDragX = 0;
-    let dragStartXPos = 0;
-    let lastTime = performance.now();
-
-    // Constant smooth fluid speed in pixels per second (85px/s)
-    const speed = 85;
-
-    function getSingleSetWidth() {
-        if (allSlides.length > totalOriginal) {
-            const firstLeft = allSlides[0].getBoundingClientRect().left;
-            const nextSetLeft = allSlides[totalOriginal].getBoundingClientRect().left;
-            const dist = nextSetLeft - firstLeft;
-            if (dist > 50) return dist;
-        }
-        const slide = allSlides[0];
-        const gap = parseFloat(window.getComputedStyle(track).gap) || 20;
-        return totalOriginal * (slide.getBoundingClientRect().width + gap);
-    }
-
-    let singleSetWidth = getSingleSetWidth();
-
-    window.addEventListener('resize', () => {
-        singleSetWidth = getSingleSetWidth();
-    });
-
-    track.style.transition = 'none';
-
-    function tick(now) {
-        const dt = (now - lastTime) / 1000;
-        lastTime = now;
-
-        if (!isPaused && !isDragging && dt > 0 && dt < 0.1) {
-            currentX += speed * dt;
-            if (currentX >= singleSetWidth) {
-                currentX -= singleSetWidth;
-            }
-            track.style.transform = `translate3d(-${currentX.toFixed(2)}px, 0, 0)`;
-        }
-
-        requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
-
-    // Pause on hover so users can browse/click cards comfortably
     const trackWrapper = track.closest('.collections-track-wrapper') || track;
-    trackWrapper.addEventListener('mouseenter', () => {
-        isPaused = true;
-    });
-    trackWrapper.addEventListener('mouseleave', () => {
-        if (!isDragging) {
-            isPaused = false;
-            lastTime = performance.now();
-        }
-    });
 
-    function getNudgeAmount() {
-        const slide = track.querySelector('.collection-slide');
-        if (!slide) return 280;
-        const gap = parseFloat(window.getComputedStyle(track).gap) || 20;
-        return slide.getBoundingClientRect().width + gap;
+    let activeIndex = 0;
+    let autoPlayTimer = null;
+    let isInteracting = false;
+
+    function updateCoverflow() {
+        slides.forEach((slide, i) => {
+            slide.classList.remove(
+                'is-active',
+                'is-prev',
+                'is-next',
+                'is-prev-2',
+                'is-next-2',
+                'is-hidden-left',
+                'is-hidden-right'
+            );
+
+            // Calculate circular distance
+            let diff = i - activeIndex;
+            if (diff > total / 2) diff -= total;
+            if (diff < -total / 2) diff += total;
+
+            if (diff === 0) {
+                slide.classList.add('is-active');
+                slide.setAttribute('aria-hidden', 'false');
+            } else if (diff === -1) {
+                slide.classList.add('is-prev');
+                slide.setAttribute('aria-hidden', 'true');
+            } else if (diff === 1) {
+                slide.classList.add('is-next');
+                slide.setAttribute('aria-hidden', 'true');
+            } else if (diff === -2) {
+                slide.classList.add('is-prev-2');
+                slide.setAttribute('aria-hidden', 'true');
+            } else if (diff === 2) {
+                slide.classList.add('is-next-2');
+                slide.setAttribute('aria-hidden', 'true');
+            } else if (diff < -2) {
+                slide.classList.add('is-hidden-left');
+                slide.setAttribute('aria-hidden', 'true');
+            } else {
+                slide.classList.add('is-hidden-right');
+                slide.setAttribute('aria-hidden', 'true');
+            }
+        });
     }
 
-    function smoothNudge(direction) {
-        isPaused = true;
-        const nudgeDist = getNudgeAmount() * direction;
-        currentX += nudgeDist;
-        while (currentX >= singleSetWidth) currentX -= singleSetWidth;
-        while (currentX < 0) currentX += singleSetWidth;
-
-        track.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-        track.style.transform = `translate3d(-${currentX.toFixed(2)}px, 0, 0)`;
-
-        setTimeout(() => {
-            track.style.transition = 'none';
-            lastTime = performance.now();
-            isPaused = false;
-        }, 450);
+    function goTo(index) {
+        activeIndex = (index % total + total) % total;
+        updateCoverflow();
     }
 
+    function next() {
+        goTo(activeIndex + 1);
+    }
+
+    function prev() {
+        goTo(activeIndex - 1);
+    }
+
+    // Navigation buttons
     if (nextBtn) {
         nextBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            smoothNudge(1);
+            next();
+            restartAutoPlay();
         });
     }
 
     if (prevBtn) {
         prevBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            smoothNudge(-1);
+            prev();
+            restartAutoPlay();
         });
     }
 
-    // Touch Swipe & Drag Support for Mobile & Desktop
-    function handleDragStart(e) {
-        isDragging = true;
-        isPaused = true;
-        track.style.transition = 'none';
-        startDragX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-        dragStartXPos = currentX;
+    // Clicking any side slide brings it directly to the center
+    slides.forEach((slide, index) => {
+        slide.addEventListener('click', (e) => {
+            if (index !== activeIndex) {
+                e.preventDefault();
+                goTo(index);
+                restartAutoPlay();
+            }
+        });
+    });
+
+    // Touch swipe support for mobile & tablet
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    trackWrapper.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+            touchStartX = e.touches[0].clientX;
+            stopAutoPlay();
+        }
+    }, { passive: true });
+
+    trackWrapper.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+            touchEndX = e.changedTouches[0].clientX;
+            const deltaX = touchStartX - touchEndX;
+            if (Math.abs(deltaX) > 40) {
+                if (deltaX > 0) next();
+                else prev();
+            }
+            startAutoPlay();
+        }
+    }, { passive: true });
+
+    // Fast motion autoplay: changes every 1.2 seconds automatically
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayTimer = setInterval(() => {
+            next();
+        }, 1200);
     }
 
-    function handleDragMove(e) {
-        if (!isDragging) return;
-        const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-        const delta = startDragX - clientX;
-        currentX = dragStartXPos + delta;
-        while (currentX >= singleSetWidth) currentX -= singleSetWidth;
-        while (currentX < 0) currentX += singleSetWidth;
-        track.style.transform = `translate3d(-${currentX.toFixed(2)}px, 0, 0)`;
+    function stopAutoPlay() {
+        if (autoPlayTimer) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+        }
     }
 
-    function handleDragEnd() {
-        if (!isDragging) return;
-        isDragging = false;
-        isPaused = false;
-        lastTime = performance.now();
+    function restartAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
     }
 
-    track.addEventListener('touchstart', handleDragStart, { passive: true });
-    window.addEventListener('touchmove', handleDragMove, { passive: true });
-    window.addEventListener('touchend', handleDragEnd, { passive: true });
-
-    track.addEventListener('mousedown', handleDragStart);
-    window.addEventListener('mousemove', handleDragMove);
-    window.addEventListener('mouseup', handleDragEnd);
+    // Initial render & start fast motion autoplay
+    updateCoverflow();
+    startAutoPlay();
 }
 
 /* ==========================================================================
@@ -1459,4 +1457,38 @@ function initCardScrollAnimations() {
         animatedElements.forEach(el => el.classList.add('card-animated'));
     }
 }
+
+/* ==========================================================================
+   CATEGORY CARDS ENTRANCE ANIMATION (Architectural 3D Fold & Unfurl Cascade)
+   ========================================================================== */
+function initCategoryCardAnimations() {
+    const categoryCards = document.querySelectorAll('.category-room-card');
+    if (!categoryCards.length) return;
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('category-card-animated');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -25px 0px'
+        });
+
+        categoryCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                setTimeout(() => card.classList.add('category-card-animated'), 60);
+            } else {
+                observer.observe(card);
+            }
+        });
+    } else {
+        categoryCards.forEach(card => card.classList.add('category-card-animated'));
+    }
+}
+
 
