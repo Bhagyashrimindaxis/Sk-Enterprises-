@@ -1191,6 +1191,8 @@ function initCollectionsCarousel() {
                 'is-next',
                 'is-prev-2',
                 'is-next-2',
+                'is-prev-3',
+                'is-next-3',
                 'is-hidden-left',
                 'is-hidden-right'
             );
@@ -1215,7 +1217,13 @@ function initCollectionsCarousel() {
             } else if (diff === 2) {
                 slide.classList.add('is-next-2');
                 slide.setAttribute('aria-hidden', 'true');
-            } else if (diff < -2) {
+            } else if (diff === -3) {
+                slide.classList.add('is-prev-3');
+                slide.setAttribute('aria-hidden', 'true');
+            } else if (diff === 3) {
+                slide.classList.add('is-next-3');
+                slide.setAttribute('aria-hidden', 'true');
+            } else if (diff < -3) {
                 slide.classList.add('is-hidden-left');
                 slide.setAttribute('aria-hidden', 'true');
             } else {
