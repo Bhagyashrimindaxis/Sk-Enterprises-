@@ -519,13 +519,13 @@
   </section>
 
   <!-- ==========================================================================
-       6. WHY CHOOSE US (Architectural Layered Frame Design with Editorial Theory)
+       6. WHY CHOOSE US (Architectural Video Showcase & Editorial Advantage)
        ========================================================================== -->
   <section class="section-padding bg-alt" id="why-us">
     <div class="container">
       <div class="why-architectural-grid">
 
-        <!-- Left Column: Single Cohesive Editorial Theory Card -->
+        <!-- Left Column: Single Cohesive Editorial Theory Card (All Text) -->
         <div class="why-editorial-card card-animate-left">
           <span class="why-arch-eyebrow">OUR COMMITMENT &amp; ADVANTAGE</span>
           <h2 class="why-arch-title">Why Choose <span class="why-title-accent">S. K. Enterprises</span></h2>
@@ -567,21 +567,28 @@
           </div>
         </div>
 
-        <!-- Right Column: Architectural Layered Frame Image Showcase (Matching Reference Design) -->
-        <div class="why-architectural-visual card-animate-right">
-          <!-- Geometric Metallic Outline Accent Box -->
-          <div class="why-outline-frame"></div>
+        <!-- Right Column: Video Showcase with Architectural Styling & Animation -->
+        <div class="why-video-visual card-animate-right">
+          <!-- Geometric Metallic Accent Outline Frame behind video -->
+          <div class="why-video-outline-frame" aria-hidden="true"></div>
 
-          <!-- Secondary Offset Background Image (Top-Right) -->
-          <div class="why-frame-secondary">
-            <img src="assets/images/SK-Img/living room.jpg"
-              alt="Bespoke Luxury Living Room Furniture &amp; Interior Solutions by SK Enterprises" loading="lazy">
-          </div>
+          <!-- Video Wrapper Card -->
+          <div class="why-video-card">
+            <!-- Luxury Glassmorphic Pill Badge -->
+            <div class="why-video-badge">
+              <span class="why-video-badge-dot"></span>
+              <i class="fa-solid fa-play"></i>
+              <span>Factory &amp; Interior Tour</span>
+            </div>
 
-          <!-- Primary Focal Foreground Image (Bottom-Left) -->
-          <div class="why-frame-primary">
-            <img src="assets/images/SK-Img/luxury-bed.jpg"
-              alt="Custom Master Bedroom Suites &amp; Architectural Panelling by SK Enterprises" loading="lazy">
+            <!-- Video Player -->
+            <video id="whyChooseUsVideo" class="why-video-player" autoplay muted loop playsinline preload="auto">
+              <source src="assets/images/videos/sk-interior-cut.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+
+            <!-- Diagonal Luxury Sheen Overlay Sweep -->
+            <div class="why-video-sheen" aria-hidden="true"></div>
           </div>
         </div>
 
@@ -617,7 +624,9 @@
                     loading="lazy">
                 </div>
                 <div class="collection-top-meta">
-                  <span class="collection-badge-brand">SK</span>
+                  <span class="collection-badge-brand">
+                    <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="collection-badge-logo">
+                  </span>
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Living Room</h3>
@@ -633,7 +642,9 @@
                     alt="Dining Room Tables &amp; Seating by SK Enterprises" class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-top-meta">
-                  <span class="collection-badge-brand">SK</span>
+                  <span class="collection-badge-brand">
+                    <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="collection-badge-logo">
+                  </span>
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Dining Room</h3>
@@ -649,7 +660,9 @@
                     class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-top-meta">
-                  <span class="collection-badge-brand">SK</span>
+                  <span class="collection-badge-brand">
+                    <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="collection-badge-logo">
+                  </span>
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Bedroom</h3>
@@ -666,7 +679,9 @@
                     loading="lazy">
                 </div>
                 <div class="collection-top-meta">
-                  <span class="collection-badge-brand">SK</span>
+                  <span class="collection-badge-brand">
+                    <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="collection-badge-logo">
+                  </span>
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Modular Kitchen</h3>
@@ -682,7 +697,9 @@
                     class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-top-meta">
-                  <span class="collection-badge-brand">SK</span>
+                  <span class="collection-badge-brand">
+                    <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="collection-badge-logo">
+                  </span>
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Modular Wardrobes</h3>
@@ -698,7 +715,9 @@
                     alt="Home Office Desks &amp; Workstations by SK Enterprises" class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-top-meta">
-                  <span class="collection-badge-brand">SK</span>
+                  <span class="collection-badge-brand">
+                    <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="collection-badge-logo">
+                  </span>
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Home Office</h3>
@@ -714,7 +733,9 @@
                     alt="Outdoor Patio &amp; Balcony Furniture by SK Enterprises" class="collection-img" loading="lazy">
                 </div>
                 <div class="collection-top-meta">
-                  <span class="collection-badge-brand">SK</span>
+                  <span class="collection-badge-brand">
+                    <img src="assets/images/logo.png" alt="S K Enterprises Logo" class="collection-badge-logo">
+                  </span>
                 </div>
                 <div class="collection-overlay">
                   <h3 class="collection-title">Outdoor Living</h3>
@@ -755,6 +776,10 @@
       <div class="process-cards-grid">
         <!-- Step 1: Consultation & Planning -->
         <div class="process-card-item" onclick="selectProcessCard(this)">
+          <div class="process-card-bg" aria-hidden="true">
+            <img src="assets/images/SK-Img/planning.png" alt="Consultation &amp; Planning" class="process-card-bg-img" loading="lazy">
+            <div class="process-card-bg-overlay"></div>
+          </div>
           <span class="process-step-num" aria-hidden="true">01</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">
@@ -768,6 +793,10 @@
 
         <!-- Step 2: 3D Design & Selection -->
         <div class="process-card-item" onclick="selectProcessCard(this)">
+          <div class="process-card-bg" aria-hidden="true">
+            <img src="assets/images/SK-Img/selection.png" alt="3D Design &amp; Selection" class="process-card-bg-img" loading="lazy">
+            <div class="process-card-bg-overlay"></div>
+          </div>
           <span class="process-step-num" aria-hidden="true">02</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">
@@ -781,6 +810,10 @@
 
         <!-- Step 3: Factory Manufacturing -->
         <div class="process-card-item" onclick="selectProcessCard(this)">
+          <div class="process-card-bg" aria-hidden="true">
+            <img src="assets/images/SK-Img/manufacturing.png" alt="Factory Manufacturing" class="process-card-bg-img" loading="lazy">
+            <div class="process-card-bg-overlay"></div>
+          </div>
           <span class="process-step-num" aria-hidden="true">03</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">
@@ -794,6 +827,10 @@
 
         <!-- Step 4: Delivery & Installation -->
         <div class="process-card-item" onclick="selectProcessCard(this)">
+          <div class="process-card-bg" aria-hidden="true">
+            <img src="assets/images/SK-Img/delivery.png" alt="Delivery &amp; Installation" class="process-card-bg-img" loading="lazy">
+            <div class="process-card-bg-overlay"></div>
+          </div>
           <span class="process-step-num" aria-hidden="true">04</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">

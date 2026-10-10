@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initQuoteCalculator();
     initLocationsAccordion();
     initHeroVideos();
+    initWhyChooseUsVideo();
     initCardScrollAnimations();
     initCategoryCardAnimations();
     initProcessCardBalloonAnimation();
@@ -312,6 +313,25 @@ function initHeroVideos() {
         window.addEventListener('click', ensurePlaying, { once: true });
         window.addEventListener('touchstart', ensurePlaying, { once: true });
     }
+}
+
+function initWhyChooseUsVideo() {
+    const whyVideo = document.getElementById('whyChooseUsVideo');
+    if (!whyVideo) return;
+
+    whyVideo.muted = true;
+    const playPromise = whyVideo.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+    }
+
+    const ensurePlaying = () => {
+        if (whyVideo.paused) {
+            whyVideo.play().catch(() => {});
+        }
+    };
+    window.addEventListener('click', ensurePlaying, { once: true });
+    window.addEventListener('touchstart', ensurePlaying, { once: true });
 }
 
 /* ==========================================================================
@@ -1358,6 +1378,7 @@ function initCardScrollAnimations() {
         '.about-visual',
         '.about-content',
         '.why-editorial-card',
+        '.why-video-visual',
         '.why-arch-content',
         '.why-architectural-visual',
         '.why-arch-item',
@@ -1466,7 +1487,7 @@ function initCardScrollAnimations() {
         // Re-arm About Us & Why Choose Us split-from-center animations when scrolled back to top
         window.addEventListener('scroll', () => {
             if (window.scrollY < 40) {
-                const centerSplitEls = document.querySelectorAll('.about-visual, .about-content, .why-editorial-card, .why-architectural-visual');
+                const centerSplitEls = document.querySelectorAll('.about-visual, .about-content, .why-editorial-card, .why-architectural-visual, .why-video-visual');
                 centerSplitEls.forEach(el => {
                     if (el.classList.contains('card-animated')) {
                         el.classList.remove('card-animated');

@@ -2235,15 +2235,20 @@ h6 {
   justify-content: center;
   width: 34px;
   height: 34px;
-  border-radius: 10px;
-  background: rgba(12, 23, 31, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  font-family: var(--font-sans), 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.collection-badge-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
 }
 
 /* Compact Bottom Gradient Overlay: Unobscured, Clean View of the Room */
@@ -2734,6 +2739,10 @@ h6 {
   align-items: center;
 }
 
+.why-architectural-grid:has(.why-video-visual:first-child) {
+  grid-template-columns: 1fr 1.15fr;
+}
+
 /* Left Content Column: Single Cohesive Editorial Theory Card */
 .why-editorial-card {
   width: 100%;
@@ -3086,6 +3095,166 @@ h6 {
 
 .why-highlight-pill:hover span {
   color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   Why Choose Us: Architectural Video Showcase (Left Column)
+   ========================================================================== */
+.why-video-visual {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Geometric Metallic / Terracotta Outline Frame behind Video */
+.why-video-outline-frame {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: 14px;
+  bottom: -12px;
+  border: 2px solid #b97759;
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.why-video-visual.card-animated .why-video-outline-frame {
+  animation: whyFrameGlow 5.5s ease-in-out 1.4s infinite;
+}
+
+/* Video Card Container */
+.why-video-card {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0d1b22;
+  box-shadow: 0 16px 40px rgba(53, 100, 126, 0.16), 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 2.5px solid #ffffff;
+  z-index: 2;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s ease;
+}
+
+.why-video-visual.card-animated:hover .why-video-card {
+  transform: translate3d(0, -6px, 0);
+  box-shadow: 0 24px 52px rgba(53, 100, 126, 0.24), 0 6px 20px rgba(200, 168, 126, 0.28);
+  border-color: rgba(200, 168, 126, 0.7);
+}
+
+/* Video Player */
+.why-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* Luxury Glassmorphic Pill Badge */
+.why-video-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: rgba(22, 43, 54, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 30px;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  z-index: 4;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+}
+
+.why-video-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px #34d399;
+  animation: whyPulseDot 2s infinite;
+}
+
+@keyframes whyPulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.why-video-badge i {
+  color: var(--color-accent, #c8a87e);
+  font-size: 0.72rem;
+}
+
+/* Floating Controls Overlay (Play/Pause & Mute/Unmute) */
+.why-video-controls-overlay {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+.why-video-ctrl-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(22, 43, 54, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.why-video-ctrl-btn:hover {
+  background: var(--color-accent, #c8a87e);
+  color: #162b36;
+  border-color: var(--color-accent, #c8a87e);
+  transform: scale(1.1);
+}
+
+/* Diagonal Luxury Glass Sheen Sweep */
+.why-video-sheen {
+  position: absolute;
+  top: -60%;
+  left: -80%;
+  width: 45%;
+  height: 220%;
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.28) 45%,
+      rgba(200, 168, 126, 0.22) 55%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: rotate(25deg);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 3;
+}
+
+.why-video-visual.card-animated .why-video-sheen {
+  animation: whyCardSheenSweep 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
 }
 
 /* Right Side: Architectural Layered Frame Showcase */
@@ -3446,10 +3615,19 @@ h6 {
     gap: 36px;
   }
 
-  .why-architectural-visual {
-    max-width: 460px;
+  .why-architectural-visual,
+  .why-video-visual {
+    max-width: 480px;
     margin: 0 auto;
+    width: 100%;
+  }
+
+  .why-architectural-visual {
     height: 380px;
+  }
+
+  .why-video-card {
+    height: 360px;
   }
 }
 
@@ -3468,8 +3646,29 @@ h6 {
     max-width: 100%;
   }
 
+  .why-video-visual {
+    max-width: 100%;
+  }
+
+  .why-video-card {
+    height: 270px;
+  }
+
+  .why-video-outline-frame {
+    top: -6px;
+    left: -6px;
+    right: 8px;
+    bottom: -6px;
+  }
+
   .why-arch-title {
     font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-video-card {
+    height: 230px;
   }
 }
 
@@ -4431,27 +4630,56 @@ h6 {
     box-shadow 0.4s ease !important;
 }
 
-/* Sliding Navy Blue Curtain Layer: Sits below text, rises from bottom */
+/* Remove flat navy blue pseudo curtain */
 .process-card-item::before {
-  content: '';
+  display: none !important;
+}
+
+/* Sliding Photo Backdrop Container: Sits below text, rises smoothly from bottom on hover/active */
+.process-card-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(150deg, #132734 0%, #1c3b4d 100%);
   z-index: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  pointer-events: none;
   transform: translate3d(0, 100%, 0);
   transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-  border-radius: 16px;
   will-change: transform;
 }
 
-/* When Hover or Active: Blue Color Slides Up from Down to Top */
-.process-card-item:hover::before,
-.process-card-item.is-balloon-active::before {
+/* When Hover or Active: Photo Layer Slides Up into Full View */
+.process-card-item:hover .process-card-bg,
+.process-card-item.is-balloon-active .process-card-bg {
   transform: translate3d(0, 0, 0);
+}
+
+.process-card-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transform: scale(1.12);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-card-item:hover .process-card-bg-img,
+.process-card-item.is-balloon-active .process-card-bg-img {
+  transform: scale(1.02);
+}
+
+/* Faint translucent overlay (no blur) so image displays sharply and clearly */
+.process-card-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(14, 28, 38, 0.18) 0%, rgba(14, 28, 38, 0.42) 100%);
 }
 
 .process-card-item::after {
@@ -4471,11 +4699,13 @@ h6 {
 .process-card-item.is-balloon-active .process-card-title,
 .process-card-item:hover .process-card-title {
   color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .process-card-item.is-balloon-active .process-card-desc,
 .process-card-item:hover .process-card-desc {
-  color: rgba(240, 246, 250, 0.9) !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85), 0 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 .process-card-item.is-balloon-active .process-step-num,
@@ -6690,7 +6920,7 @@ h6 {
   overflow: hidden;
 }
 
-.why-architectural-grid .why-editorial-card,
+.why-architectural-grid .why-editorial-card.card-animate-left,
 .why-editorial-card.card-animate-left {
   opacity: 0;
   transform: translate3d(-95px, 0, 0) !important; /* Starts off to the left: slides in from left */
@@ -6705,8 +6935,40 @@ h6 {
   -webkit-backface-visibility: hidden;
 }
 
+.why-architectural-grid .why-editorial-card.card-animate-right,
+.why-editorial-card.card-animate-right {
+  opacity: 0;
+  transform: translate3d(95px, 0, 0) !important; /* Starts off to the right: slides in from right */
+  filter: blur(2px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s ease-out,
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.05s !important;
+  will-change: opacity, transform, filter;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.why-architectural-grid .why-video-visual,
+.why-video-visual.card-animate-left {
+  opacity: 0;
+  transform: translate3d(-95px, 0, 0) !important; /* Starts off to the left: slides in from left */
+  filter: blur(2px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s ease-out,
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.05s !important;
+  will-change: opacity, transform, filter;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
 .why-architectural-grid .why-architectural-visual,
-.why-architectural-visual.card-animate-right {
+.why-architectural-visual.card-animate-right,
+.why-architectural-grid .why-video-visual.card-animate-right,
+.why-video-visual.card-animate-right {
   opacity: 0;
   transform: translate3d(95px, 0, 0) !important; /* Starts off to the right: slides in from right */
   filter: blur(2px);
@@ -6720,16 +6982,25 @@ h6 {
 }
 
 .why-architectural-grid .why-editorial-card.card-animated,
-.why-editorial-card.card-animate-left.card-animated {
+.why-editorial-card.card-animate-left.card-animated,
+.why-editorial-card.card-animate-right.card-animated {
   opacity: 1 !important;
-  transform: translate3d(0, 0, 0) !important; /* Glides to the left into position */
+  transform: translate3d(0, 0, 0) !important; /* Glides into position */
+  filter: blur(0px) !important;
+}
+
+.why-architectural-grid .why-video-visual.card-animated,
+.why-video-visual.card-animate-left.card-animated,
+.why-video-visual.card-animate-right.card-animated {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important; /* Glides into position */
   filter: blur(0px) !important;
 }
 
 .why-architectural-grid .why-architectural-visual.card-animated,
 .why-architectural-visual.card-animate-right.card-animated {
   opacity: 1 !important;
-  transform: translate3d(0, 0, 0) !important; /* Glides to the right into position */
+  transform: translate3d(0, 0, 0) !important; /* Glides into position */
   filter: blur(0px) !important;
 }
 
@@ -6742,6 +7013,9 @@ h6 {
 @media (max-width: 768px) {
   .why-architectural-grid .why-editorial-card,
   .why-editorial-card.card-animate-left,
+  .why-editorial-card.card-animate-right,
+  .why-architectural-grid .why-video-visual,
+  .why-video-visual.card-animate-left,
   .why-architectural-grid .why-architectural-visual,
   .why-architectural-visual.card-animate-right {
     transform: translate3d(0, 24px, 0) !important;
@@ -6751,6 +7025,9 @@ h6 {
 @media (prefers-reduced-motion: reduce) {
   .why-architectural-grid .why-editorial-card,
   .why-editorial-card.card-animate-left,
+  .why-editorial-card.card-animate-right,
+  .why-architectural-grid .why-video-visual,
+  .why-video-visual.card-animate-left,
   .why-architectural-grid .why-architectural-visual,
   .why-architectural-visual.card-animate-right {
     opacity: 1 !important;
