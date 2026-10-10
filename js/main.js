@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initHeroVideos();
     initCardScrollAnimations();
     initCategoryCardAnimations();
+    initProcessCardBalloonAnimation();
 });
 
 /* ==========================================================================
@@ -1461,42 +1462,130 @@ function initCardScrollAnimations() {
                 observer.observe(el);
             }
         });
+
+        // Re-arm About Us & Why Choose Us split-from-center animations when scrolled back to top
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 40) {
+                const centerSplitEls = document.querySelectorAll('.about-visual, .about-content, .why-editorial-card, .why-architectural-visual');
+                centerSplitEls.forEach(el => {
+                    if (el.classList.contains('card-animated')) {
+                        el.classList.remove('card-animated');
+                        observer.observe(el);
+                    }
+                });
+            }
+        }, { passive: true });
     } else {
         animatedElements.forEach(el => el.classList.add('card-animated'));
     }
 }
 
 /* ==========================================================================
-   CATEGORY CARDS ENTRANCE ANIMATION (Architectural 3D Fold & Unfurl Cascade)
+   CATEGORY CARDS ENTRANCE ANIMATION (Sequential One-by-One Cascade on Scroll)
    ========================================================================== */
 function initCategoryCardAnimations() {
     const categoryCards = document.querySelectorAll('.category-room-card');
+    const categoryGrid = document.querySelector('.category-cards-grid') || document.getElementById('categories');
     if (!categoryCards.length) return;
 
+    let hasAnimated = false;
+    let cardTimeouts = [];
+
+    const revealCardsSequentially = () => {
+        if (hasAnimated) return;
+        hasAnimated = true;
+
+        // Clear any prior pending timeouts
+        cardTimeouts.forEach(t => clearTimeout(t));
+        cardTimeouts = [];
+
+        // Display cards one by one with a distinct staggered delay (200ms apart)
+        categoryCards.forEach((card, index) => {
+            const t = setTimeout(() => {
+                card.classList.add('category-card-animated');
+            }, index * 200);
+            cardTimeouts.push(t);
+        });
+    };
+
+    const resetCategoryCards = () => {
+        if (!hasAnimated) return;
+        hasAnimated = false;
+        cardTimeouts.forEach(t => clearTimeout(t));
+        cardTimeouts = [];
+        categoryCards.forEach(card => {
+            card.classList.remove('category-card-animated');
+        });
+    };
+
     if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
+        const targetToObserve = categoryGrid || categoryCards[0];
+
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('category-card-animated');
-                    obs.unobserve(entry.target);
+                    revealCardsSequentially();
                 }
             });
         }, {
-            threshold: 0.12,
-            rootMargin: '0px 0px -25px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
         });
 
-        categoryCards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                setTimeout(() => card.classList.add('category-card-animated'), 60);
-            } else {
-                observer.observe(card);
+        if (targetToObserve) {
+            observer.observe(targetToObserve);
+        }
+
+        // When user scrolls back up to the very top (Hero section), reset so scrolling down replays smoothly
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 40 && hasAnimated) {
+                resetCategoryCards();
             }
-        });
+        }, { passive: true });
     } else {
-        categoryCards.forEach(card => card.classList.add('category-card-animated'));
+        // Fallback for browsers without IntersectionObserver
+        revealCardsSequentially();
     }
 }
+
+/* ==========================================================================
+   PROCESS CARDS INTERACTIVE STATE ON CLICK
+   ========================================================================== */
+function initProcessCardBalloonAnimation() {
+    const processCards = document.querySelectorAll('.process-card-item');
+    if (!processCards.length) return;
+
+    processCards.forEach((card) => {
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+
+        const handleCardActivation = () => {
+            const isCurrentlyActive = card.classList.contains('is-balloon-active');
+
+            // Deactivate other cards
+            processCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('is-balloon-active');
+                }
+            });
+
+            // Toggle active state
+            if (!isCurrentlyActive) {
+                card.classList.add('is-balloon-active');
+            } else {
+                card.classList.remove('is-balloon-active');
+            }
+        };
+
+        card.addEventListener('click', handleCardActivation);
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleCardActivation();
+            }
+        });
+    });
+}
+
 
 

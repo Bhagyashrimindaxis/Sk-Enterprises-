@@ -754,9 +754,8 @@
 
       <div class="process-cards-grid">
         <!-- Step 1: Consultation & Planning -->
-        <div class="process-card-item">
+        <div class="process-card-item" onclick="selectProcessCard(this)">
           <span class="process-step-num" aria-hidden="true">01</span>
-          <span class="process-step-pill">STEP 01</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -768,9 +767,8 @@
         </div>
 
         <!-- Step 2: 3D Design & Selection -->
-        <div class="process-card-item">
+        <div class="process-card-item" onclick="selectProcessCard(this)">
           <span class="process-step-num" aria-hidden="true">02</span>
-          <span class="process-step-pill">STEP 02</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">
               <i class="fa-regular fa-lightbulb"></i>
@@ -782,9 +780,8 @@
         </div>
 
         <!-- Step 3: Factory Manufacturing -->
-        <div class="process-card-item">
+        <div class="process-card-item" onclick="selectProcessCard(this)">
           <span class="process-step-num" aria-hidden="true">03</span>
-          <span class="process-step-pill">STEP 03</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">
               <i class="fa-solid fa-industry"></i>
@@ -796,9 +793,8 @@
         </div>
 
         <!-- Step 4: Delivery & Installation -->
-        <div class="process-card-item">
+        <div class="process-card-item" onclick="selectProcessCard(this)">
           <span class="process-step-num" aria-hidden="true">04</span>
-          <span class="process-step-pill">STEP 04</span>
           <div class="process-badge-wrap">
             <div class="process-badge-circle">
               <i class="fa-solid fa-bullseye"></i>
@@ -809,6 +805,16 @@
             technicians, followed by thorough vacuum cleaning and handover.</p>
         </div>
       </div>
+      <script>
+        function selectProcessCard(card) {
+          var allCards = document.querySelectorAll('.process-card-item');
+          var wasActive = card.classList.contains('is-balloon-active');
+          allCards.forEach(function(c) { c.classList.remove('is-balloon-active'); });
+          if (!wasActive) {
+            card.classList.add('is-balloon-active');
+          }
+        }
+      </script>
     </div>
   </section>
 
