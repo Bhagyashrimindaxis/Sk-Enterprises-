@@ -81,13 +81,13 @@
               Products <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
             </a>
             <div class="nav-dropdown">
-              <a href="products.html#collections" class="dropdown-link"><span>Living Room Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Luxury Sofa Sets</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Dining Tables &amp; Chairs</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Master Bedroom Suites</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Modular Walk-in Wardrobes</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Executive Office Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#all-products" class="dropdown-link"><span>All Signature Products</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-living-room.html" class="dropdown-link"><span>Living Room Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-dining-room.html" class="dropdown-link"><span>Dining Tables &amp; Chairs</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-modular-kitchen.html" class="dropdown-link"><span>Modular Kitchens</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-home-office.html" class="dropdown-link"><span>Executive Office Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-master-bedroom.html" class="dropdown-link"><span>Master Bedroom Suites</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-modular-wardrobe.html" class="dropdown-link"><span>Modular Walk-in Wardrobes</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html" class="dropdown-link"><span>All Signature Products</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
           <div class="nav-item has-dropdown">
@@ -140,57 +140,281 @@
     <div class="container">
       <div class="gallery-filter-nav">
         <button type="button" class="filter-btn gallery-filter-btn active" data-gallery-filter="all">All Photos</button>
+        <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="living">Living Room</button>
+        <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="dining">Dining Room</button>
+        <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="kitchen">Modular Kitchen</button>
+        <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="office">Home Office</button>
         <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="bedroom">Master Bedroom</button>
         <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="wardrobe">Modular Wardrobes</button>
-        <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="bedside">Bedside &amp; Storage</button>
-        <button type="button" class="filter-btn gallery-filter-btn" data-gallery-filter="panelling">Wall Panelling</button>
       </div>
 
-      <div class="gallery-grid">
-        <!-- Photo 1: Span 2 -->
+      <div class="gallery-grid" style="grid-auto-flow: dense;">
+        <!-- Living Room 1: Span 2 -->
+        <div class="gallery-item span-2" data-gallery-cat="living">
+          <img src="assets/images/SK-Img/hall.jpg" alt="Signature Living Hall with Designer TV Unit & False Ceiling" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Living Room</div>
+            <h3 class="gallery-title">Signature Living Hall with Designer TV Unit &amp; False Ceiling</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Living Room 2 -->
+        <div class="gallery-item" data-gallery-cat="living">
+          <img src="assets/images/SK-Img/ai-luxury-living.jpg" alt="Contemporary Minimalist Living Room Lounge" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Living Room</div>
+            <h3 class="gallery-title">Contemporary Minimalist Living Room Lounge</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Living Room 3 -->
+        <div class="gallery-item" data-gallery-cat="living">
+          <img src="assets/images/SK-Img/living room.jpg" alt="Warm Earth-Tone Sofa Suite & Ambient Lighting" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Living Room</div>
+            <h3 class="gallery-title">Warm Earth-Tone Sofa Suite &amp; Ambient Lighting</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Living Room 4 -->
+        <div class="gallery-item" data-gallery-cat="living">
+          <img src="assets/images/SK-Img/outdoor design.jpg" alt="Panoramic Balcony Deck & Outdoor Seating" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Living Room</div>
+            <h3 class="gallery-title">Panoramic Balcony Deck &amp; Outdoor Seating</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Dining Room 1: Span 2 -->
+        <div class="gallery-item span-2" data-gallery-cat="dining">
+          <img src="assets/images/SK-Img/dining room.jpg" alt="Turnkey 6-Seater Family Dining Suite" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Dining Room</div>
+            <h3 class="gallery-title">Turnkey 6-Seater Family Dining Suite</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Dining Room 2 -->
+        <div class="gallery-item" data-gallery-cat="dining">
+          <img src="assets/images/SK-Img/dining table 1.jpg" alt="Solid Teak & Upholstered Luxury Dining Table" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Dining Room</div>
+            <h3 class="gallery-title">Solid Teak &amp; Upholstered Luxury Dining Table</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Dining Room 3 -->
+        <div class="gallery-item" data-gallery-cat="dining">
+          <img src="assets/images/SK-Img/ai-luxury-dining.jpg" alt="Architectural Marble-Top Dining Ensemble & Pendant Lights" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Dining Room</div>
+            <h3 class="gallery-title">Architectural Marble-Top Dining Ensemble &amp; Pendant Lights</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Modular Kitchen 1: Span 2 -->
+        <div class="gallery-item span-2" data-gallery-cat="kitchen">
+          <img src="assets/images/SK-Img/kitchen1.jpg" alt="Dual-Tone Acrylic Modular Kitchen with Chimney" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Modular Kitchen</div>
+            <h3 class="gallery-title">Dual-Tone Acrylic Modular Kitchen with Chimney</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Modular Kitchen 2 -->
+        <div class="gallery-item" data-gallery-cat="kitchen">
+          <img src="assets/images/SK-Img/ai-modular-kitchen.jpg" alt="Modern Handleless Kitchen Suite with Quartz Worktops" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Modular Kitchen</div>
+            <h3 class="gallery-title">Modern Handleless Kitchen Suite with Quartz Worktops</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Modular Kitchen 3 -->
+        <div class="gallery-item" data-gallery-cat="kitchen">
+          <img src="assets/images/SK-Img/kitchen.jpg" alt="L-Shaped Ergonomic Storage Kitchen & Upper Cabinets" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Modular Kitchen</div>
+            <h3 class="gallery-title">L-Shaped Ergonomic Storage Kitchen &amp; Upper Cabinets</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Home Office 1: Span 2 -->
+        <div class="gallery-item span-2" data-gallery-cat="office">
+          <img src="assets/images/SK-Img/homeoffice1.jpg" alt="Executive Workstation with Built-in Library Shelving" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Home Office</div>
+            <h3 class="gallery-title">Executive Workstation with Built-in Library Shelving</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Home Office 2 -->
+        <div class="gallery-item" data-gallery-cat="office">
+          <img src="assets/images/SK-Img/ai-home-office.jpg" alt="Minimalist Ergonomic Study & Concealed Cable Storage" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Home Office</div>
+            <h3 class="gallery-title">Minimalist Ergonomic Study &amp; Concealed Cable Storage</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Home Office 3 -->
+        <div class="gallery-item" data-gallery-cat="office">
+          <img src="assets/images/SK-Img/home office.jpg" alt="Dual Monitor Executive Corner Desk & Floating Bookshelves" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Home Office</div>
+            <h3 class="gallery-title">Dual Monitor Executive Corner Desk &amp; Floating Bookshelves</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Master Bedroom 1: Span 2 -->
         <div class="gallery-item span-2" data-gallery-cat="bedroom">
+          <img src="assets/images/SK-Img/bedroom.jpg" alt="Master Bedroom Suite with Tufted King Bed & Integrated Storage" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Master Bedroom</div>
+            <h3 class="gallery-title">Master Bedroom Suite with Tufted King Bed &amp; Integrated Storage</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Master Bedroom 2 -->
+        <div class="gallery-item" data-gallery-cat="bedroom">
           <img src="assets/images/SK-Img/sk-bedroom-suite-wide.jpg" alt="Architectural Master Bedroom Suite & Cove Lighting" class="gallery-img">
           <div class="gallery-overlay">
+            <div class="gallery-category">Master Bedroom</div>
             <h3 class="gallery-title">Architectural Master Bedroom Suite &amp; Cove Lighting</h3>
             <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
         </div>
 
-        <!-- Photo 2 -->
-        <div class="gallery-item" data-gallery-cat="wardrobe">
-          <img src="assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg" alt="Floor-to-Ceiling Textured Inset Wardrobe" class="gallery-img">
-          <div class="gallery-overlay">
-            <h3 class="gallery-title">Floor-to-Ceiling Textured Inset Wardrobe</h3>
-            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-          </div>
-        </div>
-
-        <!-- Photo 3 -->
+        <!-- Master Bedroom 3 -->
         <div class="gallery-item" data-gallery-cat="bedroom">
-          <img src="assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg" alt="Master Bed & Modular Wardrobe Ensemble" class="gallery-img">
+          <img src="assets/images/SK-Img/luxury-bed.jpg" alt="Upholstered Master Bed & Modern Ambient Backlighting" class="gallery-img">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Master Bed &amp; Modular Wardrobe Ensemble</h3>
+            <div class="gallery-category">Master Bedroom</div>
+            <h3 class="gallery-title">Upholstered Master Bed &amp; Modern Ambient Backlighting</h3>
             <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
         </div>
 
-        <!-- Photo 4 -->
-        <div class="gallery-item" data-gallery-cat="panelling">
-          <img src="assets/images/SK-Img/sk-bedside-styling.jpg" alt="Vertical Walnut Cladding & Headboard Panelling" class="gallery-img">
+        <!-- Master Bedroom 4 -->
+        <div class="gallery-item" data-gallery-cat="bedroom">
+          <img src="assets/images/SK-Img/sk-bedside-styling.jpg" alt="Vertical Walnut Fluted Cladding & Headboard Panelling" class="gallery-img">
           <div class="gallery-overlay">
-            <h3 class="gallery-title">Vertical Walnut Cladding &amp; Headboard Panelling</h3>
+            <div class="gallery-category">Master Bedroom</div>
+            <h3 class="gallery-title">Vertical Walnut Fluted Cladding &amp; Headboard Panelling</h3>
             <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
         </div>
 
-        <!-- Photo 5: Span 2 -->
-        <div class="gallery-item span-2" data-gallery-cat="bedside">
+        <!-- Master Bedroom 5: Span 2 -->
+        <div class="gallery-item span-2" data-gallery-cat="bedroom">
           <img src="assets/images/SK-Img/sk-modular-nightstand.jpg" alt="Dual-Tone 2-Drawer Bedside Console with Walnut Top" class="gallery-img">
           <div class="gallery-overlay">
+            <div class="gallery-category">Master Bedroom</div>
             <h3 class="gallery-title">Dual-Tone 2-Drawer Bedside Console with Walnut Top</h3>
             <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
         </div>
+
+        <!-- Modular Wardrobes 1: Span 2 -->
+        <div class="gallery-item span-2" data-gallery-cat="wardrobe">
+          <img src="assets/images/SK-Img/wardrobe bedroom.jpg" alt="Full-Height Sliding Wardrobe with Bronze Tinted Mirrors" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Modular Wardrobes</div>
+            <h3 class="gallery-title">Full-Height Sliding Wardrobe with Bronze Tinted Mirrors</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Modular Wardrobes 2 -->
+        <div class="gallery-item" data-gallery-cat="wardrobe">
+          <img src="assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg" alt="Floor-to-Ceiling Textured Inset Modular Wardrobe" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Modular Wardrobes</div>
+            <h3 class="gallery-title">Floor-to-Ceiling Textured Inset Modular Wardrobe</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Modular Wardrobes 3 -->
+        <div class="gallery-item" data-gallery-cat="wardrobe">
+          <img src="assets/images/SK-Img/wardrobe.jpg" alt="4-Door Lacquered Finish Wardrobe with Loft Storage" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Modular Wardrobes</div>
+            <h3 class="gallery-title">4-Door Lacquered Finish Wardrobe with Loft Storage</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- Modular Wardrobes 4: Span 2 -->
+        <div class="gallery-item span-2" data-gallery-cat="wardrobe">
+          <img src="assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg" alt="Master Bed & Built-in Modular Wardrobe Ensemble" class="gallery-img">
+          <div class="gallery-overlay">
+            <div class="gallery-category">Modular Wardrobes</div>
+            <h3 class="gallery-title">Master Bed &amp; Built-in Modular Wardrobe Ensemble</h3>
+            <div class="gallery-view-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VIDEO WALKTHROUGHS PREVIEW CALLOUT SECTION
+       ========================================================================== -->
+  <section class="section-padding bg-alt" id="gallery-video-preview">
+    <div class="container">
+      <div class="text-center" style="max-width: 680px; margin: 0 auto 36px auto;">
+        <div class="ornament-separator">
+          <span class="leaf-left"></span>
+          <span>Craftsmanship in Motion</span>
+          <span class="leaf-right"></span>
+        </div>
+        <h2 class="section-title">Site Video Walkthroughs</h2>
+        <p class="section-subtitle">Experience our finished modular interiors in high-definition on-site video tours.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto 32px;">
+        <a href="videos.html" class="video-preview-tile" style="position: relative; border-radius: var(--radius-md); overflow: hidden; height: 220px; box-shadow: var(--shadow-sm); display: block; text-decoration: none;">
+          <img src="assets/images/SK-Img/hall.jpg" alt="Living Room Tour" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(22,43,54,0.92) 0%, rgba(22,43,54,0.3) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; color: #fff;">
+            <span style="font-size: 0.75rem; color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;"><i class="fa-solid fa-circle-play" style="margin-right: 6px;"></i> Video Tour</span>
+            <h3 style="font-size: 1.05rem; margin: 0; color: #fff;">Living Room &amp; TV Unit Walkthrough</h3>
+          </div>
+        </a>
+
+        <a href="videos.html" class="video-preview-tile" style="position: relative; border-radius: var(--radius-md); overflow: hidden; height: 220px; box-shadow: var(--shadow-sm); display: block; text-decoration: none;">
+          <img src="assets/images/SK-Img/kitchen1.jpg" alt="Modular Kitchen Tour" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(22,43,54,0.92) 0%, rgba(22,43,54,0.3) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; color: #fff;">
+            <span style="font-size: 0.75rem; color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;"><i class="fa-solid fa-circle-play" style="margin-right: 6px;"></i> Video Tour</span>
+            <h3 style="font-size: 1.05rem; margin: 0; color: #fff;">Modern Modular Kitchen Walkthrough</h3>
+          </div>
+        </a>
+
+        <a href="videos.html" class="video-preview-tile" style="position: relative; border-radius: var(--radius-md); overflow: hidden; height: 220px; box-shadow: var(--shadow-sm); display: block; text-decoration: none;">
+          <img src="assets/images/SK-Img/bedroom.jpg" alt="Master Suite Tour" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(22,43,54,0.92) 0%, rgba(22,43,54,0.3) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; color: #fff;">
+            <span style="font-size: 0.75rem; color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;"><i class="fa-solid fa-circle-play" style="margin-right: 6px;"></i> Video Tour</span>
+            <h3 style="font-size: 1.05rem; margin: 0; color: #fff;">Master Bedroom &amp; Wardrobe Tour</h3>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center">
+        <a href="videos.html" class="btn btn-primary btn-md"><i class="fa-solid fa-circle-play" style="margin-right: 8px;"></i> Watch All 5 Video Walkthroughs</a>
       </div>
     </div>
   </section>

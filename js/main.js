@@ -316,22 +316,66 @@ function initHeroVideos() {
 }
 
 function initWhyChooseUsVideo() {
-    const whyVideo = document.getElementById('whyChooseUsVideo');
-    if (!whyVideo) return;
+    const whyVideos = document.querySelectorAll('#whyChooseUsVideo');
+    if (!whyVideos.length) return;
 
-    whyVideo.muted = true;
-    const playPromise = whyVideo.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {});
-    }
+    whyVideos.forEach(whyVideo => {
+        whyVideo.muted = true;
+        whyVideo.defaultMuted = true;
+        whyVideo.playsInline = true;
+        whyVideo.setAttribute('playsinline', '');
+        whyVideo.setAttribute('webkit-playsinline', '');
+        whyVideo.setAttribute('muted', '');
 
-    const ensurePlaying = () => {
-        if (whyVideo.paused) {
-            whyVideo.play().catch(() => {});
+        const safePlay = () => {
+            if (whyVideo.paused) {
+                const p = whyVideo.play();
+                if (p !== undefined) {
+                    p.catch(() => {});
+                }
+            }
+        };
+
+        // Start playback immediately from stream
+        safePlay();
+
+        // In-memory Blob pre-buffering to eliminate streaming / Live Server buffer hitching
+        const rawSrc = whyVideo.querySelector('source')?.getAttribute('src') || whyVideo.getAttribute('src');
+        if (rawSrc && window.fetch && window.URL && window.URL.createObjectURL) {
+            fetch(rawSrc)
+                .then(res => {
+                    if (!res.ok) throw new Error('Blob fetch error');
+                    return res.blob();
+                })
+                .then(blob => {
+                    const blobUrl = URL.createObjectURL(blob);
+                    const curTime = whyVideo.currentTime;
+                    const wasPlaying = !whyVideo.paused;
+                    whyVideo.src = blobUrl;
+                    whyVideo.currentTime = curTime;
+                    if (wasPlaying) {
+                        safePlay();
+                    }
+                })
+                .catch(() => {});
         }
-    };
-    window.addEventListener('click', ensurePlaying, { once: true });
-    window.addEventListener('touchstart', ensurePlaying, { once: true });
+
+        // Seamless zero-lag loop
+        whyVideo.addEventListener('ended', () => {
+            whyVideo.currentTime = 0;
+            safePlay();
+        });
+
+        // Resume playback if tab was switched or suspended
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                safePlay();
+            }
+        });
+
+        window.addEventListener('click', safePlay, { once: true });
+        window.addEventListener('touchstart', safePlay, { once: true });
+    });
 }
 
 /* ==========================================================================
@@ -367,124 +411,100 @@ function initProductFilter() {
    ========================================================================== */
 const productDatabase = {
     1: {
-        name: "Architectural Master Bedroom Suite & Panelling",
-        category: "Bedroom",
-        badge: "Completed Project",
-        image: "assets/images/SK-Img/sk-bedroom-suite-wide.jpg",
-        description: "Turnkey master bedroom execution crafted by S. K. Enterprises featuring a custom upholstered headboard, sage green wall moulding panelling, acoustic ceiling woodwork, integrated warm LED cove lighting, and matching bedside consoles.",
+        name: "Luxury Living Room & Hall Interior Furniture",
+        category: "Living Room",
+        badge: "Lounge & Hall",
+        image: "assets/images/SK-Img/hall.jpg",
+        pageUrl: "product-living-room.html",
+        description: "Turnkey hall and living lounge execution crafted by S. K. Enterprises. Integrates fluted teak wood acoustic panelling, bespoke TV console credenzas with concealed cable management, and architectural 3000K warm LED cove lighting.",
         specs: {
-            dimensions: "King Bed (78\" x 84\") + Custom Wall Panelling",
-            woodQuality: "BWP Grade Marine Plywood & Teak Accents",
-            finish: "Sage Green Satin PU Paint + Textured Fabric Upholstery",
-            lighting: "Concealed 3000K Warm LED Ambient Strip",
+            category: "Living Room & Lounge",
+            coreMaterial: "IS:710 Marine BWP Plywood",
+            wallCladding: "Vertical Fluted Teak Panelling",
+            lighting: "3000K Concealed Warm LED Coving",
             warranty: "10 Years Structural Warranty"
         },
         priceEstimate: "Custom Quoted per Room Dimensions"
     },
     2: {
-        name: "Floor-to-Ceiling Textured Modular Wardrobe",
+        name: "Designer Dining Room Sets & Dining Tables",
+        category: "Dining Room",
+        badge: "Bespoke Dining",
+        image: "assets/images/SK-Img/dining room.jpg",
+        pageUrl: "product-dining-room.html",
+        description: "Custom fabricated 6 to 8-seater dining suites featuring imported marble and solid hardwood tabletops, ergonomic upholstered dining chairs, and matching crockery credenzas with soft-closing German runners.",
+        specs: {
+            configuration: "6-Seater / 8-Seater Dining Set",
+            tableTop: "Italian Marble / Natural Teak Core",
+            chairs: "High-Density Foam & Stain-Resistant Fabric",
+            hardware: "Blum / Hafele Soft-Close Hardware",
+            warranty: "10 Years Structural Warranty"
+        },
+        priceEstimate: "Custom Quoted per Seater & Top"
+    },
+    3: {
+        name: "Architectural Modular Kitchen Solutions",
+        category: "Modular Kitchen",
+        badge: "Factory Direct",
+        image: "assets/images/SK-Img/kitchen1.jpg",
+        pageUrl: "product-modular-kitchen.html",
+        description: "Precision-engineered modular kitchens manufactured with 100% boiling water-proof (IS:710) BWP marine ply, Blum soft-close tandem drawers, anti-scratch matte acrylic shutters, fluted profile glass cabinets, and quartz stone countertops.",
+        specs: {
+            carcass: "100% BWP Marine Ply (IS:710 Certified)",
+            shutters: "Anti-Scratch Acrylic & Fluted Glass",
+            fittings: "Blum Tandembox Soft-Close Runners",
+            countertop: "Nano Quartz / Solid Surface",
+            warranty: "10 Years Factory Guarantee"
+        },
+        priceEstimate: "Starting from ₹1,650 / sq. ft."
+    },
+    4: {
+        name: "Executive Home Office & Study Furniture",
+        category: "Home Office",
+        badge: "Ergonomic Build",
+        image: "assets/images/SK-Img/homeoffice1.jpg",
+        pageUrl: "product-home-office.html",
+        description: "Bespoke executive study desks, concealed cable management raceways, and floor-to-ceiling wooden library bookshelves with warm recessed LED lighting, built for productive luxury work from home spaces across Pune.",
+        specs: {
+            deskType: "Executive Study Desk & Credenza",
+            woodQuality: "Calibrated Marine Ply & HDHMR Core",
+            cableManagement: "Integrated Wire Troughs & Flip Grommets",
+            bookcase: "Floor-to-Ceiling Shelves with Backlight",
+            warranty: "10 Years Comprehensive Warranty"
+        },
+        priceEstimate: "Custom Quoted per Study Layout"
+    },
+    5: {
+        name: "Architectural Master Bedroom Suites & Panelling",
+        category: "Bedroom",
+        badge: "Turnkey Suite",
+        image: "assets/images/SK-Img/bedroom.jpg",
+        pageUrl: "product-master-bedroom.html",
+        description: "Bespoke master bedroom suite featuring an upholstered king bed, sage green wall moulding panelling, acoustic wood cladding, floating modular nightstands, and warm cove LED illumination.",
+        specs: {
+            dimensions: "King Bed (78\" x 84\") + Wall Panelling",
+            coreMaterial: "BWP Grade Marine Plywood & Teak Accents",
+            finish: "Sage Green Satin PU + Textured Linen",
+            lighting: "3000K Warm LED Ambient Strip",
+            warranty: "10 Years Structural Warranty"
+        },
+        priceEstimate: "Custom Quoted per Room Dimensions"
+    },
+    6: {
+        name: "Floor-to-Ceiling Luxury Modular Wardrobes",
         category: "Modular Wardrobes",
-        badge: "Bespoke Fit",
-        image: "assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg",
-        description: "High-precision floor-to-ceiling modular wardrobe engineered with premium textured acoustic inset doors, sleek matte black full-height handles, overhead storage lofts, and an integrated tinted glass showcase with warm sensor lighting.",
+        badge: "Precision Storage",
+        image: "assets/images/SK-Img/wardrobe bedroom.jpg",
+        pageUrl: "product-modular-wardrobe.html",
+        description: "Floor-to-ceiling modular wardrobe maximizing vertical apartment height with flush overhead lofts for seasonal storage, acoustic inset doors, tinted profile glass display, and German soft-close sliding runners.",
         specs: {
             dimensions: "Full Height (up to 9.5 ft) x Custom Width",
-            doorFinish: "Textured Mauve-Beige Inset Panels with Edge-Banded Borders",
-            hardware: "Hettich Soft-Close Hinges & Heavy-Duty Telescopic Channels",
-            handles: "Matte Black Slimline Architectural Pulls",
+            doorFinish: "Textured Inset Panels with Edge-Banded Borders",
+            hardware: "Hettich Soft-Close Hinges & Channels",
+            showcase: "Tinted Profile Glass with Sensor LED",
             warranty: "10 Years Factory Guarantee"
         },
         priceEstimate: "Starting from ₹1,450 / sq. ft."
-    },
-    3: {
-        name: "Dual-Tone 2-Drawer Modular Nightstand",
-        category: "Bedside & Storage",
-        badge: "Crafted Unit",
-        image: "assets/images/SK-Img/sk-modular-nightstand.jpg",
-        description: "Compact dual-tone bedside storage unit designed to sit flush against bedroom wall panelling. Features an authentic rich walnut wood laminate top surface and two smooth soft-closing beige lacquer drawers.",
-        specs: {
-            dimensions: "20\" W x 16\" D x 18\" H",
-            material: "High-Density HDHMR Core & Natural Walnut Finish",
-            runners: "Hafele Undermount Soft-Close Slides",
-            finish: "Anti-Scratch Matte PU Top + Ivory Drawers",
-            warranty: "7 Years Warranty"
-        },
-        priceEstimate: "Starting from ₹12,500 / pair"
-    },
-    4: {
-        name: "Integrated Master Bedroom & Glass Closet Ensemble",
-        category: "Bedroom",
-        badge: "Featured Execution",
-        image: "assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg",
-        description: "A complete turnkey bedroom suite harmonizing the master bed with the modular wardrobe system. Maximizes natural room flow with mirrored partition reflections and cohesive color palettes.",
-        specs: {
-            roomType: "Master Bedroom Suite (Turnkey)",
-            components: "King Bed, 4-Door Wardrobe, Display Cabinet, Nightstands",
-            hardware: "German Engineered Concealed Fittings",
-            customization: "100% Tailored to Architect / Client Floor Plan",
-            warranty: "10 Years Comprehensive Warranty"
-        },
-        priceEstimate: "Turnkey Package Estimates Available"
-    },
-    5: {
-        name: "Bespoke Bedside Wood Panelling & Custom Headboard",
-        category: "Wall Panelling",
-        badge: "Architectural Detail",
-        image: "assets/images/SK-Img/sk-bedside-styling.jpg",
-        description: "Architectural vertical walnut wood cladding paired with fluted sage moulding and an upholstered bed headboard. Seamlessly accommodates integrated switches, USB ports, and floating bedside lighting.",
-        specs: {
-            material: "Natural Wood Grain Laminate & Fluted MDF Moulding",
-            headboard: "Segmented Ergonomic Foam Padded Linen",
-            electrical: "Concealed Wiring Channels & Custom Switch Cutouts",
-            installation: "Turnkey On-Site Fitting by Master Carpenters",
-            warranty: "10 Years Warranty"
-        },
-        priceEstimate: "Custom Quoted per Running Sq. Ft."
-    },
-    6: {
-        name: "Custom Loft Storage & Multi-Door Modular Wardrobe",
-        category: "Modular Wardrobes",
-        badge: "Maximum Storage",
-        image: "assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg",
-        description: "Floor-to-ceiling modular wardrobe maximizing vertical apartment height with flush overhead lofts for seasonal storage, internal organizers, and full-length vertical door profiles.",
-        specs: {
-            storageZones: "Lofts, Hanging Rails, Shelf Stacks & Suede Drawers",
-            innerCarcass: "Pre-Laminated Moisture Resistant HDHMR Board",
-            edgeBanding: "2mm Machine-Applied Seamless PVC Edges",
-            warranty: "10 Years Warranty",
-            customization: "Configurable Internal Modular Layout"
-        },
-        priceEstimate: "Starting from ₹1,550 / sq. ft."
-    },
-    7: {
-        name: "Turnkey Residence Interior Execution",
-        category: "Bedroom",
-        badge: "Complete Interior",
-        image: "assets/images/SK-Img/sk-bedroom-suite-wide.jpg",
-        description: "End-to-end turnkey interior contracting executed by S. K. Enterprises, from false ceiling coving and wall mouldings to complete modular furniture manufacture and installation.",
-        specs: {
-            scope: "Furniture Manufacturing + Complete Interior Styling",
-            timeline: "Delivered within 30-45 Days Guaranteed",
-            factoryLocation: "Pune, Maharashtra",
-            clientAssurance: "On-Time Handover with 10-Year Warranty",
-            warranty: "10 Years Structural Guarantee"
-        },
-        priceEstimate: "Turnkey Project Estimation on Request"
-    },
-    8: {
-        name: "Minimalist Floating Bedside Storage Console",
-        category: "Bedside & Storage",
-        badge: "Modern Living",
-        image: "assets/images/SK-Img/sk-modular-nightstand.jpg",
-        description: "Contemporary bedside nightstand pairing clean architectural lines with premium German runners, engineered for effortless daily utility and clutter-free living.",
-        specs: {
-            dimensions: "18\" W x 15\" D x 16\" H",
-            material: "Calibrated Plywood & Scratch-Resistant Finish",
-            drawers: "Dual Drawers with Soft-Closing Mechanism",
-            warranty: "7 Years Warranty",
-            colors: "Available in Walnut, Ivory, Grey & Charcoal"
-        },
-        priceEstimate: "Starting from ₹11,000 / pair"
     }
 };
 

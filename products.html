@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furniture Collections &amp; Projects | SK Modular Furniture Pune</title>
-  <meta name="description" content="Explore luxury modular furniture, kitchens, wardrobes, and complete interior solutions by S. K. Enterprises, Pune. Serving 600+ families across Maharashtra since 2005.">
+  <title>Signature Furniture Collections &amp; Projects | SK Modular Furniture Pune</title>
+  <meta name="description" content="Explore luxury modular furniture, kitchens, wardrobes, living rooms, and complete interior solutions by S. K. Enterprises, Pune. Serving 600+ families across Maharashtra since 2005.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.skmodularfurniture.in/products.html">
   <link rel="icon" type="image/png" href="assets/images/logo.png">
@@ -16,143 +16,152 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* ==========================================================================
-       STUDIO NOTCH LUXURY LIGHT PALETTE - SK ENTERPRISES
-       Background: rgb(240, 244, 247)
+       SK ENTERPRISES - SIGNATURE LIGHT LUXURY DESIGN SYSTEM
+       Base: Warm Alabaster / Crisp Pearl (#f8fafc)
        Accents: SK Navy (#162b36), Slate Blue (#35647e), Warm Gold (#a88454)
+       Cards: Crisp White (#ffffff) with Architectural Borders
        ========================================================================== */
 
     :root {
-      --sn-bg-main: #d5e3eb; /* rgb(213, 227, 235) */
+      --sn-bg-page: #f8fafc;
       --sn-bg-card: #ffffff;
-      --sn-bg-elevated: #ffffff;
-      --sn-navy: #000000;
-      --sn-navy-light: #162b36;
+      --sn-navy: #162b36;
+      --sn-navy-dark: #0f1d24;
+      --sn-slate-blue: #35647e;
       --sn-gold: #a88454;
       --sn-gold-light: #c8a87e;
-      --sn-gold-border: rgba(168, 132, 84, 0.45);
-      --sn-slate-blue: #35647e;
-      --sn-text-main: #000000;
-      --sn-text-muted: #435460;
-      --sn-border: rgba(53, 100, 126, 0.16);
+      --sn-gold-bg: #f9f5ee;
+      --sn-gold-border: rgba(168, 132, 84, 0.35);
+      --sn-text-main: #162b36;
+      --sn-text-muted: #4e606e;
+      --sn-border: rgba(53, 100, 126, 0.12);
     }
 
     body[data-page="products"] {
-      background-color: var(--sn-bg-main) !important;
+      background-color: var(--sn-bg-page) !important;
       color: var(--sn-text-main);
     }
 
-    /* --------------------------------------------------------------------------
-       VIEW 1: MAIN PROJECTS LISTING (Studio Notch Projects Page Style)
-       -------------------------------------------------------------------------- */
     #projectsListView {
       display: block;
-      transition: opacity 0.3s ease;
+      background-color: var(--sn-bg-page);
     }
 
-    /* Hero Banner with Direct Image (No transparent wash) */
-    .sn-projects-hero {
-      position: relative;
-      background: linear-gradient(180deg, rgba(12, 22, 28, 0.45) 0%, rgba(12, 22, 28, 0.58) 100%), url('assets/images/SK-Img/products-hero-bg.png') center center / cover no-repeat;
-      padding: 65px 0 45px;
-      text-align: center;
+    /* --------------------------------------------------------------------------
+       CATEGORY QUICK JUMP NAVIGATION STRIP
+       -------------------------------------------------------------------------- */
+    .sn-catalog-nav-strip {
+      background: #ffffff;
+      padding: 22px 0 20px;
       border-bottom: 1px solid var(--sn-border);
-      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(22, 43, 54, 0.03);
     }
-    .sn-hero-kicker {
+    .sn-category-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .sn-cat-pill {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      color: #dfc198;
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 14px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      gap: 8px;
+      padding: 9px 20px;
+      background: #ffffff;
+      color: var(--sn-navy);
+      border: 1px solid var(--sn-border);
+      border-radius: 25px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(22, 43, 54, 0.04);
     }
-    .sn-hero-kicker::before,
-    .sn-hero-kicker::after {
-      content: '';
-      display: inline-block;
-      width: 26px;
-      height: 1px;
-      background: #dfc198;
-      opacity: 0.9;
+    .sn-cat-pill:hover,
+    .sn-cat-pill.active {
+      background: var(--sn-navy);
+      color: #ffffff;
+      border-color: var(--sn-navy);
+      box-shadow: 0 6px 18px rgba(22, 43, 54, 0.15);
+      transform: translateY(-2px);
     }
-    .sn-hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.3rem, 4.6vw, 3.4rem);
-      color: rgb(52, 100, 125);
-      margin: 0 0 16px;
-      line-height: 1.18;
-      letter-spacing: -0.01em;
-      font-weight: 700;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
-    }
-    .sn-hero-subtitle {
-      display: none !important;
+    .sn-cat-pill.active {
+      background: var(--sn-slate-blue);
+      border-color: var(--sn-slate-blue);
     }
 
-    /* Projects Listing Section */
+    /* --------------------------------------------------------------------------
+       COLLECTIONS LIST SECTION & ARCHITECTURAL CARDS
+       -------------------------------------------------------------------------- */
     .sn-projects-section {
-      background-color: var(--sn-bg-main);
-      padding: 25px 0 50px;
+      background-color: var(--sn-bg-page);
+      background-image: radial-gradient(rgba(53, 100, 126, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      padding: 50px 0 80px;
     }
     .sn-projects-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 36px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    /* Project Row Card (Studio Notch Signature) */
+    /* White Surface Architectural Project Card */
     .sn-project-card {
       display: grid;
-      grid-template-columns: 480px 1fr;
-      gap: 65px;
+      grid-template-columns: 460px 1fr;
+      gap: 55px;
       align-items: center;
-      padding: 42px 0;
-      border-bottom: 1px solid var(--sn-border);
+      background: #ffffff;
+      border: 1px solid var(--sn-border);
+      border-radius: 16px;
+      padding: 38px 44px;
+      box-shadow: 0 12px 36px rgba(22, 43, 54, 0.05), 0 2px 8px rgba(22, 43, 54, 0.02);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+      position: relative;
     }
-    .sn-project-card:first-child {
-      padding-top: 30px;
-    }
-    .sn-project-card:last-child {
-      border-bottom: none;
+    .sn-project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 55px rgba(22, 43, 54, 0.11), 0 6px 16px rgba(22, 43, 54, 0.04);
+      border-color: rgba(168, 132, 84, 0.45);
     }
 
     /* Left: Image with 3-Layered Wireframe Outline Borders */
     .sn-img-col {
       position: relative;
-      padding: 55px 65px 20px 12px;
+      padding: 38px 42px 14px 10px;
     }
     .sn-project-img-wrapper {
       position: relative;
       width: 100%;
       cursor: pointer;
+      display: block;
     }
     .sn-img-container {
       position: relative;
       z-index: 4;
       overflow: hidden;
-      border-radius: 3px;
+      border-radius: 6px;
       background: #ffffff;
-      padding: 5px;
-      box-shadow: 0 20px 45px rgba(22, 43, 54, 0.14), 0 4px 12px rgba(22, 43, 54, 0.06);
-      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      padding: 6px;
+      box-shadow: 0 16px 38px rgba(22, 43, 54, 0.12), 0 4px 10px rgba(22, 43, 54, 0.04);
+      border: 1px solid rgba(53, 100, 126, 0.12);
     }
     .sn-img-container img {
       width: 100%;
-      height: 480px;
+      height: 380px;
       object-fit: cover;
       display: block;
-      border-radius: 2px;
-      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+      border-radius: 4px;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .sn-project-card:hover .sn-img-container img {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
 
-    /* 3 Layered Wireframes Stepping Up & Right (Studio Notch Highlighted Signature) */
+    /* 3 Layered Wireframes Stepping Up & Right */
     .photo-frame {
       position: absolute;
       top: 0;
@@ -160,361 +169,177 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
+      border-radius: 6px;
       transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.45s ease, box-shadow 0.45s ease;
     }
     .p-frame-1 {
       z-index: 3;
-      border: 2px solid #a88454; /* Highlighted Warm Gold */
-      transform: translate(16px, -16px);
-      box-shadow: 0 4px 14px rgba(168, 132, 84, 0.3);
+      border: 2px solid #a88454;
+      transform: translate(14px, -14px);
+      box-shadow: 0 4px 12px rgba(168, 132, 84, 0.22);
     }
     .p-frame-2 {
       z-index: 2;
-      border: 2px solid #35647e; /* Highlighted SK Logo Slate-Blue */
-      transform: translate(32px, -32px);
-      box-shadow: 0 4px 16px rgba(53, 100, 126, 0.35);
+      border: 2px solid #35647e;
+      transform: translate(28px, -28px);
+      box-shadow: 0 4px 14px rgba(53, 100, 126, 0.25);
     }
     .p-frame-3 {
       z-index: 1;
-      border: 2px solid #c2a173; /* Highlighted Soft Gold */
-      transform: translate(48px, -48px);
-      box-shadow: 0 4px 14px rgba(168, 132, 84, 0.22);
+      border: 2px solid #c2a173;
+      transform: translate(42px, -42px);
+      box-shadow: 0 4px 12px rgba(168, 132, 84, 0.18);
     }
 
     .sn-project-card:hover .p-frame-1 {
-      transform: translate(20px, -20px);
-      border-color: #926f3e;
-      box-shadow: 0 8px 24px rgba(168, 132, 84, 0.5);
+      transform: translate(18px, -18px);
+      border-color: #8c6a3b;
+      box-shadow: 0 6px 18px rgba(168, 132, 84, 0.35);
     }
     .sn-project-card:hover .p-frame-2 {
-      transform: translate(38px, -38px);
+      transform: translate(34px, -34px);
       border-color: #244b61;
-      box-shadow: 0 8px 26px rgba(53, 100, 126, 0.55);
+      box-shadow: 0 6px 20px rgba(53, 100, 126, 0.4);
     }
     .sn-project-card:hover .p-frame-3 {
-      transform: translate(56px, -56px);
+      transform: translate(50px, -50px);
       border-color: #a88454;
-      box-shadow: 0 8px 22px rgba(168, 132, 84, 0.4);
+      box-shadow: 0 6px 16px rgba(168, 132, 84, 0.3);
     }
 
-    /* Right: Project Content */
+    /* Right: Content Column */
     .sn-content-col {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-right: 20px;
+      padding-right: 10px;
+    }
+    .sn-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sn-gold-bg);
+      color: #8e6c38;
+      border: 1px solid var(--sn-gold-border);
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      width: fit-content;
     }
     .sn-project-title {
       font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 2.7vw, 2.35rem);
-      color: #000000 !important;
+      font-size: clamp(1.75rem, 2.5vw, 2.3rem);
+      color: var(--sn-navy) !important;
       line-height: 1.25;
-      margin: 0 0 18px;
+      margin: 0 0 14px;
       font-weight: 700;
       letter-spacing: -0.01em;
     }
     .sn-project-desc {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: var(--sn-text-muted);
-      line-height: 1.85;
-      margin: 0 0 28px;
-      max-width: 640px;
-      font-weight: 400;
+      line-height: 1.82;
+      margin: 0 0 20px;
+      max-width: 620px;
     }
 
-    /* Know More Outlined Button */
+    /* Specification Chips */
+    .sn-specs-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+    .sn-spec-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f4f7f9;
+      color: #3b4d58;
+      border: 1px solid rgba(53, 100, 126, 0.12);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+    .sn-spec-chip i {
+      color: var(--sn-gold);
+      font-size: 0.78rem;
+    }
+
+    /* Button Group */
     .sn-btn-wrap {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
+      flex-wrap: wrap;
     }
     .sn-know-more-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 13px 42px;
-      background: transparent;
-      color: var(--sn-navy);
-      border: 1.5px solid var(--sn-gold);
+      padding: 12px 32px;
+      background: var(--sn-navy);
+      color: #ffffff;
+      border: 1.5px solid var(--sn-navy);
       font-size: 0.88rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    .sn-know-more-btn:hover {
-      background: var(--sn-navy);
-      color: #ffffff;
-      border-color: var(--sn-navy);
-      box-shadow: 0 8px 24px rgba(22, 43, 54, 0.2);
-      transform: translateY(-1px);
-    }
-
-    /* --------------------------------------------------------------------------
-       VIEW 2: PROJECT SINGLE DETAIL VIEW (Opened upon clicking "Know More")
-       -------------------------------------------------------------------------- */
-    #projectSingleView {
-      display: none;
-      background-color: var(--sn-bg-main);
-      padding: 40px 0 100px;
-      min-height: 80vh;
-    }
-    #projectSingleView.active {
-      display: block;
-      animation: fadeInSingle 0.35s ease;
-    }
-    @keyframes fadeInSingle {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Back Bar */
-    .sn-single-back-bar {
-      margin-bottom: 30px;
-    }
-    .sn-back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--sn-navy);
-      background: #ffffff;
-      border: 1px solid var(--sn-gold-border);
-      padding: 10px 22px;
-      border-radius: 2px;
-      font-size: 0.86rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(22, 43, 54, 0.06);
-    }
-    .sn-back-btn:hover {
-      background: var(--sn-navy);
-      color: #ffffff;
-      border-color: var(--sn-navy);
-    }
-
-    /* Single Project Header */
-    .sn-single-header {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-    .sn-single-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.8vw, 2.9rem);
-      color: #000000 !important;
-      margin: 0 0 14px;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-    .sn-single-subtitle {
-      display: none !important;
-    }
-
-    /* Category Navigation Tabs: Living | Bedroom | Others */
-    .sn-tabs-container {
-      max-width: 1100px;
-      margin: 0 auto 36px;
-      border-bottom: 1px solid var(--sn-border);
-    }
-    .sn-nav-tabs {
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-      gap: 0;
-      width: 100%;
-    }
-    .sn-tab-item {
-      flex: 1;
-      text-align: center;
-      padding: 16px 20px;
-      font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0.06em;
-      color: var(--sn-text-muted);
-      background: transparent;
-      border: 1.5px solid transparent;
-      border-bottom: none;
       cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.28s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(22, 43, 54, 0.12);
+    }
+    .sn-know-more-btn:hover {
+      background: var(--sn-slate-blue);
+      border-color: var(--sn-slate-blue);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(53, 100, 126, 0.25);
+      transform: translateY(-2px);
+    }
+    .sn-know-more-btn i {
+      transition: transform 0.25s ease;
+    }
+    .sn-know-more-btn:hover i {
+      transform: translateX(4px);
+    }
+
+    .sn-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: #ffffff;
+      color: #128c7e;
+      border: 1px solid rgba(18, 140, 126, 0.35);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 4px;
+      text-decoration: none;
       transition: all 0.25s ease;
     }
-    .sn-tab-item:hover {
-      color: var(--sn-navy);
-      background: rgba(255, 255, 255, 0.5);
+    .sn-wa-btn:hover {
+      background: #25d366;
+      color: #ffffff;
+      border-color: #25d366;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.25);
+      transform: translateY(-2px);
     }
-    /* Active Tab Box (Studio Notch Style) */
-    .sn-tab-item.active {
-      color: var(--sn-navy);
-      background: #ffffff;
-      border: 1.5px solid var(--sn-gold);
-      border-bottom: 2px solid #ffffff;
-      margin-bottom: -1px;
-      box-shadow: 0 -4px 16px rgba(22, 43, 54, 0.05);
-      font-weight: 700;
-    }
-
-    /* Image Gallery Container */
-    .sn-gallery-stage {
-      max-width: 1100px;
-      margin: 0 auto 50px;
-    }
-    /* 1 Large Full-Width Top Image */
-    .sn-large-top-img-wrap {
-      width: 100%;
-      height: clamp(340px, 48vw, 540px);
-      overflow: hidden;
-      border-radius: 4px;
-      background: #ffffff;
-      padding: 6px;
-      margin-bottom: 24px;
-      box-shadow: 0 20px 48px rgba(22, 43, 54, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-    }
-    .sn-large-top-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 2px;
-      transition: transform 0.7s ease;
-    }
-    .sn-large-top-img-wrap:hover img {
-      transform: scale(1.02);
-    }
-
-    /* 2 Side-by-Side Images Below */
-    .sn-bottom-imgs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    .sn-sub-img-wrap {
-      width: 100%;
-      height: clamp(240px, 28vw, 360px);
-      overflow: hidden;
-      border-radius: 4px;
-      background: #ffffff;
-      padding: 6px;
-      box-shadow: 0 14px 36px rgba(22, 43, 54, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-    }
-    .sn-sub-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 2px;
-      transition: transform 0.5s ease;
-    }
-    .sn-sub-img-wrap:hover img {
-      transform: scale(1.03);
-    }
-
-    /* Project Information & Technical Specs */
-    .sn-project-details-grid {
-      max-width: 1100px;
-      margin: 0 auto 60px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      background: #ffffff;
-      border: 1px solid var(--sn-border);
-      border-radius: 4px;
-      padding: 44px;
-      box-shadow: 0 16px 40px rgba(22, 43, 54, 0.06);
-    }
-    .sn-details-col h3 {
-      font-family: var(--font-serif);
-      font-size: 1.45rem;
-      color: var(--sn-navy);
-      margin: 0 0 18px;
-    }
-    .sn-details-col p {
-      font-size: 0.96rem;
-      color: var(--sn-text-muted);
-      line-height: 1.8;
-      margin: 0 0 24px;
-    }
-
-    /* Specs Table */
-    .sn-single-specs-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid var(--sn-border);
-    }
-    .sn-single-specs-table tr {
-      border-bottom: 1px solid var(--sn-border);
-    }
-    .sn-single-specs-table tr:nth-child(even) {
-      background: rgba(53, 100, 126, 0.08);
-    }
-    .sn-single-specs-table tr:last-child {
-      border-bottom: none;
-    }
-    .sn-single-specs-table td {
-      padding: 13px 18px;
-      font-size: 0.9rem;
-    }
-    .sn-single-specs-table td:first-child {
-      width: 38%;
-      color: var(--sn-slate-blue);
-      font-weight: 600;
-    }
-    .sn-single-specs-table td:last-child {
-      color: var(--sn-navy);
-      font-weight: 500;
-    }
-
-    /* Pricing Card in Detail */
-    .sn-single-pricing-box {
-      background: linear-gradient(135deg, rgba(53, 100, 126, 0.05) 0%, rgba(200, 168, 126, 0.08) 100%);
-      border: 1px solid rgba(168, 132, 84, 0.35);
-      padding: 30px;
-      border-radius: 4px;
-      margin-bottom: 26px;
-    }
-    .sn-price-kicker {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--sn-slate-blue);
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .sn-price-amount {
-      font-family: var(--font-serif);
-      font-size: 1.65rem;
-      color: var(--sn-navy);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .sn-price-desc {
-      font-size: 0.86rem;
-      color: var(--sn-text-muted);
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    /* Action Buttons */
-    .sn-single-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .sn-single-actions .btn {
-      padding: 13px 28px;
-      font-size: 0.88rem;
+    .sn-wa-btn i {
+      font-size: 1.05rem;
     }
 
     /* --------------------------------------------------------------------------
-       TRUST STRIP & CTA
+       TRUST STRIP & CTA (Refined Light Luxury Styling)
        -------------------------------------------------------------------------- */
     .sn-trust-strip {
-      background: #e8eef3;
+      background: #ffffff;
       padding: 44px 0;
       border-top: 1px solid var(--sn-border);
       border-bottom: 1px solid var(--sn-border);
@@ -532,28 +357,28 @@
       gap: 14px;
     }
     .sn-trust-icon {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: #ffffff;
+      background: var(--sn-gold-bg);
       border: 1px solid var(--sn-gold-border);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--sn-gold);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(22, 43, 54, 0.06);
+      box-shadow: 0 4px 12px rgba(168, 132, 84, 0.08);
     }
     .sn-trust-text strong {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 700;
       color: var(--sn-navy);
       margin-bottom: 2px;
     }
     .sn-trust-text span {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: var(--sn-text-muted);
     }
     .sn-trust-divider {
@@ -571,37 +396,24 @@
       position: relative;
     }
 
-    .sn-projects-section,
-    #projectsListView,
-    #projectSingleView {
-      overflow-x: clip;
-      max-width: 100%;
-    }
-
     @media (max-width: 1024px) {
       .sn-project-card {
-        grid-template-columns: minmax(300px, 380px) 1fr;
-        gap: 32px;
-        padding: 48px 0;
-        overflow-x: clip;
+        grid-template-columns: minmax(320px, 380px) 1fr;
+        gap: 36px;
+        padding: 32px 30px;
       }
-      .sn-img-container img { height: 380px; }
-      .p-frame-1 { transform: translate(8px, -8px); }
-      .p-frame-2 { transform: translate(16px, -16px); }
-      .p-frame-3 { transform: translate(24px, -24px); }
-      .sn-project-card:hover .p-frame-1 { transform: translate(10px, -10px); }
-      .sn-project-card:hover .p-frame-2 { transform: translate(18px, -18px); }
-      .sn-project-card:hover .p-frame-3 { transform: translate(26px, -26px); }
-      .sn-project-details-grid { grid-template-columns: 1fr; gap: 30px; padding: 28px; }
+      .sn-img-container img { height: 320px; }
+      .p-frame-1 { transform: translate(10px, -10px); }
+      .p-frame-2 { transform: translate(20px, -20px); }
+      .p-frame-3 { transform: translate(30px, -30px); }
     }
 
     @media (max-width: 768px) {
-      .sn-projects-hero { padding: 48px 0 28px; }
+      .sn-products-hero { padding: 42px 0 28px; }
       .sn-project-card {
         grid-template-columns: 1fr;
         gap: 28px;
-        padding: 36px 0;
-        overflow-x: clip;
+        padding: 26px 20px;
       }
       .sn-img-col {
         padding: 16px 20px 0 0;
@@ -610,52 +422,40 @@
         margin: 0 auto;
         box-sizing: border-box;
       }
-      .sn-img-container img { height: 320px; }
+      .sn-img-container img { height: 280px; }
       .p-frame-1 { transform: translate(6px, -6px); }
       .p-frame-2 { transform: translate(12px, -12px); }
-      .p-frame-3 { transform: translate(16px, -16px); }
-      .sn-project-card:hover .p-frame-1 { transform: translate(6px, -6px); }
-      .sn-project-card:hover .p-frame-2 { transform: translate(12px, -12px); }
-      .sn-project-card:hover .p-frame-3 { transform: translate(16px, -16px); }
+      .p-frame-3 { transform: translate(18px, -18px); }
       .sn-content-col { padding-right: 0; }
       .sn-project-title { font-size: 1.5rem; }
-      .sn-bottom-imgs-grid { grid-template-columns: 1fr; gap: 16px; }
-      .sn-tab-item { padding: 12px 10px; font-size: 0.84rem; }
       .sn-trust-inner { justify-content: flex-start; }
       .sn-trust-divider { display: none; }
     }
 
     @media (max-width: 576px) {
-      .sn-projects-hero { padding: 36px 0 20px; }
+      .sn-products-hero { padding: 32px 0 20px; }
       .sn-hero-title { font-size: 1.75rem; }
-      .sn-img-container img { height: 240px; }
-      .sn-img-col { padding: 10px 14px 0 0; }
+      .sn-hero-subtitle { font-size: 0.92rem; }
+      .sn-img-container img { height: 220px; }
+      .sn-img-col { padding: 8px 12px 0 0; }
       .p-frame-1 { transform: translate(4px, -4px); }
       .p-frame-2 { transform: translate(8px, -8px); }
       .p-frame-3 { transform: translate(12px, -12px); }
-      .sn-project-card:hover .p-frame-1 { transform: translate(4px, -4px); }
-      .sn-project-card:hover .p-frame-2 { transform: translate(8px, -8px); }
-      .sn-project-card:hover .p-frame-3 { transform: translate(12px, -12px); }
-      .sn-project-card { padding: 26px 0; }
+      .sn-project-card { padding: 22px 16px; border-radius: 12px; }
       .sn-project-title { font-size: 1.3rem; }
       .sn-project-desc { font-size: 0.9rem; }
-      .sn-large-top-img-wrap { height: 240px; }
-      .sn-sub-img-wrap { height: 180px; }
-      .sn-project-details-grid { padding: 18px 14px; }
-      .sn-single-title { font-size: 1.35rem !important; }
       .sn-btn-wrap { flex-direction: column; width: 100%; }
-      .sn-know-more-btn { width: 100%; justify-content: center; }
+      .sn-know-more-btn, .sn-wa-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body data-page="products">
 
-  <!-- Static / Instant Header (No delay, no layout shift) -->
+  <!-- Static / Instant Header -->
   <div id="site-header-container">
     <div class="top-bar">
       <div class="container">
         <div class="top-bar-inner">
-          <!-- Left side: Contact Info -->
           <div class="top-bar-left">
             <ul class="top-contact-list">
               <li>
@@ -673,8 +473,6 @@
               </li>
             </ul>
           </div>
-
-          <!-- Right side: Follow Us & Social Icons -->
           <div class="top-bar-right">
             <span class="follow-us-label">Follow Us:</span>
             <div class="top-social-links">
@@ -708,13 +506,13 @@
               Products <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
             </a>
             <div class="nav-dropdown">
-              <a href="products.html#collections" class="dropdown-link"><span>Living Room Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Luxury Sofa Sets</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Dining Tables &amp; Chairs</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Master Bedroom Suites</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Modular Walk-in Wardrobes</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#collections" class="dropdown-link"><span>Executive Office Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
-              <a href="products.html#all-products" class="dropdown-link"><span>All Signature Products</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-living-room.html" class="dropdown-link"><span>Living Room Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-dining-room.html" class="dropdown-link"><span>Dining Tables &amp; Chairs</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-modular-kitchen.html" class="dropdown-link"><span>Modular Kitchens</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-home-office.html" class="dropdown-link"><span>Executive Office Furniture</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-master-bedroom.html" class="dropdown-link"><span>Master Bedroom Suites</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="product-modular-wardrobe.html" class="dropdown-link"><span>Modular Walk-in Wardrobes</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="products.html" class="dropdown-link"><span>All Signature Products</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
           <div class="nav-item has-dropdown">
@@ -740,37 +538,54 @@
     </header>
   </div>
 
-  <!-- ==========================================================================
-       VIEW 1: MAIN PROJECTS LISTING (Studio Notch Projects Page Style)
-       - Light Luxury Background: rgb(240, 244, 247)
-       - No category filter on main page
-       ========================================================================== -->
+  <!-- MAIN COLLECTIONS LISTING -->
   <main id="projectsListView">
     
-    <!-- Hero Banner -->
-    <section class="sn-projects-hero">
+    <!-- ==========================================================================
+         PAGE BANNER / BREADCRUMB
+         ========================================================================== -->
+    <section class="page-banner products-hero-banner">
       <div class="container">
-        <div class="sn-hero-kicker">
-          <span>Factory Direct · Pune Since 2005</span>
+        <div class="ornament-separator" style="color: var(--color-accent); margin-bottom: 12px;">
+          <span class="leaf-left"></span>
+          <span>Factory Direct Collections</span>
+          <span class="leaf-right"></span>
         </div>
-        <h1 class="sn-hero-title">Our Projects</h1>
-        <p class="sn-hero-subtitle">
-          Our projects reflect versatility and sophistication, furnishing premium spaces across sectors with timeless elegance.
-        </p>
+        <h1 class="page-banner-title">Signature Furniture Collections</h1>
+        <p class="page-banner-desc">Bespoke living rooms, modular kitchens, luxury wardrobes, dining suites &amp; executive offices fabricated at Narhe, Pune with certified BWP Marine Ply, German Blum hardware, and a 10-year warranty.</p>
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Products</span>
+        </div>
       </div>
     </section>
 
-    <!-- Project Items (Studio Notch Horizontal Layout with 3 Wireframe Frames) -->
-    <section class="sn-projects-section">
+    <!-- Quick Jump Category Navigation Bar -->
+    <nav class="sn-catalog-nav-strip" aria-label="Quick jump collections">
+      <div class="container">
+        <div class="sn-category-pills">
+          <a href="#living-room" class="sn-cat-pill"><i class="fa-solid fa-couch"></i> Living Room</a>
+          <a href="#dining-room" class="sn-cat-pill"><i class="fa-solid fa-utensils"></i> Dining Sets</a>
+          <a href="#modular-kitchen" class="sn-cat-pill"><i class="fa-solid fa-kitchen-set"></i> Modular Kitchen</a>
+          <a href="#home-office" class="sn-cat-pill"><i class="fa-solid fa-briefcase"></i> Home Office</a>
+          <a href="#master-bedroom" class="sn-cat-pill"><i class="fa-solid fa-bed"></i> Bedroom Suite</a>
+          <a href="#modular-wardrobe" class="sn-cat-pill"><i class="fa-solid fa-door-closed"></i> Wardrobes</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Projects List: 6 Core Categories with User's Images & Dedicated Pages -->
+    <section class="sn-projects-section" id="products-catalog">
       <div class="container">
         <div class="sn-projects-list">
 
-          <!-- PROJECT 1: Master Bedroom Suite -->
-          <article class="sn-project-card" data-project-id="1">
+          <!-- 1: Living Room & Hall Interior Furniture -->
+          <article class="sn-project-card" id="living-room">
             <div class="sn-img-col">
-              <a href="project-master-bedroom-suite.html" class="sn-project-img-wrapper" aria-label="Open Master Bedroom Suite Details">
+              <a href="product-living-room.html" class="sn-project-img-wrapper" aria-label="Open Living Room Furniture Details">
                 <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-bedroom-suite-wide.jpg" alt="Master Bedroom Suite & Panelling" loading="lazy">
+                  <img src="assets/images/SK-Img/hall.jpg" alt="Luxury Living Room & Hall Interior Furniture" loading="lazy">
                 </div>
                 <div class="photo-frame p-frame-1"></div>
                 <div class="photo-frame p-frame-2"></div>
@@ -778,24 +593,34 @@
               </a>
             </div>
             <div class="sn-content-col">
-              <h2 class="sn-project-title">Architectural Master Bedroom Suite &amp; Panelling</h2>
+              <span class="sn-card-badge"><i class="fa-solid fa-couch"></i> Living Room &amp; Lounge</span>
+              <h2 class="sn-project-title">Luxury Living Room &amp; Hall Interior Furniture</h2>
               <p class="sn-project-desc">
-                Experience timeless elegance at S.K. Master Suite with our curated collection of custom upholstered beds, designer panelling, and exclusive bedside consoles—crafted to enhance the refined charm of luxury living.
+                Turnkey hall and living lounge execution crafted by S. K. Enterprises. Integrates fluted teak wood acoustic panelling, bespoke TV console credenzas with concealed cable management, and architectural 3000K warm LED cove lighting.
               </p>
+              <div class="sn-specs-chips">
+                <span class="sn-spec-chip"><i class="fa-solid fa-tree"></i> BWP Marine Ply (IS:710)</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-bars"></i> Fluted Teak Cladding</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-lightbulb"></i> 3000K Warm Cove LED</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-shield-halved"></i> 10-Yr Warranty</span>
+              </div>
               <div class="sn-btn-wrap">
-                <a href="project-master-bedroom-suite.html" class="sn-know-more-btn">
-                  Know More
+                <a href="product-living-room.html" class="sn-know-more-btn">
+                  Know More &amp; View Gallery <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Luxury%20Living%20Room%20Furniture" target="_blank" rel="noopener" class="sn-wa-btn">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 2: Modular Wardrobe -->
-          <article class="sn-project-card" data-project-id="2">
+          <!-- 2: Designer Dining Room Sets & Dining Tables -->
+          <article class="sn-project-card" id="dining-room">
             <div class="sn-img-col">
-              <a href="project-luxury-modular-wardrobe.html" class="sn-project-img-wrapper" aria-label="Open Modular Wardrobe Details">
+              <a href="product-dining-room.html" class="sn-project-img-wrapper" aria-label="Open Dining Room Furniture Details">
                 <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg" alt="Floor-to-Ceiling Textured Modular Wardrobe" loading="lazy">
+                  <img src="assets/images/SK-Img/dining room.jpg" alt="Designer Dining Room Sets & Dining Tables" loading="lazy">
                 </div>
                 <div class="photo-frame p-frame-1"></div>
                 <div class="photo-frame p-frame-2"></div>
@@ -803,24 +628,34 @@
               </a>
             </div>
             <div class="sn-content-col">
-              <h2 class="sn-project-title">Floor-to-Ceiling Textured Modular Wardrobe</h2>
+              <span class="sn-card-badge"><i class="fa-solid fa-utensils"></i> Dining Spaces</span>
+              <h2 class="sn-project-title">Designer Dining Room Sets &amp; Dining Tables</h2>
               <p class="sn-project-desc">
-                High-precision floor-to-ceiling modular wardrobe engineered with premium textured acoustic inset doors, sleek matte black full-height handles, overhead storage lofts, and an integrated tinted glass showcase.
+                Custom fabricated 6 to 8-seater dining suites featuring imported marble and solid hardwood tabletops, ergonomic upholstered dining chairs, and matching crockery credenzas with soft-closing German runners.
               </p>
+              <div class="sn-specs-chips">
+                <span class="sn-spec-chip"><i class="fa-solid fa-shapes"></i> 6 &amp; 8 Seater Tables</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-gem"></i> Italian Marble / Teak</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-gears"></i> Blum Soft-Close</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-shield-halved"></i> 10-Yr Warranty</span>
+              </div>
               <div class="sn-btn-wrap">
-                <a href="project-luxury-modular-wardrobe.html" class="sn-know-more-btn">
-                  Know More
+                <a href="product-dining-room.html" class="sn-know-more-btn">
+                  Know More &amp; View Gallery <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Designer%20Dining%20Room%20Sets" target="_blank" rel="noopener" class="sn-wa-btn">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 3: Dual-Tone Nightstand -->
-          <article class="sn-project-card" data-project-id="3">
+          <!-- 3: Architectural Modular Kitchen Solutions -->
+          <article class="sn-project-card" id="modular-kitchen">
             <div class="sn-img-col">
-              <a href="project-modular-nightstand.html" class="sn-project-img-wrapper" aria-label="Open Nightstand Details">
+              <a href="product-modular-kitchen.html" class="sn-project-img-wrapper" aria-label="Open Modular Kitchen Details">
                 <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-modular-nightstand.jpg" alt="Dual-Tone 2-Drawer Modular Nightstand" loading="lazy">
+                  <img src="assets/images/SK-Img/kitchen1.jpg" alt="Architectural Modular Kitchen Solutions" loading="lazy">
                 </div>
                 <div class="photo-frame p-frame-1"></div>
                 <div class="photo-frame p-frame-2"></div>
@@ -828,24 +663,34 @@
               </a>
             </div>
             <div class="sn-content-col">
-              <h2 class="sn-project-title">Dual-Tone 2-Drawer Modular Nightstand</h2>
+              <span class="sn-card-badge"><i class="fa-solid fa-kitchen-set"></i> Modular Kitchen</span>
+              <h2 class="sn-project-title">Architectural Modular Kitchen Solutions</h2>
               <p class="sn-project-desc">
-                Compact dual-tone bedside storage unit designed to sit flush against bedroom wall panelling. Features an authentic rich walnut wood top surface and two smooth soft-closing beige lacquer drawers.
+                Precision-engineered modular kitchens manufactured with 100% boiling water-proof (IS:710) BWP marine ply, Blum soft-close tandem drawers, anti-scratch matte acrylic shutters, fluted profile glass cabinets, and quartz stone countertops.
               </p>
+              <div class="sn-specs-chips">
+                <span class="sn-spec-chip"><i class="fa-solid fa-droplet"></i> 100% BWP Marine Ply</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-sliders"></i> Blum Tandembox</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-layer-group"></i> Anti-Scratch Acrylic</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-shield-halved"></i> 10-Yr Guarantee</span>
+              </div>
               <div class="sn-btn-wrap">
-                <a href="project-modular-nightstand.html" class="sn-know-more-btn">
-                  Know More
+                <a href="product-modular-kitchen.html" class="sn-know-more-btn">
+                  Know More &amp; View Gallery <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Modular%20Kitchen%20Solutions" target="_blank" rel="noopener" class="sn-wa-btn">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 4: Integrated Bedroom & Closet Ensemble -->
-          <article class="sn-project-card" data-project-id="4">
+          <!-- 4: Executive Home Office & Study Furniture -->
+          <article class="sn-project-card" id="home-office">
             <div class="sn-img-col">
-              <a href="project-bedroom-glass-closet.html" class="sn-project-img-wrapper" aria-label="Open Bedroom Ensemble Details">
+              <a href="product-home-office.html" class="sn-project-img-wrapper" aria-label="Open Home Office Details">
                 <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg" alt="Integrated Bedroom & Glass Closet Ensemble" loading="lazy">
+                  <img src="assets/images/SK-Img/homeoffice1.jpg" alt="Executive Home Office & Study Furniture" loading="lazy">
                 </div>
                 <div class="photo-frame p-frame-1"></div>
                 <div class="photo-frame p-frame-2"></div>
@@ -853,24 +698,34 @@
               </a>
             </div>
             <div class="sn-content-col">
-              <h2 class="sn-project-title">Integrated Master Bedroom &amp; Glass Closet Ensemble</h2>
+              <span class="sn-card-badge"><i class="fa-solid fa-briefcase"></i> Work &amp; Study</span>
+              <h2 class="sn-project-title">Executive Home Office &amp; Study Furniture</h2>
               <p class="sn-project-desc">
-                A complete turnkey bedroom suite harmonizing the master bed with the modular wardrobe system. Maximizes natural room flow with mirrored partition reflections and cohesive color palettes.
+                Bespoke executive study desks, concealed cable management raceways, and floor-to-ceiling wooden library bookshelves with warm recessed LED lighting, built for productive luxury work from home spaces across Pune.
               </p>
+              <div class="sn-specs-chips">
+                <span class="sn-spec-chip"><i class="fa-solid fa-plug"></i> Concealed Cable Groomers</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-book"></i> Library Backlit Shelves</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-lock"></i> Lockable Soft-Close Drawers</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-shield-halved"></i> 10-Yr Warranty</span>
+              </div>
               <div class="sn-btn-wrap">
-                <a href="project-bedroom-glass-closet.html" class="sn-know-more-btn">
-                  Know More
+                <a href="product-home-office.html" class="sn-know-more-btn">
+                  Know More &amp; View Gallery <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Home%20Office%20Furniture" target="_blank" rel="noopener" class="sn-wa-btn">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 5: Bedside Wood Panelling -->
-          <article class="sn-project-card" data-project-id="5">
+          <!-- 5: Architectural Master Bedroom Suite & Panelling -->
+          <article class="sn-project-card" id="master-bedroom">
             <div class="sn-img-col">
-              <a href="project-bedside-wood-panelling.html" class="sn-project-img-wrapper" aria-label="Open Bedside Panelling Details">
+              <a href="product-master-bedroom.html" class="sn-project-img-wrapper" aria-label="Open Master Bedroom Suite Details">
                 <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-bedside-styling.jpg" alt="Bespoke Bedside Wood Panelling & Custom Headboard" loading="lazy">
+                  <img src="assets/images/SK-Img/bedroom.jpg" alt="Architectural Master Bedroom Suite & Panelling" loading="lazy">
                 </div>
                 <div class="photo-frame p-frame-1"></div>
                 <div class="photo-frame p-frame-2"></div>
@@ -878,24 +733,34 @@
               </a>
             </div>
             <div class="sn-content-col">
-              <h2 class="sn-project-title">Bespoke Bedside Wood Panelling &amp; Custom Headboard</h2>
+              <span class="sn-card-badge"><i class="fa-solid fa-bed"></i> Master Bedroom</span>
+              <h2 class="sn-project-title">Architectural Master Bedroom Suites &amp; Panelling</h2>
               <p class="sn-project-desc">
-                Architectural vertical walnut wood cladding paired with fluted sage moulding and an upholstered bed headboard. Seamlessly accommodates integrated switches, USB ports, and floating bedside lighting.
+                Bespoke master bedroom suite featuring an upholstered king bed, sage green wall moulding panelling, acoustic wood cladding, floating modular nightstands, and warm cove LED illumination.
               </p>
+              <div class="sn-specs-chips">
+                <span class="sn-spec-chip"><i class="fa-solid fa-bed"></i> Custom King Suite</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-palette"></i> Sage Green Satin PU</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-lightbulb"></i> Integrated Cove Lighting</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-shield-halved"></i> 10-Yr Warranty</span>
+              </div>
               <div class="sn-btn-wrap">
-                <a href="project-bedside-wood-panelling.html" class="sn-know-more-btn">
-                  Know More
+                <a href="product-master-bedroom.html" class="sn-know-more-btn">
+                  Know More &amp; View Gallery <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Master%20Bedroom%20Suites" target="_blank" rel="noopener" class="sn-wa-btn">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- PROJECT 6: Custom Loft Storage & Wardrobe -->
-          <article class="sn-project-card" data-project-id="6">
+          <!-- 6: Floor-to-Ceiling Luxury Modular Wardrobes -->
+          <article class="sn-project-card" id="modular-wardrobe">
             <div class="sn-img-col">
-              <a href="project-loft-storage-wardrobe.html" class="sn-project-img-wrapper" aria-label="Open Wardrobe Details">
+              <a href="product-modular-wardrobe.html" class="sn-project-img-wrapper" aria-label="Open Modular Wardrobe Details">
                 <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg" alt="Custom Loft Storage & Multi-Door Modular Wardrobe" loading="lazy">
+                  <img src="assets/images/SK-Img/wardrobe bedroom.jpg" alt="Floor-to-Ceiling Luxury Modular Wardrobes" loading="lazy">
                 </div>
                 <div class="photo-frame p-frame-1"></div>
                 <div class="photo-frame p-frame-2"></div>
@@ -903,63 +768,23 @@
               </a>
             </div>
             <div class="sn-content-col">
-              <h2 class="sn-project-title">Custom Loft Storage &amp; Multi-Door Modular Wardrobe</h2>
+              <span class="sn-card-badge"><i class="fa-solid fa-door-closed"></i> Walk-in Wardrobe</span>
+              <h2 class="sn-project-title">Floor-to-Ceiling Luxury Modular Wardrobes</h2>
               <p class="sn-project-desc">
-                Floor-to-ceiling modular wardrobe maximizing vertical apartment height with flush overhead lofts for seasonal storage, internal organizers, and full-length vertical door profiles.
+                Floor-to-ceiling modular wardrobe maximizing vertical apartment height with flush overhead lofts for seasonal storage, acoustic inset doors, tinted profile glass display, and German soft-close sliding runners.
               </p>
-              <div class="sn-btn-wrap">
-                <a href="project-loft-storage-wardrobe.html" class="sn-know-more-btn">
-                  Know More
-                </a>
+              <div class="sn-specs-chips">
+                <span class="sn-spec-chip"><i class="fa-solid fa-arrows-up-down"></i> Up to 9.5 ft Height</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-box-archive"></i> Overhead Seasonal Lofts</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-eye"></i> Tinted Glass Showcase</span>
+                <span class="sn-spec-chip"><i class="fa-solid fa-shield-halved"></i> 10-Yr Guarantee</span>
               </div>
-            </div>
-          </article>
-
-          <!-- PROJECT 7: Turnkey Residence Interior -->
-          <article class="sn-project-card" data-project-id="7">
-            <div class="sn-img-col">
-              <a href="project-turnkey-residence-interior.html" class="sn-project-img-wrapper" aria-label="Open Turnkey Interior Details">
-                <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-bedroom-suite-wide.jpg" alt="Turnkey Residence Interior Execution" loading="lazy">
-                </div>
-                <div class="photo-frame p-frame-1"></div>
-                <div class="photo-frame p-frame-2"></div>
-                <div class="photo-frame p-frame-3"></div>
-              </a>
-            </div>
-            <div class="sn-content-col">
-              <h2 class="sn-project-title">Turnkey Residence Interior Execution</h2>
-              <p class="sn-project-desc">
-                End-to-end turnkey interior contracting executed by S. K. Enterprises, from false ceiling coving and wall mouldings to complete modular furniture manufacture and installation across Maharashtra.
-              </p>
               <div class="sn-btn-wrap">
-                <a href="project-turnkey-residence-interior.html" class="sn-know-more-btn">
-                  Know More
+                <a href="product-modular-wardrobe.html" class="sn-know-more-btn">
+                  Know More &amp; View Gallery <i class="fa-solid fa-arrow-right"></i>
                 </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- PROJECT 8: Minimalist Console -->
-          <article class="sn-project-card" data-project-id="8">
-            <div class="sn-img-col">
-              <a href="project-minimalist-bedside-console.html" class="sn-project-img-wrapper" aria-label="Open Minimalist Console Details">
-                <div class="sn-img-container">
-                  <img src="assets/images/SK-Img/sk-modular-nightstand.jpg" alt="Minimalist Floating Bedside Storage Console" loading="lazy">
-                </div>
-                <div class="photo-frame p-frame-1"></div>
-                <div class="photo-frame p-frame-2"></div>
-                <div class="photo-frame p-frame-3"></div>
-              </a>
-            </div>
-            <div class="sn-content-col">
-              <h2 class="sn-project-title">Minimalist Floating Bedside Storage Console</h2>
-              <p class="sn-project-desc">
-                Contemporary bedside nightstand pairing clean architectural lines with premium German runners, engineered for effortless daily utility and clutter-free living.
-              </p>
-              <div class="sn-btn-wrap">
-                <a href="project-minimalist-bedside-console.html" class="sn-know-more-btn">
-                  Know More
+                <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Modular%20Wardrobes" target="_blank" rel="noopener" class="sn-wa-btn">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
               </div>
             </div>
@@ -970,92 +795,6 @@
     </section>
 
   </main>
-
-  <!-- ==========================================================================
-       VIEW 2: PROJECT SINGLE DETAIL VIEW (Opened upon clicking "Know More")
-       - Light Luxury Background: rgb(240, 244, 247)
-       - Category tabs: Living | Bedroom | Others (Studio Notch Screenshot 2)
-       - 1 large top image + 2 bottom images (Studio Notch Screenshot 3)
-       ========================================================================== -->
-  <section id="projectSingleView" aria-label="Project Detail View">
-    <div class="container">
-      
-      <!-- Back Navigation Button -->
-      <div class="sn-single-back-bar">
-        <button type="button" class="sn-back-btn" id="snBackToListBtn">
-          <i class="fa-solid fa-arrow-left"></i>
-          <span>Back to All Projects</span>
-        </button>
-      </div>
-
-      <!-- Single Project Header -->
-      <div class="sn-single-header">
-        <h1 class="sn-single-title" id="singleProjectTitle">Architectural Master Bedroom Suite &amp; Panelling</h1>
-      </div>
-
-      <!-- Studio Notch Category Navigation Tabs: Living | Bedroom | Others (Screenshot 2) -->
-      <div class="sn-tabs-container">
-        <nav class="sn-nav-tabs" role="tablist">
-          <button type="button" class="sn-tab-item active" data-room-tab="living" role="tab" aria-selected="true">Living</button>
-          <button type="button" class="sn-tab-item" data-room-tab="bedroom" role="tab" aria-selected="false">Bedroom</button>
-          <button type="button" class="sn-tab-item" data-room-tab="others" role="tab" aria-selected="false">Others</button>
-        </nav>
-      </div>
-
-      <!-- Gallery Showcase Stage: 1 Large Top Image + 2 Side-by-Side Bottom Images (Screenshot 2 & 3) -->
-      <div class="sn-gallery-stage">
-        <!-- Large Top Full-Width Image (Screenshot 2) -->
-        <div class="sn-large-top-img-wrap">
-          <img src="" alt="" id="singleMainImg">
-        </div>
-
-        <!-- 2 Side-by-Side Images Below (Screenshot 3) -->
-        <div class="sn-bottom-imgs-grid">
-          <div class="sn-sub-img-wrap">
-            <img src="" alt="" id="singleSubImg1">
-          </div>
-          <div class="sn-sub-img-wrap">
-            <img src="" alt="" id="singleSubImg2">
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Technical Specifications & Factory Consultation -->
-      <div class="sn-project-details-grid">
-        <div class="sn-details-col">
-          <h3>Craftsmanship &amp; Architectural Specifications</h3>
-          <p id="singleProjectDesc">
-            Turnkey execution crafted by S. K. Enterprises featuring custom wall moulding panelling, acoustic ceiling woodwork, integrated warm LED cove lighting, and matching modular consoles.
-          </p>
-          <table class="sn-single-specs-table">
-            <tbody id="singleSpecsTableBody">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
-        </div>
-
-        <div class="sn-details-col">
-          <div class="sn-single-pricing-box">
-            <div class="sn-price-kicker">Factory Direct Pricing</div>
-            <div class="sn-price-amount" id="singleProjectPrice">Custom Quoted per Room</div>
-            <p class="sn-price-desc">
-              All dimensions, material choices, and finishes are 100% customizable to your architectural plan. Fabricated in Narhe Industrial Estate, Pune with direct factory installation.
-            </p>
-          </div>
-
-          <div class="sn-single-actions">
-            <button type="button" class="btn btn-primary open-enquiry-drawer">
-              <i class="fa-solid fa-envelope"></i> Enquire This Project
-            </button>
-            <a href="https://wa.me/919423053232" id="singleWaBtn" target="_blank" rel="noopener" class="btn btn-secondary">
-              <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp Us
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- TRUST & MATERIALS STRIP -->
   <section class="sn-trust-strip">
@@ -1097,7 +836,7 @@
   </section>
 
   <!-- BESPOKE CUSTOMIZATION CTA -->
-  <section class="custom-cta-section" style="background-image: url('assets/images/SK-Img/sk-bedroom-suite-wide.jpg');">
+  <section class="custom-cta-section" style="background-image: url('assets/images/SK-Img/products-hero-bg.png');">
     <div class="custom-cta-overlay"></div>
     <div class="container">
       <div class="custom-cta-content">
@@ -1125,262 +864,5 @@
 
   <!-- Master Interactive Script -->
   <script src="js/main.js"></script>
-  <script>
-    (function () {
-      // Elements
-      var listView = document.getElementById('projectsListView');
-      var singleView = document.getElementById('projectSingleView');
-      var backBtn = document.getElementById('snBackToListBtn');
-
-      var singleTitle = document.getElementById('singleProjectTitle');
-      var singleSubtitle = document.getElementById('singleProjectSubtitle');
-      var singleDesc = document.getElementById('singleProjectDesc');
-      var singlePrice = document.getElementById('singleProjectPrice');
-      var singleMainImg = document.getElementById('singleMainImg');
-      var singleSubImg1 = document.getElementById('singleSubImg1');
-      var singleSubImg2 = document.getElementById('singleSubImg2');
-      var singleSpecsBody = document.getElementById('singleSpecsTableBody');
-      var singleWaBtn = document.getElementById('singleWaBtn');
-      var roomTabBtns = document.querySelectorAll('.sn-tab-item');
-
-      // Gallery collections by room category (Living, Bedroom, Others) for each project
-      var projectRoomGalleries = {
-        1: {
-          living: {
-            main: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub2: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub1: 'assets/images/SK-Img/sk-modular-nightstand.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedside-styling.jpg'
-          }
-        },
-        2: {
-          living: {
-            main: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub1: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub1: 'assets/images/SK-Img/sk-modular-nightstand.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          }
-        },
-        3: {
-          living: {
-            main: 'assets/images/SK-Img/sk-modular-nightstand.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub1: 'assets/images/SK-Img/sk-modular-nightstand.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          }
-        },
-        4: {
-          living: {
-            main: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub1: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedside-styling.jpg'
-          }
-        },
-        5: {
-          living: {
-            main: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub1: 'assets/images/SK-Img/sk-modular-nightstand.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          }
-        },
-        6: {
-          living: {
-            main: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedside-styling.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub1: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-modular-nightstand.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          }
-        },
-        7: {
-          living: {
-            main: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedside-styling.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub1: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub2: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg'
-          }
-        },
-        8: {
-          living: {
-            main: 'assets/images/SK-Img/sk-modular-nightstand.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg'
-          },
-          bedroom: {
-            main: 'assets/images/SK-Img/sk-bedroom-suite-wide.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedroom-wardrobe-combo.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          },
-          others: {
-            main: 'assets/images/SK-Img/sk-luxury-wardrobe-detail.jpg',
-            sub1: 'assets/images/SK-Img/sk-bedside-styling.jpg',
-            sub2: 'assets/images/SK-Img/sk-modular-nightstand.jpg'
-          }
-        }
-      };
-
-      var activeProductId = 1;
-      var activeRoom = 'living';
-
-      function updateRoomGallery(roomId) {
-        activeRoom = roomId;
-        roomTabBtns.forEach(function (btn) {
-          var isCurrent = btn.dataset.roomTab === roomId;
-          btn.classList.toggle('active', isCurrent);
-          btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
-        });
-
-        var projectRooms = projectRoomGalleries[activeProductId] || projectRoomGalleries[1];
-        var roomData = projectRooms[roomId] || projectRooms.living;
-
-        singleMainImg.src = roomData.main;
-        singleSubImg1.src = roomData.sub1;
-        singleSubImg2.src = roomData.sub2;
-      }
-
-      function openProjectDetail(productId) {
-        activeProductId = productId || 1;
-        if (typeof productDatabase === 'undefined') return;
-        var data = productDatabase[activeProductId];
-        if (!data) return;
-
-        // Set Texts
-        singleTitle.textContent = data.name;
-        singleSubtitle.textContent = 'Crafted to enhance the refined charm of villa & luxury apartment living. S. K. Enterprises, Pune.';
-        singleDesc.textContent = data.description;
-        singlePrice.textContent = data.priceEstimate;
-
-        // Set Specs Table
-        singleSpecsBody.innerHTML = '';
-        Object.entries(data.specs).forEach(function (entry) {
-          var key = entry[0];
-          var val = entry[1];
-          var tr = document.createElement('tr');
-          var formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, function (s) { return s.toUpperCase(); });
-          tr.innerHTML = '<td>' + formattedKey + '</td><td>' + val + '</td>';
-          singleSpecsBody.appendChild(tr);
-        });
-
-        // WhatsApp link
-        var waMsg = 'Hello SK Enterprises, I would like to inquire about: "' + data.name + '" as seen on your projects page.';
-        singleWaBtn.href = 'https://wa.me/919423053232?text=' + encodeURIComponent(waMsg);
-
-        // Switch to default 'living' tab
-        updateRoomGallery('living');
-
-        // Toggle Views
-        listView.style.display = 'none';
-        singleView.classList.add('active');
-
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      function backToListView() {
-        singleView.classList.remove('active');
-        listView.style.display = 'block';
-
-        // Scroll back to the card
-        var card = document.querySelector('.sn-project-card[data-project-id="' + activeProductId + '"]');
-        if (card) {
-          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
-
-      // Event: Tab Clicks (Living, Bedroom, Others)
-      roomTabBtns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          updateRoomGallery(this.dataset.roomTab);
-        });
-      });
-
-      // Event: Know More & Image Clicks
-      document.querySelectorAll('.trigger-project-detail').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-          e.preventDefault();
-          var id = this.dataset.projectId || this.closest('.sn-project-card').dataset.projectId;
-          openProjectDetail(id);
-        });
-        el.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            var id = this.dataset.projectId || this.closest('.sn-project-card').dataset.projectId;
-            openProjectDetail(id);
-          }
-        });
-      });
-
-      // Event: Back button
-      if (backBtn) {
-        backBtn.addEventListener('click', backToListView);
-      }
-    })();
-  </script>
 </body>
 </html>
