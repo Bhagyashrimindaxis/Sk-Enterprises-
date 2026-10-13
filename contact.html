@@ -24,6 +24,103 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ==========================================================================
+       UNIFIED CONTACT PAGE TYPOGRAPHY & COLOR SYSTEM
+       "dont use many fonts .....dont use multiple color ......use all one"
+       ========================================================================== */
+    .contact-info-panel,
+    .contact-info-panel *,
+    .quote-card,
+    .quote-card * {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    }
+
+    /* Single Unified Brand Primary Color for Headings & Text */
+    .contact-info-panel h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 1.85rem !important;
+      font-weight: 700 !important;
+      color: #162b36 !important;
+      margin-bottom: 18px !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    .contact-info-panel .ornament-separator {
+      color: #162b36 !important;
+    }
+    .contact-info-panel .ornament-separator .leaf-left,
+    .contact-info-panel .ornament-separator .leaf-right {
+      background-color: #162b36 !important;
+      opacity: 0.35 !important;
+    }
+
+    /* Unified Icon Boxes */
+    .contact-info-panel .contact-icon-box {
+      background-color: rgba(22, 43, 54, 0.07) !important;
+      color: #162b36 !important;
+      border: 1px solid rgba(22, 43, 54, 0.08) !important;
+    }
+
+    /* Unified Text & Headings */
+    .contact-info-panel .contact-text-block strong {
+      color: #162b36 !important;
+      font-weight: 600 !important;
+    }
+
+    .contact-info-panel .contact-text-block p a {
+      color: #162b36 !important;
+    }
+
+    /* Unified Working Hours Badge (Single Color Tone) */
+    .contact-info-panel .contact-highlight-badge {
+      background-color: rgba(22, 43, 54, 0.06) !important;
+      color: #162b36 !important;
+      border: 1px solid rgba(22, 43, 54, 0.12) !important;
+      font-weight: 600 !important;
+    }
+    .contact-info-panel .contact-highlight-badge i {
+      color: #162b36 !important;
+    }
+
+    /* Unified Social Media Buttons (One Color instead of multi-colored pink, blue, red) */
+    .contact-info-panel .social-btn-brand {
+      background: rgba(22, 43, 54, 0.06) !important;
+      color: #162b36 !important;
+      border: 1px solid rgba(22, 43, 54, 0.12) !important;
+      box-shadow: none !important;
+      transition: all 0.25s ease !important;
+    }
+    .contact-info-panel .social-btn-brand:hover {
+      background: #162b36 !important;
+      color: #ffffff !important;
+      border-color: #162b36 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 12px rgba(22, 43, 54, 0.15) !important;
+    }
+
+    /* Unified Google Maps Button */
+    .contact-info-panel .map-action-btn {
+      background: #162b36 !important;
+      color: #ffffff !important;
+      border: 1px solid #162b36 !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(22, 43, 54, 0.12) !important;
+    }
+    .contact-info-panel .map-action-btn:hover {
+      background: #234659 !important;
+      color: #ffffff !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* Form Card Heading Font & Color Sync */
+    .quote-calculator-header h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 700 !important;
+      color: #162b36 !important;
+    }
+  </style>
 </head>
 
 <body data-page="contact">
@@ -147,13 +244,13 @@
       <div class="contact-section-grid" id="quote-calculator">
         <!-- Left Column: Detailed Official Contact Information -->
         <div class="contact-info-panel">
-          <div class="ornament-separator" style="margin-bottom: 8px;">
+          <div class="ornament-separator" style="margin-bottom: 8px; color: #162b36;">
             <span class="leaf-left"></span>
             <span>Direct Inquiries</span>
             <span class="leaf-right"></span>
           </div>
-          <h2 style="font-size: 1.85rem; color: var(--color-primary); margin-bottom: 22px;">S. K. Enterprises</h2>
-          <p style="font-size: 0.94rem; color: var(--color-text-muted); margin-bottom: 24px;">Modular furniture &
+          <h2 style="font-size: 1.85rem; color: #162b36; margin-bottom: 20px; font-weight: 700;">S. K. Enterprises</h2>
+          <p style="font-size: 0.94rem; color: #5d6b75; margin-bottom: 24px; line-height: 1.6;">Modular furniture &amp;
             interior designer. Feel free to call us directly, send an email, or message our design team on WhatsApp.</p>
 
           <!-- Phones -->
@@ -163,14 +260,13 @@
               <strong>Phone Numbers</strong>
               <p>
                 <a href="tel:+919423053232"
-                  style="font-weight: 700; color: var(--color-text-main); font-size: 1.05rem;">+91 94230 53232</a>
+                  style="font-weight: 700; color: #162b36; font-size: 1.05rem;">+91 94230 53232</a>
               </p>
               <p>
                 <a href="tel:+917972779903"
-                  style="font-weight: 700; color: var(--color-text-main); font-size: 1.05rem;">+91 79727 79903</a>
+                  style="font-weight: 700; color: #162b36; font-size: 1.05rem;">+91 79727 79903</a>
               </p>
-              <span class="contact-highlight-badge"><i class="fa-solid fa-clock"></i> Mon – Sat: 10:00 AM – 8:00
-                PM</span>
+              <span class="contact-highlight-badge"><i class="fa-solid fa-clock"></i> Mon – Sat: 10:00 AM – 8:00 PM</span>
             </div>
           </div>
 
@@ -180,9 +276,8 @@
             <div class="contact-text-block">
               <strong>Email Address</strong>
               <p><a href="mailto:skenterprises3232@gmail.com"
-                  style="color: var(--color-primary); font-weight: 600;">skenterprises3232@gmail.com</a></p>
-              <span style="font-size: 0.8rem; color: var(--color-text-muted);">Quotations & design drawings replied
-                within 24 hours</span>
+                  style="color: #162b36; font-weight: 600;">skenterprises3232@gmail.com</a></p>
+              <span style="font-size: 0.8rem; color: #5d6b75;">Quotations &amp; design drawings replied within 24 hours</span>
             </div>
           </div>
 
@@ -212,8 +307,8 @@
           <div class="contact-item-row">
             <div class="contact-icon-box"><i class="fa-solid fa-location-dot"></i></div>
             <div class="contact-text-block">
-              <strong>Factory & Showroom Location</strong>
-              <p><a href="https://maps.app.goo.gl/u1JRdXmWntqDVqa4A" target="_blank" rel="noopener">S. K. Enterprises, Modular furniture & interior designer, Narhe / Ambegaon BK Industrial Zone, Pune,
+              <strong>Factory &amp; Showroom Location</strong>
+              <p><a href="https://maps.app.goo.gl/u1JRdXmWntqDVqa4A" target="_blank" rel="noopener" style="color: #5d6b75;">S. K. Enterprises, Modular furniture &amp; interior designer, Narhe / Ambegaon BK Industrial Zone, Pune,
                 Maharashtra, India</a></p>
               <a href="https://maps.app.goo.gl/u1JRdXmWntqDVqa4A" target="_blank" rel="noopener" class="map-action-btn">
                 <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps App

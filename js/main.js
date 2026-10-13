@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initCardScrollAnimations();
     initCategoryCardAnimations();
     initProcessCardBalloonAnimation();
+    initEnquiryQuoteModal();
 });
 
 /* ==========================================================================
@@ -63,18 +64,21 @@ async function loadDynamicComponents() {
                 .then(html => {
                     footerContainer.innerHTML = html;
                     initSlideDrawer();
+                    initEnquiryQuoteModal();
                     initBackToTop();
                     initFormHandlers();
                 })
                 .catch(err => {
                     console.warn('Dynamic footer loading error:', err);
                     initSlideDrawer();
+                    initEnquiryQuoteModal();
                     initBackToTop();
                     initFormHandlers();
                 })
         );
     } else {
         initSlideDrawer();
+        initEnquiryQuoteModal();
         initBackToTop();
         initFormHandlers();
     }
@@ -899,19 +903,263 @@ function initSlideDrawer() {
     }
 
     document.addEventListener('click', (e) => {
-        const trigger = e.target.closest('.open-enquiry-drawer');
-        if (trigger) {
+        const mobileToggle = e.target.closest('.mobile-toggle');
+        if (mobileToggle) {
             e.preventDefault();
-            const note = trigger.getAttribute('data-enquiry-note') || '';
-            openDrawer(note);
+            openDrawer();
             return;
         }
+
         const closeBtn = e.target.closest('#closeEnquiryDrawer');
         if (closeBtn || e.target === backdrop) {
             e.preventDefault();
             closeDrawer();
         }
     });
+}
+
+/* ==========================================================================
+   10B. CUSTOMER ENQUIRY QUOTE POPUP MODAL FORM
+   ========================================================================== */
+function initEnquiryQuoteModal() {
+    if (window._enquiryModalInitialized) return;
+    window._enquiryModalInitialized = true;
+
+    function getModal() {
+        let modal = document.getElementById('enquiryQuoteModal');
+        if (!modal) {
+            const div = document.createElement('div');
+            div.id = 'enquiryQuoteModal';
+            div.className = 'eq-modal-backdrop';
+            div.setAttribute('role', 'dialog');
+            div.setAttribute('aria-modal', 'true');
+            div.setAttribute('aria-labelledby', 'eqModalTitle');
+            div.innerHTML = `
+  <div class="eq-modal-dialog">
+    <button type="button" class="eq-modal-close" id="closeEnquiryQuoteModal" aria-label="Close Enquiry Form">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    
+    <div class="eq-modal-header">
+      <h3 class="eq-modal-title" id="eqModalTitle">Enquiry Quote</h3>
+      <p class="eq-modal-subtitle">Share your details and our design team will contact you shortly.</p>
+    </div>
+
+    <form class="eq-modal-form" id="enquiryQuoteForm" action="https://formsubmit.co/skenterprises3232@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_subject" id="eqHiddenSubject" value="New Customer Enquiry Quote">
+      <input type="hidden" name="InquiringProduct" id="eqHiddenProduct" value="Interior Furniture">
+
+      <div class="eq-form-group">
+        <label for="eqCustomerName" class="eq-form-label"><i class="fa-solid fa-user"></i> Full Name *</label>
+        <input type="text" id="eqCustomerName" name="fullName" class="eq-form-input" placeholder="Enter your full name" required autocomplete="name">
+      </div>
+
+      <div class="eq-form-row">
+        <div class="eq-form-group">
+          <label for="eqCustomerPhone" class="eq-form-label"><i class="fa-solid fa-phone"></i> Mobile / WhatsApp *</label>
+          <input type="tel" id="eqCustomerPhone" name="phoneNumber" class="eq-form-input" placeholder="10-digit mobile number" required pattern="[0-9]{10}" autocomplete="tel">
+        </div>
+        <div class="eq-form-group">
+          <label for="eqCustomerLocality" class="eq-form-label"><i class="fa-solid fa-location-dot"></i> Pune Area / City *</label>
+          <input type="text" id="eqCustomerLocality" name="locality" class="eq-form-input" placeholder="e.g. Wakad, Baner, Kothrud" required>
+        </div>
+      </div>
+
+      <div class="eq-form-group">
+        <label for="eqProductCategory" class="eq-form-label"><i class="fa-solid fa-couch"></i> Interior Category</label>
+        <select id="eqProductCategory" name="category" class="eq-form-select">
+          <option value="Living Room Furniture">Living Room &amp; Hall Interior</option>
+          <option value="Modular Kitchen">Architectural Modular Kitchen</option>
+          <option value="Master Bedroom Suite">Master Bedroom Suite</option>
+          <option value="Modular Wardrobe">Modular Wardrobe</option>
+          <option value="Dining Room & Table">Designer Dining Table</option>
+          <option value="Executive Home Office">Home Office &amp; Study</option>
+          <option value="Complete Home Interior">Full 2 / 3 / 4 BHK Home Interior</option>
+        </select>
+      </div>
+
+      <div class="eq-form-group">
+        <label for="eqCustomerMessage" class="eq-form-label"><i class="fa-solid fa-comment-dots"></i> Requirements / Room Size (Optional)</label>
+        <textarea id="eqCustomerMessage" name="message" class="eq-form-textarea" rows="2" placeholder="Tell us about your room size, finishes or requirements..."></textarea>
+      </div>
+
+      <div class="eq-form-actions">
+        <button type="submit" class="eq-submit-btn" id="eqSubmitBtn">
+          <i class="fa-solid fa-paper-plane"></i> Submit Enquiry
+        </button>
+      </div>
+
+      <div class="eq-success-msg" id="eqSuccessMessage" style="display: none;">
+        <div class="eq-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h4>Enquiry Submitted!</h4>
+        <p>Thank you! Our design team will contact you within 2 hours with pricing and guidance.</p>
+        <div style="display: flex; gap: 8px; justify-content: center; margin-top: 8px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="eqCloseAfterSuccess" style="padding: 6px 16px;">Close</button>
+        </div>
+      </div>
+    </form>
+  </div>`;
+            document.body.appendChild(div);
+            modal = div;
+            bindFormSubmission(modal);
+        }
+        return modal;
+    }
+
+    function openEnquiryQuoteModal(note = '') {
+        const modal = getModal();
+        if (!modal) return;
+
+        let detected = note;
+        if (!detected) {
+            const singleTitle = document.querySelector('.sn-single-title') || document.querySelector('h1');
+            if (singleTitle) {
+                detected = singleTitle.textContent.trim();
+            } else if (document.title) {
+                detected = document.title.split('|')[0].trim();
+            }
+        }
+
+        const hiddenProd = modal.querySelector('#eqHiddenProduct');
+        if (hiddenProd && detected) {
+            hiddenProd.value = detected;
+        }
+
+        const hiddenSubject = modal.querySelector('#eqHiddenSubject');
+        if (hiddenSubject && detected) {
+            hiddenSubject.value = `New Interior Enquiry: ${detected}`;
+        }
+
+        const catSelect = modal.querySelector('#eqProductCategory');
+        if (catSelect && detected) {
+            const low = detected.toLowerCase();
+            for (let i = 0; i < catSelect.options.length; i++) {
+                const optVal = catSelect.options[i].value.toLowerCase();
+                if (low.includes('kitchen') && optVal.includes('kitchen')) { catSelect.selectedIndex = i; break; }
+                if (low.includes('living') && optVal.includes('living')) { catSelect.selectedIndex = i; break; }
+                if (low.includes('bedroom') && optVal.includes('bedroom')) { catSelect.selectedIndex = i; break; }
+                if (low.includes('wardrobe') && optVal.includes('wardrobe')) { catSelect.selectedIndex = i; break; }
+                if (low.includes('dining') && optVal.includes('dining')) { catSelect.selectedIndex = i; break; }
+                if ((low.includes('office') || low.includes('study')) && optVal.includes('office')) { catSelect.selectedIndex = i; break; }
+            }
+        }
+
+        const successMsg = modal.querySelector('#eqSuccessMessage');
+        const formEl = modal.querySelector('#enquiryQuoteForm');
+        if (successMsg) successMsg.style.display = 'none';
+        if (formEl) formEl.style.display = 'flex';
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        const firstInput = modal.querySelector('#eqCustomerName');
+        if (firstInput) setTimeout(() => firstInput.focus(), 200);
+
+        bindFormSubmission(modal);
+    }
+
+    function closeEnquiryQuoteModal() {
+        const modal = getModal();
+        if (!modal) return;
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Global click delegation for enquiry triggers
+    document.addEventListener('click', (e) => {
+        // Exclude mobile hamburger toggle which belongs to drawer menu
+        if (e.target.closest('.mobile-toggle')) return;
+
+        const trigger = e.target.closest('.open-enquiry-drawer, .header-quote-btn, .open-quote-modal, .open-enquiry-modal, #modalEnquiryBtn');
+        if (trigger) {
+            e.preventDefault();
+            const note = trigger.getAttribute('data-enquiry-note') || trigger.getAttribute('data-product-name') || '';
+            openEnquiryQuoteModal(note);
+            return;
+        }
+
+        const closeBtn = e.target.closest('#closeEnquiryQuoteModal, #eqCloseAfterSuccess');
+        const modal = getModal();
+        if (closeBtn || (modal && e.target === modal)) {
+            e.preventDefault();
+            closeEnquiryQuoteModal();
+        }
+    });
+
+    // ESC key support
+    document.addEventListener('keydown', (e) => {
+        const modal = getModal();
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+            closeEnquiryQuoteModal();
+        }
+    });
+
+    function bindFormSubmission(modalTarget) {
+        if (!modalTarget) return;
+        const form = modalTarget.querySelector('#enquiryQuoteForm');
+        if (form && !form.getAttribute('data-bound')) {
+            form.setAttribute('data-bound', 'true');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = form.querySelector('#eqSubmitBtn');
+                const name = (form.querySelector('#eqCustomerName') || {}).value || '';
+                const phone = (form.querySelector('#eqCustomerPhone') || {}).value || '';
+                const locality = (form.querySelector('#eqCustomerLocality') || {}).value || '';
+                const category = (form.querySelector('#eqProductCategory') || {}).value || '';
+                const message = (form.querySelector('#eqCustomerMessage') || {}).value || '';
+                const hiddenProd = (form.querySelector('#eqHiddenProduct') || {}).value || document.title;
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+                }
+
+                const adminEmail = 'skenterprises3232@gmail.com';
+                const emailPayload = {
+                    _subject: `New Customer Interior Enquiry: ${name} (${category})`,
+                    _captcha: "false",
+                    _template: "table",
+                    "Customer Name": name,
+                    "Mobile / WhatsApp": phone,
+                    "Pune Area / Locality": locality,
+                    "Category": category,
+                    "Requirements": message || "Standard design enquiry",
+                    "Product / Page": hiddenProd,
+                    "Submission Time": new Date().toLocaleString(),
+                    "URL": window.location.href
+                };
+
+                // Dispatch customer information to admin email
+                fetch(`https://formsubmit.co/ajax/${adminEmail}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(emailPayload)
+                }).then(res => res.json())
+                  .then(data => {
+                      console.log("Enquiry emailed to admin:", data);
+                  }).catch(err => {
+                      console.warn("Email dispatch notification:", err);
+                  });
+
+                setTimeout(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Enquiry';
+                    }
+                    const successMsg = modalTarget.querySelector('#eqSuccessMessage');
+                    if (successMsg) {
+                        successMsg.style.display = 'block';
+                        successMsg.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 750);
+            });
+        }
+    }
 }
 
 /* ==========================================================================

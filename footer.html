@@ -225,3 +225,74 @@
     </a>
   </div>
 </div>
+
+<!-- Customer Enquiry Quote Popup Form Modal -->
+<div class="eq-modal-backdrop" id="enquiryQuoteModal" role="dialog" aria-modal="true" aria-labelledby="eqModalTitle">
+  <div class="eq-modal-dialog">
+    <button type="button" class="eq-modal-close" id="closeEnquiryQuoteModal" aria-label="Close Enquiry Form">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    
+    <div class="eq-modal-header">
+      <h3 class="eq-modal-title" id="eqModalTitle">Enquiry Quote</h3>
+      <p class="eq-modal-subtitle">Share your details and our design team will contact you shortly.</p>
+    </div>
+
+    <form class="eq-modal-form" id="enquiryQuoteForm" action="https://formsubmit.co/skenterprises3232@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_subject" id="eqHiddenSubject" value="New Customer Enquiry Quote">
+      <input type="hidden" name="InquiringProduct" id="eqHiddenProduct" value="Interior Furniture">
+
+      <div class="eq-form-group">
+        <label for="eqCustomerName" class="eq-form-label"><i class="fa-solid fa-user"></i> Full Name *</label>
+        <input type="text" id="eqCustomerName" name="fullName" class="eq-form-input" placeholder="Enter your full name" required autocomplete="name">
+      </div>
+
+      <div class="eq-form-row">
+        <div class="eq-form-group">
+          <label for="eqCustomerPhone" class="eq-form-label"><i class="fa-solid fa-phone"></i> Mobile / WhatsApp *</label>
+          <input type="tel" id="eqCustomerPhone" name="phoneNumber" class="eq-form-input" placeholder="10-digit mobile number" required pattern="[0-9]{10}" autocomplete="tel">
+        </div>
+        <div class="eq-form-group">
+          <label for="eqCustomerLocality" class="eq-form-label"><i class="fa-solid fa-location-dot"></i> Pune Area / City *</label>
+          <input type="text" id="eqCustomerLocality" name="locality" class="eq-form-input" placeholder="e.g. Wakad, Baner, Kothrud" required>
+        </div>
+      </div>
+
+      <div class="eq-form-group">
+        <label for="eqProductCategory" class="eq-form-label"><i class="fa-solid fa-couch"></i> Interior Category</label>
+        <select id="eqProductCategory" name="category" class="eq-form-select">
+          <option value="Living Room Furniture">Living Room &amp; Hall Interior</option>
+          <option value="Modular Kitchen">Architectural Modular Kitchen</option>
+          <option value="Master Bedroom Suite">Master Bedroom Suite</option>
+          <option value="Modular Wardrobe">Modular Wardrobe</option>
+          <option value="Dining Room & Table">Designer Dining Table</option>
+          <option value="Executive Home Office">Home Office &amp; Study</option>
+          <option value="Complete Home Interior">Full 2 / 3 / 4 BHK Home Interior</option>
+        </select>
+      </div>
+
+      <div class="eq-form-group">
+        <label for="eqCustomerMessage" class="eq-form-label"><i class="fa-solid fa-comment-dots"></i> Requirements / Room Size (Optional)</label>
+        <textarea id="eqCustomerMessage" name="message" class="eq-form-textarea" rows="2" placeholder="Tell us about your room size, finishes or requirements..."></textarea>
+      </div>
+
+      <div class="eq-form-actions">
+        <button type="submit" class="eq-submit-btn" id="eqSubmitBtn">
+          <i class="fa-solid fa-paper-plane"></i> Submit Enquiry
+        </button>
+      </div>
+
+      <div class="eq-success-msg" id="eqSuccessMessage" style="display: none;">
+        <div class="eq-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h4>Enquiry Submitted!</h4>
+        <p>Thank you! Our design team will contact you within 2 hours with pricing and guidance.</p>
+        <div style="display: flex; gap: 8px; justify-content: center; margin-top: 8px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="eqCloseAfterSuccess" style="padding: 6px 16px;">Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

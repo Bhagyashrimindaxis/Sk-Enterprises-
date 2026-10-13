@@ -48,20 +48,37 @@
     }
 
     /* --------------------------------------------------------------------------
-       CATEGORY QUICK JUMP NAVIGATION STRIP
+       CATEGORY QUICK JUMP NAVIGATION STRIP & MOBILE INFINITE CYCLING MARQUEE
        -------------------------------------------------------------------------- */
     .sn-catalog-nav-strip {
       background: #ffffff;
-      padding: 22px 0 20px;
+      padding: 20px 0 18px;
       border-bottom: 1px solid var(--sn-border);
       box-shadow: 0 4px 14px rgba(22, 43, 54, 0.03);
+      overflow: hidden;
     }
-    .sn-category-pills {
+    .sn-catalog-nav-container {
+      position: relative;
+    }
+    .sn-marquee-wrapper {
+      width: 100%;
+      overflow: visible;
+    }
+    .sn-category-pills-track {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .sn-category-pills-group {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
+    }
+    .sn-marquee-clone {
+      display: none;
     }
     .sn-cat-pill {
       display: inline-flex;
@@ -75,11 +92,15 @@
       font-size: 0.88rem;
       font-weight: 600;
       text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
       transition: all 0.25s ease;
       box-shadow: 0 2px 8px rgba(22, 43, 54, 0.04);
+      white-space: nowrap;
+      user-select: none;
+      outline: none;
     }
-    .sn-cat-pill:hover,
-    .sn-cat-pill.active {
+    .sn-cat-pill:hover {
       background: var(--sn-navy);
       color: #ffffff;
       border-color: var(--sn-navy);
@@ -87,8 +108,69 @@
       transform: translateY(-2px);
     }
     .sn-cat-pill.active {
-      background: var(--sn-slate-blue);
-      border-color: var(--sn-slate-blue);
+      background: var(--sn-slate-blue) !important;
+      color: #ffffff !important;
+      border-color: var(--sn-slate-blue) !important;
+      box-shadow: 0 6px 18px rgba(53, 100, 126, 0.25) !important;
+    }
+    .sn-project-card.sn-card-hidden {
+      display: none !important;
+    }
+
+    /* Mobile Infinite Cycling Animation (Continuous Seamless Loop) */
+    @media (max-width: 991px) {
+      .sn-catalog-nav-strip {
+        padding: 14px 0 12px;
+      }
+      .sn-catalog-nav-container {
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .sn-marquee-wrapper {
+        overflow: hidden !important;
+        position: relative !important;
+        width: 100% !important;
+        mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%) !important;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%) !important;
+      }
+      .sn-category-pills-track {
+        display: flex !important;
+        justify-content: flex-start !important;
+        width: max-content !important;
+        animation: snPillInfiniteCycle 24s linear infinite !important;
+        will-change: transform !important;
+      }
+      .sn-category-pills-track:hover,
+      .sn-category-pills-track:active,
+      .sn-category-pills-track.is-paused {
+        animation-play-state: paused !important;
+      }
+      .sn-category-pills-group {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 2px 5px !important;
+        flex-shrink: 0 !important;
+        flex-wrap: nowrap !important;
+      }
+      .sn-marquee-clone {
+        display: flex !important;
+      }
+      .sn-cat-pill {
+        flex-shrink: 0 !important;
+        padding: 8px 16px !important;
+        font-size: 0.82rem !important;
+      }
+    }
+
+    @keyframes snPillInfiniteCycle {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     /* --------------------------------------------------------------------------
@@ -561,16 +643,60 @@
       </div>
     </section>
 
-    <!-- Quick Jump Category Navigation Bar -->
-    <nav class="sn-catalog-nav-strip" aria-label="Quick jump collections">
-      <div class="container">
-        <div class="sn-category-pills">
-          <a href="#living-room" class="sn-cat-pill"><i class="fa-solid fa-couch"></i> Living Room</a>
-          <a href="#dining-room" class="sn-cat-pill"><i class="fa-solid fa-utensils"></i> Dining Sets</a>
-          <a href="#modular-kitchen" class="sn-cat-pill"><i class="fa-solid fa-kitchen-set"></i> Modular Kitchen</a>
-          <a href="#home-office" class="sn-cat-pill"><i class="fa-solid fa-briefcase"></i> Home Office</a>
-          <a href="#master-bedroom" class="sn-cat-pill"><i class="fa-solid fa-bed"></i> Bedroom Suite</a>
-          <a href="#modular-wardrobe" class="sn-cat-pill"><i class="fa-solid fa-door-closed"></i> Wardrobes</a>
+    <!-- Quick Jump Category Navigation Bar with Mobile Infinite Cycling Marquee -->
+    <nav class="sn-catalog-nav-strip" aria-label="Product Category Filter">
+      <div class="container sn-catalog-nav-container">
+        <div class="sn-marquee-wrapper" id="snCategoryMarquee">
+          <div class="sn-category-pills-track" id="snCategoryPillsTrack">
+            <!-- First Set of Filter Pills -->
+            <div class="sn-category-pills-group">
+              <button type="button" class="sn-cat-pill active" data-filter="all">
+                <i class="fa-solid fa-layer-group"></i> All Collections
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="living-room">
+                <i class="fa-solid fa-couch"></i> Living Room
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="dining-room">
+                <i class="fa-solid fa-utensils"></i> Dining Sets
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="modular-kitchen">
+                <i class="fa-solid fa-kitchen-set"></i> Modular Kitchen
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="home-office">
+                <i class="fa-solid fa-briefcase"></i> Home Office
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="master-bedroom">
+                <i class="fa-solid fa-bed"></i> Bedroom Suite
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="modular-wardrobe">
+                <i class="fa-solid fa-door-closed"></i> Wardrobes
+              </button>
+            </div>
+            <!-- Second Set of Filter Pills (Seamless Infinite Cycling for Mobile View) -->
+            <div class="sn-category-pills-group sn-marquee-clone" aria-hidden="true">
+              <button type="button" class="sn-cat-pill active" data-filter="all">
+                <i class="fa-solid fa-layer-group"></i> All Collections
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="living-room">
+                <i class="fa-solid fa-couch"></i> Living Room
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="dining-room">
+                <i class="fa-solid fa-utensils"></i> Dining Sets
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="modular-kitchen">
+                <i class="fa-solid fa-kitchen-set"></i> Modular Kitchen
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="home-office">
+                <i class="fa-solid fa-briefcase"></i> Home Office
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="master-bedroom">
+                <i class="fa-solid fa-bed"></i> Bedroom Suite
+              </button>
+              <button type="button" class="sn-cat-pill" data-filter="modular-wardrobe">
+                <i class="fa-solid fa-door-closed"></i> Wardrobes
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -864,5 +990,94 @@
 
   <!-- Master Interactive Script -->
   <script src="js/main.js"></script>
+
+  <!-- Product Category Filter & Mobile Carousel Control Script -->
+  <script>
+    (function () {
+      function initProductCategoryFilter() {
+        var filterButtons = document.querySelectorAll('.sn-cat-pill');
+        var productCards = document.querySelectorAll('.sn-project-card');
+        var pillsTrack = document.getElementById('snCategoryPillsTrack');
+
+        if (!filterButtons.length || !productCards.length) return;
+
+        // Pause animation on touch for seamless mobile interaction
+        if (pillsTrack) {
+          pillsTrack.addEventListener('touchstart', function () {
+            pillsTrack.classList.add('is-paused');
+          }, { passive: true });
+
+          pillsTrack.addEventListener('touchend', function () {
+            setTimeout(function () {
+              pillsTrack.classList.remove('is-paused');
+            }, 1200);
+          }, { passive: true });
+        }
+
+        function applyFilter(category, shouldScroll) {
+          if (!category) category = 'all';
+
+          // 1. Sync active class across all pills (both primary and marquee clones)
+          filterButtons.forEach(function (btn) {
+            if (btn.getAttribute('data-filter') === category) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+
+          // 2. Filter product cards: only show matching product, hide other products
+          var activeCard = null;
+          productCards.forEach(function (card) {
+            var cardId = card.id;
+            if (category === 'all' || cardId === category) {
+              card.style.display = '';
+              card.classList.remove('sn-card-hidden');
+              if (cardId === category) activeCard = card;
+            } else {
+              card.style.display = 'none';
+              card.classList.add('sn-card-hidden');
+            }
+          });
+
+          // 3. Smooth scroll down to the single shown product or the catalog top
+          if (shouldScroll) {
+            var target = (category !== 'all' && activeCard) ? activeCard : document.getElementById('products-catalog');
+            if (target) {
+              var headerOffset = 110;
+              var targetTop = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              window.scrollTo({
+                top: targetTop,
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+
+        // Attach click listener to each pill
+        filterButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            var filter = this.getAttribute('data-filter');
+            applyFilter(filter, true);
+          });
+        });
+
+        // Handle URL hash if user landed with #modular-kitchen etc.
+        if (window.location.hash) {
+          var hashId = window.location.hash.replace('#', '');
+          if (document.getElementById(hashId)) {
+            applyFilter(hashId, false);
+          }
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initProductCategoryFilter);
+      } else {
+        initProductCategoryFilter();
+      }
+    })();
+  </script>
 </body>
 </html>

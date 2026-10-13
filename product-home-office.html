@@ -28,7 +28,7 @@
       --sn-bg-main: #f8fafc;
       --sn-bg-card: #ffffff;
       --sn-bg-elevated: #ffffff;
-      --sn-navy: #000000;
+      --sn-navy: #10212c;
       --sn-navy-light: #234659;
       --sn-gold: #a88454;
       --sn-gold-light: #c8a87e;
@@ -44,303 +44,654 @@
       color: var(--sn-text-main);
     }
 
-    .sn-single-project-page {
-      background-color: var(--sn-bg-main);
-      padding: 40px 0 100px;
-      min-height: 80vh;
+    /* ==========================================================================
+       ARCHITECTURAL HERO SECTION
+       ========================================================================== */
+    .sn-product-hero-section {
+      position: relative;
+      background: radial-gradient(circle at 85% 20%, rgba(200, 168, 126, 0.18) 0%, transparent 55%),
+                  radial-gradient(circle at 15% 85%, rgba(53, 100, 126, 0.25) 0%, transparent 60%),
+                  linear-gradient(135deg, #0e1e27 0%, #162b36 50%, #1d394a 100%);
+      color: #ffffff;
+      padding: 24px 0 28px;
+      border-bottom: 1px solid rgba(200, 168, 126, 0.25);
+      overflow: hidden;
+    }
+    .sn-product-hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(200, 168, 126, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      opacity: 0.7;
     }
 
+    /* Back Bar & Breadcrumb inside Hero */
     .sn-single-back-bar {
-      margin-bottom: 30px;
+      margin-bottom: 18px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
+      position: relative;
+      z-index: 2;
     }
     .sn-back-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--sn-navy);
-      background: #ffffff;
-      border: 1px solid var(--sn-gold-border);
-      padding: 10px 22px;
-      border-radius: 2px;
-      font-size: 0.86rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(200, 168, 126, 0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.84rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       text-decoration: none;
-      box-shadow: 0 4px 14px rgba(22, 43, 54, 0.06);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     }
     .sn-back-btn:hover {
-      background: var(--sn-navy);
-      color: #ffffff;
-      border-color: var(--sn-navy);
+      background: var(--sn-gold);
+      color: #0e1e27;
+      border-color: var(--sn-gold);
+      transform: translateX(-3px);
+      box-shadow: 0 6px 20px rgba(200, 168, 126, 0.35);
     }
     .sn-breadcrumbs-single {
       font-size: 0.84rem;
-      color: var(--sn-text-muted);
+      color: rgba(255, 255, 255, 0.65);
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
     .sn-breadcrumbs-single a {
-      color: var(--sn-slate-blue);
+      color: rgba(255, 255, 255, 0.82);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
+      transition: color 0.2s ease;
     }
     .sn-breadcrumbs-single a:hover {
-      color: var(--sn-gold);
+      color: var(--sn-gold-light);
+    }
+    .sn-breadcrumbs-single .current {
+      color: var(--sn-gold-light);
+      font-weight: 600;
     }
 
+    /* Hero Typography */
     .sn-single-header {
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
+      margin: 0 auto;
       text-align: center;
-      margin-bottom: 45px;
     }
     .sn-single-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--sn-gold);
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
+      color: var(--sn-gold-light);
+      background: rgba(200, 168, 126, 0.14);
+      border: 1px solid rgba(200, 168, 126, 0.35);
+      padding: 5px 13px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(6px);
     }
     .sn-single-title {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      color: #000000 !important;
-      margin: 0 0 14px;
-      line-height: 1.2;
+      font-size: clamp(1.9rem, 3.5vw, 2.85rem);
+      color: #ffffff !important;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.18;
       font-weight: 700;
+      letter-spacing: -0.01em;
     }
 
+    /* ==========================================================================
+       MAIN CONTENT: 2-COLUMN SIDE-BY-SIDE LAYOUT
+       ========================================================================== */
+    .sn-single-project-page {
+      background-color: var(--sn-bg-main);
+      background-image: radial-gradient(rgba(53, 100, 126, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      padding: 36px 0 50px;
+      min-height: 80vh;
+    }
+
+    .sn-product-two-column-layout {
+      display: grid;
+      grid-template-columns: 1.18fr 1fr;
+      gap: 44px;
+      align-items: start;
+      margin-bottom: 50px;
+    }
+
+    /* --------------------------------------------------------------------------
+       LEFT COLUMN: PRODUCT SHOWCASE & MEDIA
+       -------------------------------------------------------------------------- */
+    .sn-product-gallery-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Category Navigation Tabs */
     .sn-tabs-container {
-      max-width: 1100px;
-      margin: 0 auto 36px;
-      border-bottom: 1px solid var(--sn-border);
+      background: #ffffff;
+      border: 1px solid var(--sn-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 4px 16px rgba(22, 43, 54, 0.04);
+    }
+    .sn-tabs-header-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--sn-slate-blue);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-left: 2px;
     }
     .sn-nav-tabs {
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-      gap: 0;
-      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
     }
     .sn-tab-item {
-      flex: 1;
-      text-align: center;
-      padding: 16px 20px;
-      font-size: 0.95rem;
+      padding: 11px 10px;
+      font-size: 0.84rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.02em;
       color: var(--sn-text-muted);
-      background: transparent;
-      border: 1.5px solid transparent;
-      border-bottom: none;
+      background: #f1f5f9;
+      border: 1px solid transparent;
+      border-radius: 8px;
       cursor: pointer;
       transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+      text-align: center;
     }
     .sn-tab-item:hover {
+      background: #e2e8f0;
       color: var(--sn-navy);
-      background: rgba(255, 255, 255, 0.5);
     }
     .sn-tab-item.active {
-      color: var(--sn-navy);
-      background: #ffffff;
-      border: 1.5px solid var(--sn-gold);
-      border-bottom: 2px solid #ffffff;
-      margin-bottom: -1px;
-      box-shadow: 0 -4px 16px rgba(22, 43, 54, 0.05);
+      background: var(--sn-navy-light);
+      color: #ffffff;
+      border-color: var(--sn-navy-light);
+      box-shadow: 0 4px 14px rgba(35, 70, 89, 0.25);
       font-weight: 700;
     }
+    .sn-tab-item.active i {
+      color: var(--sn-gold-light);
+    }
 
+    /* Main Showcase Image Stage */
     .sn-gallery-stage {
-      max-width: 1100px;
-      margin: 0 auto 50px;
+      width: 100%;
     }
     .sn-large-top-img-wrap {
+      position: relative;
       width: 100%;
-      height: clamp(340px, 48vw, 540px);
+      height: 450px;
       overflow: hidden;
-      border-radius: 4px;
+      border-radius: 14px;
       background: #ffffff;
-      padding: 6px;
-      margin-bottom: 24px;
-      box-shadow: 0 20px 48px rgba(22, 43, 54, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 8px;
+      margin-bottom: 16px;
+      box-shadow: 0 18px 44px rgba(22, 43, 54, 0.1);
+      border: 1px solid rgba(53, 100, 126, 0.15);
     }
     .sn-large-top-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 2px;
-      transition: transform 0.7s ease;
+      border-radius: 8px;
+      transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .sn-large-top-img-wrap:hover img {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
+    /* Sub Images / Thumbnails Grid */
     .sn-bottom-imgs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 16px;
+      margin-bottom: 6px;
     }
     .sn-sub-img-wrap {
+      position: relative;
       width: 100%;
-      height: clamp(240px, 28vw, 360px);
+      height: 175px;
       overflow: hidden;
-      border-radius: 4px;
+      border-radius: 10px;
       background: #ffffff;
-      padding: 6px;
-      box-shadow: 0 14px 36px rgba(22, 43, 54, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 5px;
+      box-shadow: 0 8px 24px rgba(22, 43, 54, 0.07);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .sn-sub-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 2px;
-      transition: transform 0.5s ease;
+      border-radius: 6px;
+      transition: transform 0.45s ease;
+    }
+    .sn-sub-img-wrap:hover {
+      border-color: var(--sn-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(22, 43, 54, 0.14);
     }
     .sn-sub-img-wrap:hover img {
-      transform: scale(1.03);
+      transform: scale(1.04);
+    }
+    .sn-sub-img-caption {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background: rgba(16, 33, 44, 0.88);
+      backdrop-filter: blur(4px);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+    .sn-sub-img-wrap:hover .sn-sub-img-caption {
+      background: var(--sn-navy-light);
+      color: #ffffff;
     }
 
-    .sn-project-details-grid {
-      max-width: 1100px;
-      margin: 0 auto 60px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
+    /* Under-Gallery Assurance Card */
+    .sn-gallery-assurance-card {
       background: #ffffff;
       border: 1px solid var(--sn-border);
-      border-radius: 4px;
-      padding: 44px;
-      box-shadow: 0 16px 40px rgba(22, 43, 54, 0.06);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      box-shadow: 0 4px 16px rgba(22, 43, 54, 0.04);
     }
-    .sn-details-col h2,
-    .sn-details-col h3 {
-      font-family: var(--font-serif);
-      font-size: 1.45rem;
-      color: #000000 !important;
-      margin: 0 0 18px;
+    .sn-assurance-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sn-assurance-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(200, 168, 126, 0.14);
+      color: var(--sn-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .sn-assurance-item strong {
+      display: block;
+      font-size: 0.84rem;
       font-weight: 700;
+      color: var(--sn-text-main);
+      margin-bottom: 2px;
     }
-    .sn-details-col p {
-      font-size: 0.96rem;
+    .sn-assurance-item span {
+      display: block;
+      font-size: 0.74rem;
       color: var(--sn-text-muted);
-      line-height: 1.8;
-      margin: 0 0 24px;
+      line-height: 1.35;
     }
 
+    /* --------------------------------------------------------------------------
+       RIGHT COLUMN: PRODUCT DETAILS & SPECIFICATIONS
+       -------------------------------------------------------------------------- */
+    .sn-product-details-side {
+      position: relative;
+    }
+    .sn-details-sticky-inner {
+      position: sticky;
+      top: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Details Header Block */
+    .sn-details-intro-block {
+      background: #ffffff;
+      border: 1px solid var(--sn-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      box-shadow: 0 8px 24px rgba(22, 43, 54, 0.04);
+    }
+    .sn-details-kicker {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .sn-kicker-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sn-slate-blue);
+    }
+    .sn-rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    .sn-rating-badge i {
+      color: #f59e0b;
+    }
+    .sn-details-title {
+      font-family: var(--font-serif);
+      font-size: 1.48rem;
+      color: #000000 !important;
+      margin: 0 0 10px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .sn-details-lead {
+      font-size: 0.91rem;
+      color: var(--sn-text-muted);
+      line-height: 1.68;
+      margin: 0;
+    }
+
+    /* Pricing Box */
+    .sn-single-pricing-box {
+      background: linear-gradient(135deg, #ffffff 0%, #fdfbf7 100%);
+      border: 1.5px solid var(--sn-gold-border);
+      padding: 24px 26px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(168, 132, 84, 0.1);
+    }
+    .sn-price-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    .sn-price-kicker {
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sn-slate-blue);
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sn-price-amount {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      color: var(--sn-navy);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .sn-price-unit {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--sn-text-muted);
+    }
+    .sn-price-badge-pill {
+      background: rgba(16, 185, 129, 0.1);
+      color: #065f46;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .sn-price-desc {
+      font-size: 0.85rem;
+      color: var(--sn-text-muted);
+      line-height: 1.6;
+      margin: 0 0 18px;
+    }
+    .sn-single-actions {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 12px;
+    }
+    .sn-single-actions .btn {
+      padding: 13px 18px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 8px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: all 0.28s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .sn-single-actions .btn-primary {
+      background: linear-gradient(135deg, #234659 0%, #162b36 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(22, 43, 54, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+    }
+    .sn-single-actions .btn-primary:hover {
+      background: linear-gradient(135deg, #35647e 0%, #234659 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(22, 43, 54, 0.28);
+    }
+    .sn-btn-whatsapp {
+      background: #25d366 !important;
+      color: #ffffff !important;
+      border: 1px solid #1ebc59 !important;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.2);
+      text-decoration: none;
+    }
+    .sn-btn-whatsapp:hover {
+      background: #1ebc59 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35);
+      color: #ffffff !important;
+    }
+
+    /* Key Highlights 2x2 Grid in Details Column */
+    .sn-highlights-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .sn-highlight-card {
+      background: #ffffff;
+      border: 1px solid var(--sn-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(22, 43, 54, 0.03);
+      transition: all 0.25s ease;
+    }
+    .sn-highlight-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--sn-gold);
+      box-shadow: 0 6px 16px rgba(168, 132, 84, 0.12);
+    }
+    .sn-highlight-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: rgba(200, 168, 126, 0.15);
+      color: var(--sn-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .sn-highlight-card strong {
+      display: block;
+      font-size: 0.81rem;
+      color: var(--sn-navy);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .sn-highlight-card span {
+      display: block;
+      font-size: 0.73rem;
+      color: var(--sn-text-muted);
+      line-height: 1.35;
+    }
+
+    /* --------------------------------------------------------------------------
+       FULL-WIDTH ARCHITECTURAL SPECIFICATIONS SECTION
+       -------------------------------------------------------------------------- */
+    .sn-full-specs-container {
+      background: #ffffff;
+      border: 1px solid var(--sn-border);
+      border-radius: 16px;
+      padding: 34px 38px;
+      margin-bottom: 0;
+      box-shadow: 0 10px 32px rgba(22, 43, 54, 0.05);
+    }
+    .sn-full-specs-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .sn-full-specs-kicker {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sn-slate-blue);
+      margin-bottom: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sn-full-specs-title {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      color: var(--sn-navy);
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    .sn-full-specs-subtitle {
+      font-size: 0.88rem;
+      color: var(--sn-text-muted);
+      margin: 0 auto;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+    .sn-specs-dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-bottom: 0;
+    }
+    .sn-specs-column-card {
+      border: 1px solid var(--sn-border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .sn-specs-column-title {
+      background: #f8fafc;
+      padding: 12px 18px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--sn-navy);
+      border-bottom: 1px solid var(--sn-border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sn-specs-column-title i {
+      color: var(--sn-gold);
+    }
     .sn-single-specs-table {
       width: 100%;
       border-collapse: collapse;
-      border: 1px solid var(--sn-border);
     }
     .sn-single-specs-table tr {
       border-bottom: 1px solid var(--sn-border);
+      transition: background 0.2s ease;
     }
-    .sn-single-specs-table tr:nth-child(even) {
-      background: rgba(53, 100, 126, 0.08);
+    .sn-single-specs-table tr:hover {
+      background: rgba(200, 168, 126, 0.05);
     }
     .sn-single-specs-table tr:last-child {
       border-bottom: none;
     }
     .sn-single-specs-table td {
-      padding: 13px 18px;
-      font-size: 0.9rem;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      vertical-align: top;
     }
     .sn-single-specs-table td:first-child {
-      width: 38%;
+      width: 33%;
       color: var(--sn-slate-blue);
-      font-weight: 600;
+      font-weight: 700;
+      background: rgba(248, 250, 252, 0.7);
+      border-right: 1px solid var(--sn-border);
     }
     .sn-single-specs-table td:last-child {
       color: var(--sn-navy);
       font-weight: 500;
     }
 
-    .sn-single-pricing-box {
-      background: linear-gradient(135deg, rgba(53, 100, 126, 0.05) 0%, rgba(200, 168, 126, 0.08) 100%);
-      border: 1px solid rgba(168, 132, 84, 0.35);
-      padding: 30px;
-      border-radius: 4px;
-      margin-bottom: 26px;
-    }
-    .sn-price-kicker {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--sn-slate-blue);
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .sn-price-amount {
-      font-family: var(--font-serif);
-      font-size: 1.65rem;
-      color: var(--sn-navy);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .sn-price-desc {
-      font-size: 0.86rem;
-      color: var(--sn-text-muted);
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    .sn-single-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .sn-single-actions .btn {
-      padding: 13px 28px;
-      font-size: 0.88rem;
-    }
-
-    .sn-project-nav-bar {
-      max-width: 1100px;
-      margin: 0 auto 50px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding-top: 20px;
-      border-top: 1px solid var(--sn-border);
-    }
-    .sn-pnav-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--sn-navy);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      background: #ffffff;
-      padding: 12px 24px;
-      border-radius: 2px;
-      border: 1px solid var(--sn-border);
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 12px rgba(22, 43, 54, 0.04);
-    }
-    .sn-pnav-link:hover {
-      background: var(--sn-navy);
-      color: #ffffff;
-      border-color: var(--sn-navy);
-    }
-
+    /* --------------------------------------------------------------------------
+       TRUST & MATERIALS STRIP
+       -------------------------------------------------------------------------- */
     .sn-trust-strip {
-      background: #e8eef3;
+      background: #eef3f7;
       padding: 44px 0;
       border-top: 1px solid var(--sn-border);
       border-bottom: 1px solid var(--sn-border);
@@ -389,15 +740,331 @@
       flex-shrink: 0;
     }
 
-    @media (max-width: 1024px) {
-      .sn-project-details-grid { grid-template-columns: 1fr; gap: 30px; padding: 28px; }
+    /* ==========================================================================
+       RESPONSIVE ADAPTATIONS (Desktop, Tablet, Mobile)
+       ========================================================================== */
+    @media (max-width: 1100px) {
+      .sn-product-two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin-bottom: 34px;
+      }
+      .sn-details-sticky-inner {
+        position: static;
+      }
+      .sn-large-top-img-wrap {
+        height: 380px;
+      }
+      .sn-specs-dual-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .sn-full-specs-container {
+        padding: 28px 24px;
+      }
     }
+
     @media (max-width: 768px) {
-      .sn-bottom-imgs-grid { grid-template-columns: 1fr; gap: 16px; }
-      .sn-tab-item { padding: 12px 10px; font-size: 0.84rem; }
-      .sn-trust-inner { justify-content: flex-start; }
-      .sn-trust-divider { display: none; }
-      .sn-project-nav-bar { flex-direction: column; }
+      /* Hero Section */
+      .sn-product-hero-section {
+        padding: 20px 0 24px;
+      }
+      .sn-single-back-bar {
+        margin-bottom: 14px;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .sn-back-btn {
+        padding: 7px 15px;
+        font-size: 0.8rem;
+      }
+      .sn-breadcrumbs-single {
+        font-size: 0.78rem;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .sn-single-badge {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .sn-single-title {
+        font-size: clamp(1.45rem, 5.5vw, 1.95rem) !important;
+        line-height: 1.22;
+      }
+
+      /* Main Page Container */
+      .sn-single-project-page {
+        padding: 22px 0 44px;
+      }
+      .sn-product-two-column-layout {
+        gap: 22px;
+        margin-bottom: 24px;
+      }
+
+      /* Category Tabs: Compact Horizontal Bar */
+      .sn-tabs-container {
+        padding: 10px 10px;
+        margin-bottom: 12px;
+        border-radius: 10px;
+      }
+      .sn-tabs-header-label {
+        font-size: 0.72rem;
+        margin-bottom: 6px;
+      }
+      .sn-nav-tabs {
+        display: flex;
+        overflow-x: auto;
+        gap: 6px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 2px;
+      }
+      .sn-nav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .sn-tab-item {
+        flex: 1 1 auto;
+        white-space: nowrap;
+        font-size: 0.78rem;
+        padding: 8px 10px;
+        border-radius: 6px;
+      }
+
+      /* Image Gallery Showcase */
+      .sn-large-top-img-wrap {
+        height: clamp(230px, 58vw, 320px);
+        border-radius: 10px;
+        padding: 4px;
+        margin-bottom: 10px;
+      }
+      .sn-bottom-imgs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .sn-sub-img-wrap {
+        height: clamp(105px, 28vw, 140px);
+        border-radius: 8px;
+        padding: 3px;
+      }
+      .sn-sub-img-caption {
+        bottom: 6px;
+        left: 6px;
+        right: 6px;
+        padding: 4px 6px;
+        font-size: 0.68rem;
+      }
+      .sn-sub-img-caption span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 82%;
+      }
+
+      /* Gallery Assurance Card */
+      .sn-gallery-assurance-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 10px;
+      }
+      .sn-assurance-item {
+        gap: 10px;
+      }
+      .sn-assurance-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+      }
+      .sn-assurance-item strong {
+        font-size: 0.8rem;
+      }
+      .sn-assurance-item span {
+        font-size: 0.72rem;
+      }
+
+      /* Product Details Block */
+      .sn-details-sticky-inner {
+        gap: 16px;
+      }
+      .sn-details-intro-block {
+        padding: 18px 16px;
+        border-radius: 12px;
+      }
+      .sn-kicker-tag {
+        font-size: 0.7rem;
+      }
+      .sn-rating-badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+      }
+      .sn-details-title {
+        font-size: 1.25rem !important;
+        margin-bottom: 8px;
+      }
+      .sn-details-lead {
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+
+      /* Pricing & Action Buttons */
+      .sn-single-pricing-box {
+        padding: 18px 16px;
+        border-radius: 12px;
+      }
+      .sn-price-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .sn-price-amount {
+        font-size: 1.6rem;
+      }
+      .sn-price-unit {
+        font-size: 0.85rem;
+      }
+      .sn-price-badge-pill {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+      }
+      .sn-price-desc {
+        font-size: 0.82rem;
+        margin-bottom: 14px;
+      }
+      .sn-single-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+      .sn-single-actions .btn {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 0.86rem;
+        justify-content: center;
+      }
+
+      /* 2x2 Highlights Grid */
+      .sn-highlights-2x2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .sn-highlight-card {
+        padding: 10px 10px;
+        gap: 8px;
+      }
+      .sn-highlight-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+      }
+      .sn-highlight-card strong {
+        font-size: 0.76rem;
+      }
+      .sn-highlight-card span {
+        font-size: 0.68rem;
+      }
+
+      /* Specifications Section */
+      .sn-full-specs-container {
+        padding: 20px 14px;
+        border-radius: 12px;
+        margin-bottom: 0;
+      }
+      .sn-full-specs-header {
+        margin-bottom: 16px;
+      }
+      .sn-full-specs-kicker {
+        font-size: 0.7rem;
+      }
+      .sn-full-specs-title {
+        font-size: 1.25rem;
+        margin-bottom: 6px;
+      }
+      .sn-full-specs-subtitle {
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+      .sn-specs-dual-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .sn-specs-column-card {
+        border-radius: 8px;
+      }
+      .sn-specs-column-title {
+        padding: 10px 12px;
+        font-size: 0.78rem;
+      }
+      .sn-single-specs-table td {
+        padding: 9px 10px;
+        font-size: 0.78rem;
+        line-height: 1.4;
+      }
+      .sn-single-specs-table td:first-child {
+        width: 38%;
+        font-size: 0.75rem;
+      }
+      .sn-single-specs-table td:last-child {
+        font-size: 0.78rem;
+      }
+
+      /* Trust & Materials Strip: 2x2 Grid on Mobile */
+      .sn-trust-strip {
+        padding: 28px 0;
+      }
+      .sn-trust-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 14px;
+        justify-content: center;
+      }
+      .sn-trust-item {
+        gap: 10px;
+      }
+      .sn-trust-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
+      }
+      .sn-trust-text strong {
+        font-size: 0.8rem;
+      }
+      .sn-trust-text span {
+        font-size: 0.7rem;
+      }
+      .sn-trust-divider {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sn-highlights-2x2 {
+        grid-template-columns: 1fr;
+      }
+      .sn-bottom-imgs-grid {
+        gap: 8px;
+      }
+      .sn-sub-img-caption span {
+        max-width: 75%;
+      }
+      .sn-single-title {
+        font-size: 1.38rem !important;
+      }
+      .sn-trust-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 10px;
+      }
+      .sn-trust-text strong {
+        font-size: 0.76rem;
+      }
+      .sn-trust-text span {
+        font-size: 0.66rem;
+      }
     }
   </style>
 </head>
@@ -406,131 +1073,225 @@
   <!-- Dynamic Header Container -->
   <div id="site-header-container"></div>
 
-  <main class="sn-single-project-page">
+  <!-- ARCHITECTURAL HERO SECTION -->
+  <section class="sn-product-hero-section">
     <div class="container">
       
-      <!-- Back Navigation Bar -->
+      <!-- Back Navigation & Breadcrumbs Row -->
       <div class="sn-single-back-bar">
-        <a href="products.html" class="sn-back-btn">
-          <i class="fa-solid fa-arrow-left"></i>
-          <span>Back to All Collections</span>
-        </a>
         <nav class="sn-breadcrumbs-single" aria-label="Breadcrumb">
           <a href="index.html">Home</a>
           <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
           <a href="products.html">Products</a>
           <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
-          <span>Executive Home Office</span>
+          <span class="current">Executive Home Office</span>
         </nav>
       </div>
 
       <!-- Single Product Header -->
       <header class="sn-single-header">
-        <span class="sn-single-badge"><i class="fa-solid fa-circle-check"></i> Ergonomic Executive Build · Pune Since 2005</span>
         <h1 class="sn-single-title">Executive Home Office &amp; Study Furniture</h1>
       </header>
 
-      <!-- Category Navigation Tabs -->
-      <div class="sn-tabs-container">
-        <nav class="sn-nav-tabs" role="tablist">
-          <button type="button" class="sn-tab-item active" data-room-tab="study-desk" role="tab" aria-selected="true">Study Desk Setup</button>
-          <button type="button" class="sn-tab-item" data-room-tab="library-shelf" role="tab" aria-selected="false">Library &amp; Bookshelf</button>
-          <button type="button" class="sn-tab-item" data-room-tab="credenza" role="tab" aria-selected="false">Storage Credenza</button>
-        </nav>
-      </div>
+    </div>
+  </section>
 
-      <!-- Gallery Showcase Stage -->
-      <div class="sn-gallery-stage">
-        <div class="sn-large-top-img-wrap">
-          <img src="assets/images/SK-Img/homeoffice1.jpg" alt="Executive Home Office Study Suite by SK Enterprises" id="singleMainImg">
+  <!-- MAIN PRODUCT WORKSPACE -->
+  <main class="sn-single-project-page">
+    <div class="container">
+
+      <!-- TWO-COLUMN PRODUCT WORKSPACE: Left = Media Showcase, Right = Details & Specs -->
+      <div class="sn-product-two-column-layout">
+
+        <!-- LEFT COLUMN: Product Add / Visual Gallery Showcase -->
+        <div class="sn-product-gallery-side">
+          
+          <!-- Category Navigation Tabs -->
+          <div class="sn-tabs-container">
+            <div class="sn-tabs-header-label">
+              <i class="fa-solid fa-layer-group"></i> Explore Office Modules:
+            </div>
+            <nav class="sn-nav-tabs" role="tablist">
+              <button type="button" class="sn-tab-item active" data-room-tab="study-desk" role="tab" aria-selected="true">
+                <i class="fa-solid fa-laptop"></i> Study Desk Setup
+              </button>
+              <button type="button" class="sn-tab-item" data-room-tab="library-shelf" role="tab" aria-selected="false">
+                <i class="fa-solid fa-book"></i> Library &amp; Bookshelf
+              </button>
+              <button type="button" class="sn-tab-item" data-room-tab="credenza" role="tab" aria-selected="false">
+                <i class="fa-solid fa-box-archive"></i> Storage Credenza
+              </button>
+            </nav>
+          </div>
+
+          <!-- Gallery Showcase Stage -->
+          <div class="sn-gallery-stage">
+            <div class="sn-large-top-img-wrap">
+              <img src="assets/images/SK-Img/homeoffice1.jpg" alt="Executive Home Office Study Suite by SK Enterprises" id="singleMainImg">
+            </div>
+
+            <div class="sn-bottom-imgs-grid">
+              <div class="sn-sub-img-wrap" title="Click to view in main showcase">
+                <img src="assets/images/SK-Img/ai-home-office.jpg" alt="Floor-to-Ceiling Lighted Bookshelf and Executive Desk" id="singleSubImg1">
+                <div class="sn-sub-img-caption">
+                  <span>Lighted Library &amp; Bookshelf</span>
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </div>
+              </div>
+              <div class="sn-sub-img-wrap" title="Click to view in main showcase">
+                <img src="assets/images/SK-Img/home office.jpg" alt="Ergonomic Workstation and Modular Drawer Storage" id="singleSubImg2">
+                <div class="sn-sub-img-caption">
+                  <span>Ergonomic Workstation</span>
+                  <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="sn-bottom-imgs-grid">
-          <div class="sn-sub-img-wrap">
-            <img src="assets/images/SK-Img/ai-home-office.jpg" alt="Floor-to-Ceiling Lighted Bookshelf and Executive Desk" id="singleSubImg1">
-          </div>
-          <div class="sn-sub-img-wrap">
-            <img src="assets/images/SK-Img/home office.jpg" alt="Ergonomic Workstation and Modular Drawer Storage" id="singleSubImg2">
+        <!-- RIGHT COLUMN: Product Details, Pricing, CTAs, Specifications -->
+        <div class="sn-product-details-side">
+          <div class="sn-details-sticky-inner">
+
+            <!-- Detail Header Badge & Title -->
+            <div class="sn-details-intro-block">
+              <div class="sn-details-kicker">
+                <span class="sn-kicker-tag">ARCHITECTURAL SPECIFICATION</span>
+                <span class="sn-rating-badge"><i class="fa-solid fa-star"></i> 4.9 / 5 (450+ Homes)</span>
+              </div>
+              <h2 class="sn-details-title">Craftsmanship &amp; Architectural Specifications</h2>
+              <p class="sn-details-lead">
+                Bespoke executive study desks, integrated concealed cable management raceways, and floor-to-ceiling wooden library bookshelves with warm recessed LED lighting. Engineered for demanding home workspaces, law offices, and villa studies across Pune.
+              </p>
+            </div>
+
+            <!-- Factory Direct Pricing Box -->
+            <div class="sn-single-pricing-box">
+              <div class="sn-price-header">
+                <div>
+                  <div class="sn-price-kicker"><i class="fa-solid fa-tag"></i> Factory Direct Pricing</div>
+                  <div class="sn-price-amount">Custom Quoted <span class="sn-price-unit">per study layout</span></div>
+                </div>
+                <div class="sn-price-badge-pill">Direct Factory Build</div>
+              </div>
+              <p class="sn-price-desc">
+                Tailored to your specific room boundaries, monitor requirements, and library volume. Includes free CAD planning and direct factory installation.
+              </p>
+              
+              <!-- Action Buttons -->
+              <div class="sn-single-actions">
+                <button type="button" class="btn btn-primary open-enquiry-drawer">
+                  <i class="fa-solid fa-laptop"></i> Enquire Home Office
+                </button>
+                <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Executive%20Home%20Office%20%26%20Study%20Furniture" target="_blank" rel="noopener" class="btn btn-secondary sn-btn-whatsapp">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                </a>
+              </div>
+            </div>
+
+            <!-- Key Architectural Highlights (2x2 Grid) -->
+            <div class="sn-highlights-2x2">
+              <div class="sn-highlight-card">
+                <div class="sn-highlight-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <div>
+                  <strong>Cable Management</strong>
+                  <span>Aluminum flip-up power groomers</span>
+                </div>
+              </div>
+              <div class="sn-highlight-card">
+                <div class="sn-highlight-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                  <strong>Calibrated Marine Ply</strong>
+                  <span>HDHMR moisture resistant core</span>
+                </div>
+              </div>
+              <div class="sn-highlight-card">
+                <div class="sn-highlight-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <div>
+                  <strong>LED Library Profiles</strong>
+                  <span>Floor-to-ceiling warm backlighting</span>
+                </div>
+              </div>
+              <div class="sn-highlight-card">
+                <div class="sn-highlight-icon"><i class="fa-solid fa-certificate"></i></div>
+                <div>
+                  <strong>10-Year Warranty</strong>
+                  <span>Comprehensive workmanship warranty</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
       </div>
 
-      <!-- Specifications & Consultation -->
-      <section class="sn-project-details-grid">
-        <div class="sn-details-col">
-          <h2>Craftsmanship &amp; Architectural Specifications</h2>
-          <p>
-            Bespoke executive study desks, integrated concealed cable management raceways, and floor-to-ceiling wooden library bookshelves with warm recessed LED lighting. Engineered for demanding home workspaces, law offices, and villa studies across Pune.
+      <!-- FULL-WIDTH ARCHITECTURAL SPECIFICATIONS SECTION -->
+      <section class="sn-full-specs-container">
+        <div class="sn-full-specs-header">
+          <div class="sn-full-specs-kicker"><i class="fa-solid fa-layer-group"></i> Technical Architecture</div>
+          <h2 class="sn-full-specs-title">Craftsmanship &amp; Engineering Specifications</h2>
+          <p class="sn-full-specs-subtitle">
+            Every module is precision machine-banded and assembled at our Narhe, Pune facility with certified boiling waterproof marine plywood.
           </p>
-          <table class="sn-single-specs-table">
-            <tbody>
-              <tr>
-                <td>Desk Dimensions</td>
-                <td>60" to 78" Length x 30" Depth x 30" Height (Customizable)</td>
-              </tr>
-              <tr>
-                <td>Wood Quality</td>
-                <td>Calibrated Marine Ply &amp; High-Density Moisture Resistant HDHMR</td>
-              </tr>
-              <tr>
-                <td>Desk Surface</td>
-                <td>Anti-Scratch Matte PU Lacquer with Inset Vegan Leather Writing Pad</td>
-              </tr>
-              <tr>
-                <td>Cable Management</td>
-                <td>Integrated Aluminum Flip-Up Power Groomers &amp; Wire Troughs</td>
-              </tr>
-              <tr>
-                <td>Bookcase Library</td>
-                <td>Floor-to-Ceiling Shelves with Vertical 3000K Warm LED Backlight Profiles</td>
-              </tr>
-              <tr>
-                <td>Drawers &amp; Hardware</td>
-                <td>Hafele Soft-Close Lockable Drawer Runners &amp; Filing Rails</td>
-              </tr>
-              <tr>
-                <td>Warranty</td>
-                <td>10 Years Comprehensive Workmanship Warranty</td>
-              </tr>
-              <tr>
-                <td>Manufacturing</td>
-                <td>Precision Cut at Narhe Industrial Estate, Pune</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
 
-        <div class="sn-details-col">
-          <div class="sn-single-pricing-box">
-            <div class="sn-price-kicker">Factory Direct Pricing</div>
-            <div class="sn-price-amount">Custom Quoted per Study Layout</div>
-            <p class="sn-price-desc">
-              Tailored to your specific room boundaries, monitor requirements, and library volume. Includes free CAD planning and direct factory installation.
-            </p>
+        <div class="sn-specs-dual-grid">
+          <!-- Column 1: Desk Architecture & Surface -->
+          <div class="sn-specs-column-card">
+            <div class="sn-specs-column-title">
+              <i class="fa-solid fa-cubes-stacked"></i> Desk Architecture &amp; Surface
+            </div>
+            <table class="sn-single-specs-table">
+              <tbody>
+                <tr>
+                  <td>Desk Dimensions</td>
+                  <td>60" to 78" Length x 30" Depth x 30" Height (Customizable)</td>
+                </tr>
+                <tr>
+                  <td>Wood Quality</td>
+                  <td>Calibrated Marine Ply &amp; High-Density Moisture Resistant HDHMR</td>
+                </tr>
+                <tr>
+                  <td>Desk Surface</td>
+                  <td>Anti-Scratch Matte PU Lacquer with Inset Vegan Leather Writing Pad</td>
+                </tr>
+                <tr>
+                  <td>Cable Management</td>
+                  <td>Integrated Aluminum Flip-Up Power Groomers &amp; Wire Troughs</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <div class="sn-single-actions">
-            <button type="button" class="btn btn-primary open-enquiry-drawer">
-              <i class="fa-solid fa-envelope"></i> Enquire Home Office
-            </button>
-            <a href="https://wa.me/919423053232?text=Hello%20SK%20Enterprises,%20I%20am%20interested%20in%20Executive%20Home%20Office%20%26%20Study%20Furniture" target="_blank" rel="noopener" class="btn btn-secondary">
-              <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp Us
-            </a>
+          <!-- Column 2: Storage, Library & Guarantee -->
+          <div class="sn-specs-column-card">
+            <div class="sn-specs-column-title">
+              <i class="fa-solid fa-screwdriver-wrench"></i> Storage, Library &amp; Guarantee
+            </div>
+            <table class="sn-single-specs-table">
+              <tbody>
+                <tr>
+                  <td>Bookcase Library</td>
+                  <td>Floor-to-Ceiling Shelves with Vertical 3000K Warm LED Backlight Profiles</td>
+                </tr>
+                <tr>
+                  <td>Drawers &amp; Hardware</td>
+                  <td>Hafele Soft-Close Lockable Drawer Runners &amp; Filing Rails</td>
+                </tr>
+                <tr>
+                  <td>Warranty</td>
+                  <td>10 Years Comprehensive Workmanship Warranty</td>
+                </tr>
+                <tr>
+                  <td>Manufacturing</td>
+                  <td>Precision Cut at Narhe Industrial Estate, Pune</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
-
-      <!-- Next / Previous Navigation -->
-      <div class="sn-project-nav-bar">
-        <a href="product-modular-kitchen.html" class="sn-pnav-link">
-          <i class="fa-solid fa-arrow-left"></i>
-          <span>Previous: Modular Kitchens</span>
-        </a>
-        <a href="product-master-bedroom.html" class="sn-pnav-link">
-          <span>Next: Master Bedroom Suites</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
 
     </div>
   </main>
@@ -640,6 +1401,22 @@
             mainImg.src = roomGalleries[room].main;
             subImg1.src = roomGalleries[room].sub1;
             subImg2.src = roomGalleries[room].sub2;
+          }
+        });
+      });
+
+      // Thumbnail Click to Preview / Swap with Main View
+      var subWraps = document.querySelectorAll('.sn-sub-img-wrap');
+      subWraps.forEach(function(wrap) {
+        wrap.addEventListener('click', function() {
+          var clickedImg = this.querySelector('img');
+          if (clickedImg && mainImg) {
+            var tempSrc = mainImg.src;
+            var tempAlt = mainImg.alt;
+            mainImg.src = clickedImg.src;
+            mainImg.alt = clickedImg.alt;
+            clickedImg.src = tempSrc;
+            clickedImg.alt = tempAlt;
           }
         });
       });
