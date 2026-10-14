@@ -23,102 +23,479 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="css/style.css?v=20261014">
   <style>
     /* ==========================================================================
-       UNIFIED CONTACT PAGE TYPOGRAPHY & COLOR SYSTEM
-       "dont use many fonts .....dont use multiple color ......use all one"
+       LUXURY CONTACT CARDS REDESIGN WITH 100% BULLETPROOF ICONS
        ========================================================================== */
     .contact-info-panel,
-    .contact-info-panel *,
     .quote-card,
-    .quote-card * {
+    .contact-info-panel p,
+    .contact-info-panel h2,
+    .contact-info-panel strong,
+    .contact-info-panel a,
+    .contact-info-panel span,
+    .contact-info-panel label,
+    .quote-card h3,
+    .quote-card p,
+    .quote-card label,
+    .quote-card input,
+    .quote-card select,
+    .quote-card textarea,
+    .quote-card button {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
     }
 
-    /* Single Unified Brand Primary Color for Headings & Text */
+    /* Keep Font Awesome fonts intact if loaded */
+    .contact-info-panel i.fa-solid,
+    .quote-card i.fa-solid,
+    [class*="fa-solid"] {
+      font-family: "Font Awesome 6 Free" !important;
+      font-weight: 900 !important;
+    }
+    .contact-info-panel i.fa-brands,
+    .quote-card i.fa-brands,
+    [class*="fa-brands"] {
+      font-family: "Font Awesome 6 Brands" !important;
+      font-weight: 400 !important;
+    }
+
+    /* Section Background */
+    #contact-details {
+      background: linear-gradient(180deg, #f8fafc 0%, #edf2f6 100%) !important;
+      padding: 60px 0 !important;
+    }
+
+    .contact-section-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1.25fr !important;
+      gap: 36px !important;
+      align-items: stretch !important;
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+    }
+
+    /* Card 1: Direct Inquiries Left Card */
+    .contact-info-panel {
+      background: #ffffff !important;
+      border-radius: 24px !important;
+      padding: 44px 38px !important;
+      box-shadow: 0 20px 48px -12px rgba(22, 43, 54, 0.08), 0 0 0 1px rgba(22, 43, 54, 0.06) !important;
+      border: 1px solid rgba(200, 168, 126, 0.3) !important;
+      position: relative !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+    }
+
+    .contact-info-panel::before {
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 4px !important;
+      background: linear-gradient(90deg, #c8a87e 0%, #e2cdb0 50%, #c8a87e 100%) !important;
+    }
+
+    .contact-badge-pill {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: rgba(200, 168, 126, 0.12) !important;
+      border: 1px solid rgba(200, 168, 126, 0.35) !important;
+      color: #9f7d4f !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      padding: 5px 14px !important;
+      border-radius: 999px !important;
+      margin-bottom: 12px !important;
+      width: fit-content !important;
+    }
+
     .contact-info-panel h2 {
-      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 2rem !important;
+      font-weight: 700 !important;
+      color: #162b36 !important;
+      margin-bottom: 10px !important;
+      letter-spacing: -0.02em !important;
+      line-height: 1.25 !important;
+    }
+
+    .contact-info-panel .lead-text {
+      font-size: 0.93rem !important;
+      color: #5d6b75 !important;
+      line-height: 1.6 !important;
+      margin-bottom: 28px !important;
+    }
+
+    /* Micro-cards for each item */
+    .contact-items-list {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+    }
+
+    .contact-item-row {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+      padding: 16px 18px !important;
+      background: #fbfcfd !important;
+      border-radius: 16px !important;
+      border: 1px solid rgba(22, 43, 54, 0.07) !important;
+      transition: all 0.25s ease !important;
+    }
+
+    .contact-item-row:hover {
+      background: #ffffff !important;
+      border-color: rgba(200, 168, 126, 0.45) !important;
+      box-shadow: 0 8px 22px -6px rgba(22, 43, 54, 0.08) !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* Icon Badges */
+    .contact-icon-box {
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      border-radius: 13px !important;
+      background: linear-gradient(135deg, #162b36 0%, #203f50 100%) !important;
+      color: #c8a87e !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: 0 6px 16px rgba(22, 43, 54, 0.14) !important;
+      border: 1px solid rgba(200, 168, 126, 0.3) !important;
+      flex-shrink: 0 !important;
+      transition: transform 0.25s ease, background 0.25s ease !important;
+    }
+
+    .contact-icon-box svg {
+      width: 20px !important;
+      height: 20px !important;
+      fill: #c8a87e !important;
+      transition: fill 0.25s ease !important;
+    }
+
+    .contact-item-row:hover .contact-icon-box {
+      transform: scale(1.05) rotate(2deg) !important;
+      background: linear-gradient(135deg, #c8a87e 0%, #ddc4a3 100%) !important;
+    }
+
+    .contact-item-row:hover .contact-icon-box svg {
+      fill: #162b36 !important;
+    }
+
+    .contact-text-block {
+      flex: 1 !important;
+    }
+
+    .contact-text-block strong {
+      display: block !important;
+      font-size: 0.8rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      color: #8a99a3 !important;
+      margin-bottom: 5px !important;
+      font-weight: 700 !important;
+    }
+
+    .contact-text-block .phone-links {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 3px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .contact-text-block .phone-link {
+      font-weight: 700 !important;
+      font-size: 1.08rem !important;
+      color: #162b36 !important;
+      letter-spacing: -0.01em !important;
+      text-decoration: none !important;
+      transition: color 0.2s ease !important;
+    }
+
+    .contact-text-block .phone-link:hover {
+      color: #c8a87e !important;
+    }
+
+    .contact-highlight-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: rgba(37, 211, 102, 0.08) !important;
+      color: #1a7f43 !important;
+      border: 1px solid rgba(37, 211, 102, 0.25) !important;
+      padding: 4px 12px !important;
+      border-radius: 999px !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+    }
+
+    .contact-highlight-badge svg {
+      width: 14px !important;
+      height: 14px !important;
+      stroke: #25d366 !important;
+    }
+
+    .contact-text-block .email-link {
+      font-weight: 600 !important;
+      font-size: 1rem !important;
+      color: #162b36 !important;
+      text-decoration: none !important;
+      transition: color 0.2s ease !important;
+    }
+
+    .contact-text-block .email-link:hover {
+      color: #c8a87e !important;
+    }
+
+    .social-btns-row {
+      display: flex !important;
+      gap: 10px !important;
+      margin-top: 8px !important;
+    }
+
+    .social-btn-brand {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 11px !important;
+      background: #ffffff !important;
+      border: 1.5px solid rgba(22, 43, 54, 0.12) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-decoration: none !important;
+      transition: all 0.25s ease !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .social-btn-brand svg {
+      width: 18px !important;
+      height: 18px !important;
+      fill: #162b36 !important;
+      transition: fill 0.25s ease !important;
+    }
+
+    .social-btn-brand:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 16px rgba(22, 43, 54, 0.18) !important;
+    }
+
+    .social-btn-brand.social-btn-instagram:hover {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
+      border-color: transparent !important;
+    }
+    .social-btn-brand.social-btn-instagram:hover svg {
+      fill: #ffffff !important;
+    }
+
+    .social-btn-brand.social-btn-facebook:hover {
+      background: #1877f2 !important;
+      border-color: #1877f2 !important;
+    }
+    .social-btn-brand.social-btn-facebook:hover svg {
+      fill: #ffffff !important;
+    }
+
+    .social-btn-brand.social-btn-youtube:hover {
+      background: #ff0000 !important;
+      border-color: #ff0000 !important;
+    }
+    .social-btn-brand.social-btn-youtube:hover svg {
+      fill: #ffffff !important;
+    }
+
+    .map-action-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      background: #162b36 !important;
+      color: #ffffff !important;
+      padding: 9px 18px !important;
+      border-radius: 10px !important;
+      font-size: 0.84rem !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      margin-top: 12px !important;
+      transition: all 0.25s ease !important;
+      box-shadow: 0 4px 12px rgba(22, 43, 54, 0.16) !important;
+      border: 1px solid rgba(200, 168, 126, 0.3) !important;
+    }
+
+    .map-action-btn svg {
+      width: 16px !important;
+      height: 16px !important;
+      fill: #c8a87e !important;
+    }
+
+    .map-action-btn:hover {
+      background: #224253 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 8px 20px rgba(22, 43, 54, 0.24) !important;
+    }
+
+    /* Card 2: Right Inquiry Form Card */
+    .quote-card {
+      background: #ffffff !important;
+      border-radius: 24px !important;
+      padding: 44px 40px !important;
+      box-shadow: 0 20px 48px -12px rgba(22, 43, 54, 0.08), 0 0 0 1px rgba(22, 43, 54, 0.06) !important;
+      border: 1px solid rgba(22, 43, 54, 0.08) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .quote-card::before {
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 4px !important;
+      background: linear-gradient(90deg, #162b36 0%, #294d60 50%, #162b36 100%) !important;
+    }
+
+    .quote-calculator-header h3 {
       font-size: 1.85rem !important;
       font-weight: 700 !important;
       color: #162b36 !important;
-      margin-bottom: 18px !important;
+      margin-bottom: 8px !important;
       letter-spacing: -0.02em !important;
     }
 
-    .contact-info-panel .ornament-separator {
-      color: #162b36 !important;
-    }
-    .contact-info-panel .ornament-separator .leaf-left,
-    .contact-info-panel .ornament-separator .leaf-right {
-      background-color: #162b36 !important;
-      opacity: 0.35 !important;
+    .quote-calculator-header p {
+      font-size: 0.93rem !important;
+      color: #5d6b75 !important;
+      line-height: 1.55 !important;
+      margin-bottom: 26px !important;
     }
 
-    /* Unified Icon Boxes */
-    .contact-info-panel .contact-icon-box {
-      background-color: rgba(22, 43, 54, 0.07) !important;
-      color: #162b36 !important;
-      border: 1px solid rgba(22, 43, 54, 0.08) !important;
+    .quote-card .form-group-row {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 16px !important;
+      margin-bottom: 16px !important;
     }
 
-    /* Unified Text & Headings */
-    .contact-info-panel .contact-text-block strong {
-      color: #162b36 !important;
-      font-weight: 600 !important;
+    .quote-card .form-group {
+      margin-bottom: 16px !important;
     }
 
-    .contact-info-panel .contact-text-block p a {
-      color: #162b36 !important;
-    }
-
-    /* Unified Working Hours Badge (Single Color Tone) */
-    .contact-info-panel .contact-highlight-badge {
-      background-color: rgba(22, 43, 54, 0.06) !important;
-      color: #162b36 !important;
-      border: 1px solid rgba(22, 43, 54, 0.12) !important;
-      font-weight: 600 !important;
-    }
-    .contact-info-panel .contact-highlight-badge i {
-      color: #162b36 !important;
-    }
-
-    /* Unified Social Media Buttons (One Color instead of multi-colored pink, blue, red) */
-    .contact-info-panel .social-btn-brand {
-      background: rgba(22, 43, 54, 0.06) !important;
-      color: #162b36 !important;
-      border: 1px solid rgba(22, 43, 54, 0.12) !important;
-      box-shadow: none !important;
-      transition: all 0.25s ease !important;
-    }
-    .contact-info-panel .social-btn-brand:hover {
-      background: #162b36 !important;
-      color: #ffffff !important;
-      border-color: #162b36 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 4px 12px rgba(22, 43, 54, 0.15) !important;
-    }
-
-    /* Unified Google Maps Button */
-    .contact-info-panel .map-action-btn {
-      background: #162b36 !important;
-      color: #ffffff !important;
-      border: 1px solid #162b36 !important;
-      font-weight: 600 !important;
-      box-shadow: 0 4px 14px rgba(22, 43, 54, 0.12) !important;
-    }
-    .contact-info-panel .map-action-btn:hover {
-      background: #234659 !important;
-      color: #ffffff !important;
-      transform: translateY(-2px) !important;
-    }
-
-    /* Form Card Heading Font & Color Sync */
-    .quote-calculator-header h3 {
-      font-family: 'Plus Jakarta Sans', sans-serif !important;
+    .quote-card .form-label {
+      display: block !important;
+      font-size: 0.82rem !important;
       font-weight: 700 !important;
       color: #162b36 !important;
+      margin-bottom: 7px !important;
+      letter-spacing: 0.02em !important;
+    }
+
+    .quote-card .form-control {
+      width: 100% !important;
+      background: #fbfcfd !important;
+      border: 1.5px solid rgba(22, 43, 54, 0.12) !important;
+      border-radius: 12px !important;
+      padding: 12px 16px !important;
+      font-size: 0.94rem !important;
+      color: #162b36 !important;
+      transition: all 0.2s ease !important;
+      outline: none !important;
+      box-sizing: border-box !important;
+    }
+
+    .quote-card .form-control:focus {
+      background: #ffffff !important;
+      border-color: #c8a87e !important;
+      box-shadow: 0 0 0 4px rgba(200, 168, 126, 0.18) !important;
+    }
+
+    .quote-card .btn-submit-inquiry {
+      width: 100% !important;
+      background: linear-gradient(135deg, #162b36 0%, #203f50 100%) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(200, 168, 126, 0.3) !important;
+      padding: 15px 24px !important;
+      border-radius: 12px !important;
+      font-size: 0.94rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      cursor: pointer !important;
+      transition: all 0.25s ease !important;
+      box-shadow: 0 10px 24px rgba(22, 43, 54, 0.2) !important;
+      margin-top: 8px !important;
+    }
+
+    .quote-card .btn-submit-inquiry svg {
+      width: 17px !important;
+      height: 17px !important;
+      fill: #c8a87e !important;
+      transition: transform 0.25s ease !important;
+    }
+
+    .quote-card .btn-submit-inquiry:hover {
+      background: linear-gradient(135deg, #203f50 0%, #162b36 100%) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 14px 28px rgba(22, 43, 54, 0.26) !important;
+      border-color: #c8a87e !important;
+    }
+
+    .quote-card .btn-submit-inquiry:hover svg {
+      transform: translateX(3px) !important;
+    }
+
+    .quote-card .privacy-note {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      font-size: 0.78rem !important;
+      color: #7b8a94 !important;
+      text-align: center !important;
+      margin-top: 14px !important;
+    }
+
+    .quote-card .privacy-note svg {
+      width: 14px !important;
+      height: 14px !important;
+      fill: #25d366 !important;
+    }
+
+    @media (max-width: 992px) {
+      .contact-section-grid {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+      .contact-info-panel,
+      .quote-card {
+        padding: 34px 26px !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .quote-card .form-group-row {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+      }
+      .contact-info-panel,
+      .quote-card {
+        padding: 26px 18px !important;
+        border-radius: 18px !important;
+      }
+      .contact-item-row {
+        padding: 13px !important;
+      }
     }
   </style>
 </head>
@@ -244,75 +621,101 @@
       <div class="contact-section-grid" id="quote-calculator">
         <!-- Left Column: Detailed Official Contact Information -->
         <div class="contact-info-panel">
-          <div class="ornament-separator" style="margin-bottom: 8px; color: #162b36;">
-            <span class="leaf-left"></span>
-            <span>Direct Inquiries</span>
-            <span class="leaf-right"></span>
-          </div>
-          <h2 style="font-size: 1.85rem; color: #162b36; margin-bottom: 20px; font-weight: 700;">S. K. Enterprises</h2>
-          <p style="font-size: 0.94rem; color: #5d6b75; margin-bottom: 24px; line-height: 1.6;">Modular furniture &amp;
-            interior designer. Feel free to call us directly, send an email, or message our design team on WhatsApp.</p>
+          <div>
+            <span class="contact-badge-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.6l-6.3 4.4 2.3-7.2-6-4.4h7.6z"/>
+              </svg>
+              Direct Inquiries
+            </span>
+            <h2>S. K. Enterprises</h2>
+            <p class="lead-text">Modular furniture &amp; interior designer. Feel free to call us directly, send an email, or message our design team on WhatsApp.</p>
 
-          <!-- Phones -->
-          <div class="contact-item-row">
-            <div class="contact-icon-box"><i class="fa-solid fa-phone"></i></div>
-            <div class="contact-text-block">
-              <strong>Phone Numbers</strong>
-              <p>
-                <a href="tel:+919423053232"
-                  style="font-weight: 700; color: #162b36; font-size: 1.05rem;">+91 94230 53232</a>
-              </p>
-              <p>
-                <a href="tel:+917972779903"
-                  style="font-weight: 700; color: #162b36; font-size: 1.05rem;">+91 79727 79903</a>
-              </p>
-              <span class="contact-highlight-badge"><i class="fa-solid fa-clock"></i> Mon – Sat: 10:00 AM – 8:00 PM</span>
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="contact-item-row">
-            <div class="contact-icon-box"><i class="fa-solid fa-envelope"></i></div>
-            <div class="contact-text-block">
-              <strong>Email Address</strong>
-              <p><a href="mailto:skenterprises3232@gmail.com"
-                  style="color: #162b36; font-weight: 600;">skenterprises3232@gmail.com</a></p>
-              <span style="font-size: 0.8rem; color: #5d6b75;">Quotations &amp; design drawings replied within 24 hours</span>
-            </div>
-          </div>
-
-          <!-- Social Media Profiles -->
-          <div class="contact-item-row">
-            <div class="contact-icon-box">
-              <i class="fa-solid fa-share-nodes"></i>
-            </div>
-            <div class="contact-text-block">
-              <strong>Social Media</strong>
-              <div style="display: flex; gap: 12px; margin-top: 10px;">
-                <a href="https://www.instagram.com/sk.interiors.1981?stkn=MXNreG9wdmg0azk0OQ==" target="_blank"
-                  rel="noopener" class="social-btn-brand social-btn-instagram" title="Instagram">
-                  <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn-brand social-btn-facebook" title="Facebook">
-                  <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn-brand social-btn-youtube" title="YouTube">
-                  <i class="fa-brands fa-youtube"></i>
-                </a>
+            <div class="contact-items-list">
+              <!-- Phones -->
+              <div class="contact-item-row">
+                <div class="contact-icon-box" title="Phone Numbers">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                </div>
+                <div class="contact-text-block">
+                  <strong>Phone Numbers</strong>
+                  <div class="phone-links">
+                    <a href="tel:+919423053232" class="phone-link">+91 94230 53232</a>
+                    <a href="tel:+917972779903" class="phone-link">+91 79727 79903</a>
+                  </div>
+                  <span class="contact-highlight-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Mon – Sat: 10:00 AM – 8:00 PM
+                  </span>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Factory Address & Google Maps -->
-          <div class="contact-item-row">
-            <div class="contact-icon-box"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="contact-text-block">
-              <strong>Factory &amp; Showroom Location</strong>
-              <p><a href="https://maps.app.goo.gl/u1JRdXmWntqDVqa4A" target="_blank" rel="noopener" style="color: #5d6b75;">S. K. Enterprises, Modular furniture &amp; interior designer, Narhe / Ambegaon BK Industrial Zone, Pune,
-                Maharashtra, India</a></p>
-              <a href="https://maps.app.goo.gl/u1JRdXmWntqDVqa4A" target="_blank" rel="noopener" class="map-action-btn">
-                <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps App
-              </a>
+              <!-- Email -->
+              <div class="contact-item-row">
+                <div class="contact-icon-box" title="Email Us">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                </div>
+                <div class="contact-text-block">
+                  <strong>Email Address</strong>
+                  <a href="mailto:skenterprises3232@gmail.com" class="email-link">skenterprises3232@gmail.com</a>
+                  <span style="font-size: 0.8rem; color: #5d6b75; display: block; margin-top: 4px;">Quotations &amp; drawings replied within 24 hours</span>
+                </div>
+              </div>
+
+              <!-- Social Media Profiles -->
+              <div class="contact-item-row">
+                <div class="contact-icon-box" title="Social Media">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
+                  </svg>
+                </div>
+                <div class="contact-text-block">
+                  <strong>Official Social Profiles</strong>
+                  <div class="social-btns-row">
+                    <a href="https://www.instagram.com/sk.interiors.1981?stkn=MXNreG9wdmg0azk0OQ==" target="_blank" rel="noopener" class="social-btn-brand social-btn-instagram" title="Instagram">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      </svg>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn-brand social-btn-facebook" title="Facebook">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                      </svg>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn-brand social-btn-youtube" title="YouTube">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Factory Address & Google Maps -->
+              <div class="contact-item-row">
+                <div class="contact-icon-box" title="Factory Location">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  </svg>
+                </div>
+                <div class="contact-text-block">
+                  <strong>Factory &amp; Showroom Location</strong>
+                  <p style="margin: 0;"><a href="https://maps.app.goo.gl/u1JRdXmWntqDVqa4A" target="_blank" rel="noopener" style="color: #5d6b75; text-decoration: none; font-size: 0.92rem; line-height: 1.5; display: block;">S. K. Enterprises, Modular furniture &amp; interior designer, Narhe / Ambegaon BK Industrial Zone, Pune, Maharashtra, India</a></p>
+                  <a href="https://maps.app.goo.gl/u1JRdXmWntqDVqa4A" target="_blank" rel="noopener" class="map-action-btn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
+                    </svg>
+                    Open in Google Maps App
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -321,8 +724,7 @@
         <div class="quote-card">
           <div class="quote-calculator-header">
             <h3>Send Us a Message</h3>
-            <p>Fill out the details below and our design team will contact you within 2 hours with free spatial guidance
-              and catalog.</p>
+            <p>Fill out the details below and our design team will contact you within 2 hours with free spatial guidance and catalog.</p>
           </div>
 
           <form id="contactEnquiryForm">
@@ -352,10 +754,10 @@
             <div class="form-group">
               <label for="quoteRequirement" class="form-label">Interested In</label>
               <select id="quoteRequirement" class="form-control">
-                <option value="Modular Wardrobes">Modular Wardrobes & Storage</option>
-                <option value="Bedroom Suite">Master Bedroom Suite & Bed</option>
-                <option value="Living Room Furniture">Living Room & Sofa Sets</option>
-                <option value="Dining Area">Dining Tables & Chairs</option>
+                <option value="Modular Wardrobes">Modular Wardrobes &amp; Storage</option>
+                <option value="Bedroom Suite">Master Bedroom Suite &amp; Bed</option>
+                <option value="Living Room Furniture">Living Room &amp; Sofa Sets</option>
+                <option value="Dining Area">Dining Tables &amp; Chairs</option>
                 <option value="Turnkey Interior">Complete Turnkey Home Interior</option>
                 <option value="Other Custom Furniture">Other Custom Furniture</option>
               </select>
@@ -367,13 +769,18 @@
                 placeholder="Tell us what you are looking for (dimensions, preferred wood finish, floor plan details)..."></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-              <i class="fa-solid fa-paper-plane"></i> Send Message / Request Call Back
+            <button type="submit" class="btn-submit-inquiry">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+              </svg>
+              Send Message / Request Call Back
             </button>
-            <span
-              style="display: block; font-size: 0.76rem; color: var(--color-text-muted); text-align: center; margin-top: 10px;">
-              We respect your privacy. No spam. You will receive a direct response from our senior designers.
-            </span>
+            <div class="privacy-note">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+              </svg>
+              <span>We respect your privacy. No spam. You will receive a direct response from our senior designers.</span>
+            </div>
           </form>
         </div>
       </div>

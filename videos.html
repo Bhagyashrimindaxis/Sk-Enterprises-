@@ -19,7 +19,142 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261014">
+  <style>
+    /* ==========================================================================
+       DEDICATED VIDEO SCREEN-FIT STYLES (NO CROPPING, PERFECT PROPORTIONS)
+       ========================================================================== */
+    .video-showcase-section {
+      padding-top: 50px !important;
+      padding-bottom: 70px !important;
+    }
+    .video-grid-dual {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 24px !important;
+      max-width: 1200px !important;
+      margin: 32px auto 0 auto !important;
+    }
+    .video-card {
+      flex: 0 1 310px !important;
+      width: 100% !important;
+      max-width: 310px !important;
+      background: #ffffff !important;
+      border-radius: 16px !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07) !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease !important;
+    }
+    .video-card:hover {
+      transform: translateY(-6px) !important;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12) !important;
+      border-color: var(--color-primary, #162b36) !important;
+    }
+    .video-wrapper {
+      position: relative !important;
+      width: 100% !important;
+      aspect-ratio: 9 / 16 !important;
+      max-height: 440px !important;
+      background: #000000 !important;
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .video-element {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 440px !important;
+      object-fit: contain !important;
+      background: #000000 !important;
+      display: block !important;
+    }
+    .video-badge {
+      position: absolute !important;
+      top: 12px !important;
+      left: 12px !important;
+      background: rgba(10, 20, 26, 0.88) !important;
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
+      color: #c8a87e !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.06em !important;
+      padding: 5px 12px !important;
+      border-radius: 999px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      z-index: 2 !important;
+      border: 1px solid rgba(200, 168, 126, 0.4) !important;
+      pointer-events: none !important;
+    }
+    .video-popup-trigger-btn {
+      position: absolute !important;
+      bottom: 12px !important;
+      right: 12px !important;
+      background: rgba(10, 20, 26, 0.88) !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      color: #ffffff !important;
+      padding: 6px 14px !important;
+      border-radius: 999px !important;
+      font-size: 0.78rem !important;
+      font-weight: 600 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      z-index: 5 !important;
+      transition: all 0.2s ease !important;
+      cursor: pointer !important;
+    }
+    .video-card-body {
+      padding: 14px 16px !important;
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      text-align: center !important;
+      background: #ffffff !important;
+    }
+    .video-card-title {
+      font-size: 1rem !important;
+      font-family: var(--font-serif, "Playfair Display", serif) !important;
+      color: var(--color-primary, #162b36) !important;
+      margin: 0 !important;
+      line-height: 1.35 !important;
+    }
+    @media (max-width: 992px) {
+      .video-grid-dual {
+        gap: 20px !important;
+      }
+      .video-card {
+        flex: 0 1 290px !important;
+        max-width: 290px !important;
+      }
+      .video-wrapper,
+      .video-element {
+        max-height: 420px !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .video-card {
+        flex: 0 1 310px !important;
+        max-width: 310px !important;
+        margin: 0 auto !important;
+      }
+      .video-wrapper,
+      .video-element {
+        max-height: 430px !important;
+      }
+    }
+  </style>
 </head>
 <body data-page="videos">
 
@@ -262,7 +397,7 @@
        DEDICATED SEPARATE VIDEO LIGHTBOX POPUP
        ========================================================================== -->
   <div class="lightbox-modal video-lightbox-modal" id="videoPageLightbox">
-    <div class="lightbox-content" style="max-width: 900px; background: #0c1218; border: 1px solid rgba(255,255,255,0.1);">
+    <div class="lightbox-content" style="max-width: 520px; width: 92%; background: #0c1218; border: 1px solid rgba(255,255,255,0.1);">
       <button type="button" class="lightbox-close" id="videoLightboxClose" aria-label="Close Video Popup">
         <i class="fa-solid fa-xmark"></i>
       </button>
